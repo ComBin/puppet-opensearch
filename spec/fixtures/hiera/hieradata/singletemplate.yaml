@@ -1,5 +1,5 @@
 ---
-elasticsearch::templates:
+opensearch::templates:
   foo:
     ensure: 'present'
     content:

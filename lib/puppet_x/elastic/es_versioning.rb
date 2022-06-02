@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-class ElasticsearchPackageNotFoundError < StandardError; end
+class OpensearchPackageNotFoundError < StandardError; end
 
 module Puppet_X # rubocop:disable Style/ClassAndModuleCamelCase
   module Elastic
-    # Assists with discerning the locally installed version of Elasticsearch.
+    # Assists with discerning the locally installed version of Opensearch.
     # Implemented in a way to be called from native types and providers in order
     # to lazily fetch the package version from various arcane Puppet mechanisms.
     class EsVersioning
-      # All of the default options we'll set for Elasticsearch's command
+      # All of the default options we'll set for Opensearch's command
       # invocation.
       DEFAULT_OPTS = {
         'home' => 'ES_HOME',
@@ -18,7 +18,7 @@ module Puppet_X # rubocop:disable Style/ClassAndModuleCamelCase
         'conf' => 'CONF_DIR'
       }.freeze
 
-      # Create an array of command-line flags to append to an `elasticsearch`
+      # Create an array of command-line flags to append to an `opensearch`
       # startup command.
       def self.opt_flags(package_name, catalog, opts = DEFAULT_OPTS.dup)
         opt_flag = opt_flag(min_version('5.0.0', package_name, catalog))
@@ -39,7 +39,7 @@ module Puppet_X # rubocop:disable Style/ClassAndModuleCamelCase
         [opt_flag, opt_args]
       end
 
-      # Get the correct option flag depending on whether Elasticsearch is post
+      # Get the correct option flag depending on whether Opensearch is post
       # version 5.
       def self.opt_flag(v5_or_later)
         v5_or_later ? 'E' : 'Des.'
@@ -64,7 +64,7 @@ module Puppet_X # rubocop:disable Style/ClassAndModuleCamelCase
           return property if property.is_a? String
         end
         Puppet.warning("could not find valid version for `Package[#{package_name}]` resource")
-        raise ElasticsearchPackageNotFoundError
+        raise OpensearchPackageNotFoundError
       end
     end
   end

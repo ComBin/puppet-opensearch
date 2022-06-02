@@ -1,1 +1,1 @@
-type Elasticsearch::Status = Enum['enabled', 'disabled', 'running', 'unmanaged']
+type Opensearch::Status = Enum['enabled', 'disabled', 'running', 'unmanaged']

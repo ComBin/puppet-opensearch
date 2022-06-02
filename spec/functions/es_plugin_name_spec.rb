@@ -38,7 +38,7 @@ describe 'es_plugin_name' do
 
     it {
       expect(subject).to run.
-        with_params('vendor/elasticsearch-foo/1.0.0').
+        with_params('vendor/opensearch-foo/1.0.0').
         and_return('foo')
     }
 

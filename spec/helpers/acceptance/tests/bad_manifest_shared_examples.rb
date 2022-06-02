@@ -4,7 +4,7 @@ shared_examples 'invalid manifest application' do
   context 'bad manifest' do
     let(:applied_manifest) do
       <<-MANIFEST
-        class { 'elasticsearch' :
+        class { 'opensearch' :
           #{manifest}
           #{defined?(manifest_class_parameters) && manifest_class_parameters}
         }

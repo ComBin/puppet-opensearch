@@ -11,7 +11,7 @@ shared_examples 'pipeline operations' do |es_config, pipeline|
     context 'present' do
       let(:extra_manifest) do
         <<-MANIFEST
-          elasticsearch::pipeline { '#{pipeline_name}':
+          opensearch::pipeline { '#{pipeline_name}':
             ensure  => 'present',
             content => #{pipeline}
           }
@@ -26,7 +26,7 @@ shared_examples 'pipeline operations' do |es_config, pipeline|
     context 'absent' do
       let(:extra_manifest) do
         <<-MANIFEST
-          elasticsearch::template { '#{pipeline_name}':
+          opensearch::template { '#{pipeline_name}':
             ensure => absent,
           }
         MANIFEST
@@ -39,15 +39,15 @@ end
 
 # Verifies the content of a loaded index template.
 shared_examples 'pipeline content' do |es_config, pipeline|
-  elasticsearch_port = es_config['http.port']
-  describe port(elasticsearch_port) do
+  opensearch_port = es_config['http.port']
+  describe port(opensearch_port) do
     it 'open', :with_retries do
       expect(subject).to be_listening
     end
   end
 
-  describe "http://localhost:#{elasticsearch_port}/_ingest/pipeline" do
-    subject { shell("curl http://localhost:#{elasticsearch_port}/_ingest/pipeline") }
+  describe "http://localhost:#{opensearch_port}/_ingest/pipeline" do
+    subject { shell("curl http://localhost:#{opensearch_port}/_ingest/pipeline") }
 
     it 'returns the configured pipelines', :with_retries do
       expect(JSON.parse(subject.stdout).values).

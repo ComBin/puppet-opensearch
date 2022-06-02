@@ -21,9 +21,9 @@ module Puppet::Parser::Functions
     return items[0] if items.count == 1
 
     plugin = items[1]
-    endname = if plugin.include?('-') # example elasticsearch-head
-                if plugin.start_with?('elasticsearch-')
-                  plugin.gsub('elasticsearch-', '')
+    endname = if plugin.include?('-') # example opensearch-head
+                if plugin.start_with?('opensearch-')
+                  plugin.gsub('opensearch-', '')
                 elsif plugin.start_with?('es-')
                   plugin.gsub('es-', '')
                 else

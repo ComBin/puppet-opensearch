@@ -15,15 +15,15 @@ shared_examples 'user/group acceptance tests' do
           } -> user { 'esuser':
             ensure => 'present',
             groups => ['esgroup', 'esuser'],
-            before => Class['elasticsearch'],
+            before => Class['opensearch'],
           }
         MANIFEST
       end
 
       let(:manifest_class_parameters) do
         <<-MANIFEST
-          elasticsearch_user => 'esuser',
-          elasticsearch_group => 'esgroup',
+          opensearch_user => 'esuser',
+          opensearch_group => 'esgroup',
         MANIFEST
       end
 
@@ -32,15 +32,15 @@ shared_examples 'user/group acceptance tests' do
         'es-01' => {
           'config' => {
             'http.port' => 9200,
-            'node.name' => 'elasticsearch001'
+            'node.name' => 'opensearch001'
           }
         }
       )
 
       %w[
-        /etc/elasticsearch/es-01/elasticsearch.yml
-        /usr/share/elasticsearch
-        /var/log/elasticsearch
+        /etc/opensearch/es-01/opensearch.yml
+        /usr/share/opensearch
+        /var/log/opensearch
       ].each do |path|
         describe file(path) do
           it { is_expected.to be_owned_by 'esuser' }

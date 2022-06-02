@@ -1,5 +1,5 @@
 ---
-elasticsearch::roles:
+opensearch::roles:
   admin:
     ensure: present
     privileges:

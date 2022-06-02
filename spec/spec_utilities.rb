@@ -42,11 +42,11 @@ end
 def derive_full_package_url(full_version, extensions = %w[deb rpm])
   extensions.map do |ext|
     url = if full_version.start_with? '6'
-            "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-#{full_version}.#{ext}"
+            "https://artifacts.elastic.co/downloads/opensearch/opensearch-#{full_version}.#{ext}"
           elsif ext == 'deb'
-            "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-#{full_version}-amd64.#{ext}"
+            "https://artifacts.elastic.co/downloads/opensearch/opensearch-#{full_version}-amd64.#{ext}"
           else
-            "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-#{full_version}-x86_64.#{ext}"
+            "https://artifacts.elastic.co/downloads/opensearch/opensearch-#{full_version}-x86_64.#{ext}"
           end
     [url, File.basename(url)]
   end.to_h
@@ -54,7 +54,7 @@ end
 
 def derive_plugin_urls_for(full_version, plugins = ['analysis-icu'])
   plugins.map do |plugin|
-    url = "https://artifacts.elastic.co/downloads/elasticsearch-plugins/#{plugin}/#{plugin}-#{full_version}.zip"
+    url = "https://artifacts.elastic.co/downloads/opensearch-plugins/#{plugin}/#{plugin}-#{full_version}.zip"
     [url, File.join('plugins', File.basename(url))]
   end.to_h
 end
@@ -99,9 +99,9 @@ end
 def pid_file
   if fact('operatingsystem') == 'Debian' \
       && fact('lsbmajdistrelease').to_i <= 7
-    '/var/run/elasticsearch.pid'
+    '/var/run/opensearch.pid'
   else
-    '/var/run/elasticsearch/elasticsearch.pid'
+    '/var/run/opensearch/opensearch.pid'
   end
 end
 

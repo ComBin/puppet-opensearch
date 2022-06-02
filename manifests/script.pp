@@ -1,5 +1,5 @@
 #  This define allows you to insert, update or delete scripts that are used
-#  within Elasticsearch.
+#  within Opensearch.
 #
 # @param ensure
 #   Controls the state of the script file resource to manage.
@@ -11,26 +11,26 @@
 # @param source
 #   Puppet source of the script
 #
-# @author Richard Pijnenburg <richard.pijnenburg@elasticsearch.com>
+# @author Richard Pijnenburg <richard.pijnenburg@opensearch.com>
 # @author Tyler Langlois <tyler.langlois@elastic.co>
 #
-define elasticsearch::script (
+define opensearch::script (
   String                                     $source,
   String                                     $ensure  = 'present',
   Optional[Variant[Boolean, Enum['remote']]] $recurse = undef,
 ) {
-  if ! defined(Class['elasticsearch']) {
-    fail('You must include the elasticsearch base class before using defined resources')
+  if ! defined(Class['opensearch']) {
+    fail('You must include the opensearch base class before using defined resources')
   }
 
   $filename_array = split($source, '/')
   $basefilename = $filename_array[-1]
 
-  file { "${elasticsearch::homedir}/scripts/${basefilename}":
+  file { "${opensearch::homedir}/scripts/${basefilename}":
     ensure  => $ensure,
     source  => $source,
-    owner   => $elasticsearch::elasticsearch_user,
-    group   => $elasticsearch::elasticsearch_group,
+    owner   => $opensearch::opensearch_user,
+    group   => $opensearch::opensearch_group,
     recurse => $recurse,
     mode    => '0644',
   }

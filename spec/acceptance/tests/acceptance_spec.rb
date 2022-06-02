@@ -14,12 +14,12 @@ require 'helpers/acceptance/tests/hiera_shared_examples'
 require 'helpers/acceptance/tests/usergroup_shared_examples'
 require 'helpers/acceptance/tests/security_shared_examples'
 
-describe "elasticsearch v#{v[:elasticsearch_full_version]} class" do
+describe "opensearch v#{v[:opensearch_full_version]} class" do
   es_config = {
     'cluster.name' => v[:cluster_name],
     'http.bind_host' => '0.0.0.0',
     'http.port' => 9200,
-    'node.name' => 'elasticsearch01'
+    'node.name' => 'opensearch01'
   }
 
   let(:elastic_repo) { !v[:is_snapshot] }
@@ -32,7 +32,7 @@ describe "elasticsearch v#{v[:elasticsearch_full_version]} class" do
               else
                 <<-MANIFEST
                   # Hard version set here due to plugin incompatibilities.
-                  version => '#{v[:elasticsearch_full_version]}',
+                  version => '#{v[:opensearch_full_version]}',
                 MANIFEST
               end
 
@@ -62,11 +62,11 @@ describe "elasticsearch v#{v[:elasticsearch_full_version]} class" do
 
   include_examples('pipeline operations', es_config, v[:pipeline])
 
-  unless v[:elasticsearch_plugins].empty?
+  unless v[:opensearch_plugins].empty?
     include_examples(
       'plugin acceptance tests',
       es_config,
-      v[:elasticsearch_plugins]
+      v[:opensearch_plugins]
     )
   end
 
@@ -77,7 +77,7 @@ describe "elasticsearch v#{v[:elasticsearch_full_version]} class" do
   # Skip this for snapshot testing, as we only have package files anyway.
   include_examples('package_url acceptance tests', es_config) unless v[:is_snapshot]
 
-  include_examples('hiera acceptance tests', es_config, v[:elasticsearch_plugins])
+  include_examples('hiera acceptance tests', es_config, v[:opensearch_plugins])
 
   # Security-related tests (shield/x-pack).
   #

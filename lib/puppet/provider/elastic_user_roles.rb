@@ -6,7 +6,7 @@ require 'puppet/provider/elastic_yaml'
 # files.
 class Puppet::Provider::ElasticUserRoles < Puppet::Provider::ElasticYaml
   # Override the ancestor `parse` method to process a users/roles file
-  # managed by the Elasticsearch user tools.
+  # managed by the Opensearch user tools.
   def self.parse(text)
     lines = text.split("\n").map(&:strip).select do |line|
       # Strip comments
@@ -36,7 +36,7 @@ class Puppet::Provider::ElasticUserRoles < Puppet::Provider::ElasticYaml
   # Represent this user/role record as a correctly-formatted config file.
   def self.to_file(records)
     debug "Flushing: #{records.inspect}"
-    records = records.map do |record|
+    records.map do |record|
       record[:roles].map do |r|
         { [record[:name]] => r }
       end

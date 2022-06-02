@@ -9,7 +9,7 @@ shared_examples 'security plugin manifest' do |credentials|
     users = credentials.map do |username, meta|
       <<-USER
         #{meta[:changed] ? "notify { 'password change for #{username}' : } ~>" : ''}
-        elasticsearch::user { '#{username}':
+        opensearch::user { '#{username}':
           password => '#{meta[:hash] || meta[:plaintext]}',
           roles    => #{meta[:roles].reduce({}) { |acc, elem| acc.merge(elem) }.keys},
         }
@@ -28,7 +28,7 @@ shared_examples 'security plugin manifest' do |credentials|
     end
     roles = roles.map do |role, rights|
       <<-ROLE
-        elasticsearch::role { '#{role}':
+        opensearch::role { '#{role}':
             privileges => #{rights}
         }
       ROLE
@@ -82,7 +82,7 @@ shared_examples 'security acceptance tests' do |es_config|
         ca_certificate          => '#{tls[:ca][:cert][:path]}',
         certificate             => '#{tls[:clients].first[:cert][:path]}',
         keystore_password       => '#{keystore_password}',
-        license                 => file('#{v[:elasticsearch_license_path]}'),
+        license                 => file('#{v[:opensearch_license_path]}'),
         private_key             => '#{tls[:clients].first[:key][:path]}',
         restart_on_change       => true,
         ssl                     => true,

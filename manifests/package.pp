@@ -5,12 +5,12 @@
 # definitions or other modules.
 #
 # @example importing this class by other classes to use its functionality:
-#   class { 'elasticsearch::package': }
+#   class { 'opensearch::package': }
 #
-# @author Richard Pijnenburg <richard.pijnenburg@elasticsearch.com>
+# @author Richard Pijnenburg <richard.pijnenburg@opensearch.com>
 # @author Tyler Langlois <tyler.langlois@elastic.co>
 #
-class elasticsearch::package {
+class opensearch::package {
   Exec {
     path      => ['/bin', '/usr/bin', '/usr/local/bin'],
     cwd       => '/',
@@ -18,15 +18,15 @@ class elasticsearch::package {
     try_sleep => 10,
   }
 
-  if $elasticsearch::ensure == 'present' {
-    if $elasticsearch::restart_package_change {
-      Package['elasticsearch'] ~> Class['elasticsearch::service']
+  if $opensearch::ensure == 'present' {
+    if $opensearch::restart_package_change {
+      Package['opensearch'] ~> Class['opensearch::service']
     }
-    Package['elasticsearch'] ~> Exec['remove_plugin_dir']
+    #Package['opensearch'] ~> Exec['remove_plugin_dir']
 
     # Create directory to place the package file
-    $package_dir = $elasticsearch::package_dir
-    exec { 'create_package_dir_elasticsearch':
+    $package_dir = $opensearch::package_dir
+    exec { 'create_package_dir_opensearch':
       cwd     => '/',
       path    => ['/usr/bin', '/bin'],
       command => "mkdir -p ${package_dir}",
@@ -35,34 +35,34 @@ class elasticsearch::package {
 
     file { $package_dir:
       ensure  => 'directory',
-      purge   => $elasticsearch::purge_package_dir,
-      force   => $elasticsearch::purge_package_dir,
+      purge   => $opensearch::purge_package_dir,
+      force   => $opensearch::purge_package_dir,
       backup  => false,
-      require => Exec['create_package_dir_elasticsearch'],
+      require => Exec['create_package_dir_opensearch'],
     }
 
     # Check if we want to install a specific version or not
-    if $elasticsearch::version == false {
-      $package_ensure = $elasticsearch::autoupgrade ? {
+    if $opensearch::version == false {
+      $package_ensure = $opensearch::autoupgrade ? {
         true  => 'latest',
         false => 'present',
       }
     } else {
       # install specific version
-      $package_ensure = $elasticsearch::pkg_version
+      $package_ensure = $opensearch::pkg_version
     }
 
     # action
-    if ($elasticsearch::package_url != undef) {
-      case $elasticsearch::package_provider {
-        'package': { $before = Package['elasticsearch'] }
-        default:   { fail("software provider \"${elasticsearch::package_provider}\".") }
+    if ($opensearch::package_url != undef) {
+      case $opensearch::package_provider {
+        'package': { $before = Package['opensearch'] }
+        default:   { fail("software provider \"${opensearch::package_provider}\".") }
       }
 
-      $filename_array = split($elasticsearch::package_url, '/')
+      $filename_array = split($opensearch::package_url, '/')
       $basefilename = $filename_array[-1]
 
-      $source_array = split($elasticsearch::package_url, ':')
+      $source_array = split($opensearch::package_url, ':')
       $protocol_type = $source_array[0]
 
       $ext_array = split($basefilename, '\.')
@@ -74,42 +74,42 @@ class elasticsearch::package {
         'puppet': {
           file { $pkg_source:
             ensure  => file,
-            source  => $elasticsearch::package_url,
+            source  => $opensearch::package_url,
             require => File[$package_dir],
             backup  => false,
             before  => $before,
           }
         }
         'ftp', 'https', 'http': {
-          if $elasticsearch::proxy_url != undef {
+          if $opensearch::proxy_url != undef {
             $exec_environment = [
               'use_proxy=yes',
-              "http_proxy=${elasticsearch::proxy_url}",
-              "https_proxy=${elasticsearch::proxy_url}",
+              "http_proxy=${opensearch::proxy_url}",
+              "https_proxy=${opensearch::proxy_url}",
             ]
           } else {
             $exec_environment = []
           }
 
-          case $elasticsearch::download_tool {
+          case $opensearch::download_tool {
             String: {
-              $_download_command = if $elasticsearch::download_tool_verify_certificates {
-                $elasticsearch::download_tool
+              $_download_command = if $opensearch::download_tool_verify_certificates {
+                $opensearch::download_tool
               } else {
-                $elasticsearch::download_tool_insecure
+                $opensearch::download_tool_insecure
               }
 
-              exec { 'download_package_elasticsearch':
-                command     => "${_download_command} ${pkg_source} ${elasticsearch::package_url} 2> /dev/null",
+              exec { 'download_package_opensearch':
+                command     => "${_download_command} ${pkg_source} ${opensearch::package_url} 2> /dev/null",
                 creates     => $pkg_source,
                 environment => $exec_environment,
-                timeout     => $elasticsearch::package_dl_timeout,
+                timeout     => $opensearch::package_dl_timeout,
                 require     => File[$package_dir],
                 before      => $before,
               }
             }
             default: {
-              fail("no \$elasticsearch::download_tool defined for ${facts['os']['family']}")
+              fail("no \$opensearch::download_tool defined for ${facts['os']['family']}")
             }
           }
         }
@@ -128,7 +128,7 @@ class elasticsearch::package {
         }
       }
 
-      if ($elasticsearch::package_provider == 'package') {
+      if ($opensearch::package_provider == 'package') {
         case $ext {
           'deb':   { Package { provider => 'dpkg', source => $pkg_source } }
           'rpm':   { Package { provider => 'rpm', source => $pkg_source } }
@@ -136,8 +136,8 @@ class elasticsearch::package {
         }
       }
     } else {
-      if ($elasticsearch::manage_repo and $facts['os']['family'] == 'Debian') {
-        Class['apt::update'] -> Package['elasticsearch']
+      if ($opensearch::manage_repo and $facts['os']['family'] == 'Debian') {
+        Class['apt::update'] -> Package['opensearch']
       }
     }
   } else {
@@ -152,17 +152,17 @@ class elasticsearch::package {
     }
   }
 
-  if ($elasticsearch::package_provider == 'package') {
-    package { 'elasticsearch':
+  if ($opensearch::package_provider == 'package') {
+    package { 'opensearch':
       ensure => $package_ensure,
-      name   => $elasticsearch::_package_name,
+      name   => $opensearch::_package_name,
     }
 
-    exec { 'remove_plugin_dir':
-      refreshonly => true,
-      command     => "rm -rf ${elasticsearch::real_plugindir}",
-    }
+    #exec { 'remove_plugin_dir':
+    #  refreshonly => true,
+    #  command     => "rm -rf ${opensearch::real_plugindir}",
+    #}
   } else {
-    fail("\"${elasticsearch::package_provider}\" is not supported")
+    fail("\"${opensearch::package_provider}\" is not supported")
   }
 }

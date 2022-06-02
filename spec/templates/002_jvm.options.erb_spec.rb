@@ -5,7 +5,7 @@ require 'spec_helper'
 describe 'jvm.options.epp' do
   let :harness do
     TemplateHarness.new(
-      'templates/etc/elasticsearch/jvm.options.d/jvm.options.epp'
+      'templates/etc/opensearch/jvm.options.d/jvm.options.epp'
     )
   end
 

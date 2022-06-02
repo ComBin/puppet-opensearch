@@ -1,5 +1,5 @@
 ---
-elasticsearch::plugins:
-  'mobz/elasticsearch-head':
+opensearch::plugins:
+  'mobz/opensearch-head':
     ensure: 'present'
     module_dir: 'head'

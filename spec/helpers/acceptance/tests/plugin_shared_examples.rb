@@ -6,7 +6,7 @@ require 'helpers/acceptance/tests/manifest_shared_examples'
 require 'helpers/acceptance/tests/plugin_api_shared_examples'
 
 shared_examples 'plugin acceptance tests' do |es_config, plugins|
-  describe 'elasticsearch::plugin' do
+  describe 'opensearch::plugin' do
     before :all do # rubocop:disable RSpec/BeforeAfterAll
       shell "mkdir -p #{default['distmoduledir']}/another/files"
     end
@@ -14,7 +14,7 @@ shared_examples 'plugin acceptance tests' do |es_config, plugins|
     describe 'invalid plugins', :with_cleanup do
       let(:extra_manifest) do
         <<-MANIFEST
-          elasticsearch::plugin { 'elastic/non-existing': }
+          opensearch::plugin { 'elastic/non-existing': }
         MANIFEST
       end
 
@@ -30,13 +30,13 @@ shared_examples 'plugin acceptance tests' do |es_config, plugins|
           describe 'using simple names', :with_cleanup do
             let(:extra_manifest) do
               <<-MANIFEST
-                elasticsearch::plugin { '#{plugin}': }
+                opensearch::plugin { '#{plugin}': }
               MANIFEST
             end
 
             include_examples('manifest application', es_config)
 
-            describe file("/usr/share/elasticsearch/plugins/#{plugin}/") do
+            describe file("/usr/share/opensearch/plugins/#{plugin}/") do
               it { is_expected.to be_directory }
             end
 
@@ -59,7 +59,7 @@ shared_examples 'plugin acceptance tests' do |es_config, plugins|
 
             let(:extra_manifest) do
               <<-MANIFEST
-                elasticsearch::plugin { '#{plugin}':
+                opensearch::plugin { '#{plugin}':
                   source => 'puppet:///modules/another/#{plugin}.zip',
                 }
               MANIFEST
@@ -78,7 +78,7 @@ shared_examples 'plugin acceptance tests' do |es_config, plugins|
           describe 'via url', :with_cleanup do
             let(:extra_manifest) do
               <<-MANIFEST
-                elasticsearch::plugin { '#{plugin}':
+                opensearch::plugin { '#{plugin}':
                   url => '#{meta[:url]}',
                 }
               MANIFEST

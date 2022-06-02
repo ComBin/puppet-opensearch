@@ -8,7 +8,7 @@ agents = only_host_with_role(hosts, 'agent')
 
 shared_examples 'hiera tests with' do |es_config, additional_yaml = {}|
   hieradata = {
-    'elasticsearch::config' => es_config
+    'opensearch::config' => es_config
   }.merge(additional_yaml).to_yaml
 
   before :all do # rubocop:disable RSpec/BeforeAfterAll
@@ -29,7 +29,7 @@ shared_examples 'hiera acceptance tests' do |es_config, plugins|
                 else
                   <<-MANIFEST
                     # Hard version set here due to plugin incompatibilities.
-                    version => '#{v[:elasticsearch_full_version]}',
+                    version => '#{v[:opensearch_full_version]}',
                   MANIFEST
                 end
 
@@ -49,9 +49,9 @@ shared_examples 'hiera acceptance tests' do |es_config, plugins|
     after :all do # rubocop:disable RSpec/BeforeAfterAll
       write_hieradata_to(agents, {})
 
-      # Ensure that elasticsearch is cleaned up before any other tests
+      # Ensure that opensearch is cleaned up before any other tests
       cleanup_manifest = <<-EOS
-        class { 'elasticsearch': ensure => 'absent', oss => #{v[:oss]} }
+        class { 'opensearch': ensure => 'absent', oss => #{v[:oss]} }
       EOS
       apply_manifest(cleanup_manifest, debug: v[:puppet_debug])
     end
@@ -72,7 +72,7 @@ shared_examples 'hiera acceptance tests' do |es_config, plugins|
         include_examples(
           'hiera tests with',
           es_config.merge('node.name' => nodename),
-          'elasticsearch::plugins' => {
+          'opensearch::plugins' => {
             plugin => {
               'ensure' => 'present'
             }

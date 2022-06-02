@@ -4,7 +4,7 @@ shared_examples 'module removal' do |es_config|
   describe 'uninstalling' do
     let(:manifest) do
       <<-MANIFEST
-        class { 'elasticsearch': ensure => 'absent', oss => #{v[:oss]} }
+        class { 'opensearch': ensure => 'absent', oss => #{v[:oss]} }
       MANIFEST
     end
 
@@ -12,11 +12,11 @@ shared_examples 'module removal' do |es_config|
       apply_manifest(manifest, catch_failures: true, debug: v[:puppet_debug])
     end
 
-    describe package("elasticsearch#{v[:oss] ? '-oss' : ''}") do
+    describe package("opensearch#{v[:oss] ? '-oss' : ''}") do
       it { is_expected.not_to be_installed }
     end
 
-    describe service('elasticsearch') do
+    describe service('opensearch') do
       it { is_expected.not_to be_enabled }
       it { is_expected.not_to be_running }
     end

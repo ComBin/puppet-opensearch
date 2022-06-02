@@ -37,7 +37,7 @@ module EsFacts
   #
   # This is a super old function but works; disable a bunch of checks.
   def self.run
-    dir_prefix = '/etc/elasticsearch'
+    dir_prefix = '/etc/opensearch'
     # httpports is a hash of port_number => ssl?
     transportports = []
     http_bound_addresses = []
@@ -48,19 +48,19 @@ module EsFacts
     # only when the directory exists we need to process the stuff
     return unless File.directory?(dir_prefix)
 
-    if File.readable?("#{dir_prefix}/elasticsearch.yml")
-      config_data = YAML.load_file("#{dir_prefix}/elasticsearch.yml")
+    if File.readable?("#{dir_prefix}/opensearch.yml")
+      config_data = YAML.load_file("#{dir_prefix}/opensearch.yml")
       return unless config_data
 
       httpport, ssl = get_httpport(config_data)
     end
 
     begin
-      add_fact('elasticsearch', 'port', httpport)
+      add_fact('opensearch', 'port', httpport)
 
       unless ssl
-        key_prefix = 'elasticsearch'
-        # key_prefix = "elasticsearch_#{httpport}"
+        key_prefix = 'opensearch'
+        # key_prefix = "opensearch_#{httpport}"
 
         uri = URI("http://localhost:#{httpport}")
         http = Net::HTTP.new(uri.host, uri.port)
@@ -126,7 +126,7 @@ module EsFacts
     rescue StandardError
       # ignore
     end
-    Facter.add(:elasticsearch) do
+    Facter.add(:opensearch) do
       setcode do
         nodes
       end

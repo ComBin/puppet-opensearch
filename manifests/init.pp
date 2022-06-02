@@ -1,19 +1,19 @@
-# Top-level Elasticsearch class which may manage installation of the
-# Elasticsearch package, package repository, and other
+# Top-level Opensearch class which may manage installation of the
+# Opensearch package, package repository, and other
 # global options and parameters.
 #
-# @summary Manages the installation of Elasticsearch and related options.
+# @summary Manages the installation of Opensearch and related options.
 #
-# @example install Elasticsearch
-#   class { 'elasticsearch': }
+# @example install Opensearch
+#   class { 'opensearch': }
 #
 # @example removal and decommissioning
-#   class { 'elasticsearch':
+#   class { 'opensearch':
 #     ensure => 'absent',
 #   }
 #
 # @example install everything but disable service(s) afterwards
-#   class { 'elasticsearch':
+#   class { 'opensearch':
 #     status => 'disabled',
 #   }
 #
@@ -34,23 +34,23 @@
 #
 # @param api_ca_file
 #   Path to a CA file which will be used to validate server certs when
-#   communicating with the Elasticsearch API over HTTPS.
+#   communicating with the Opensearch API over HTTPS.
 #
 # @param api_ca_path
 #   Path to a directory with CA files which will be used to validate server
-#   certs when communicating with the Elasticsearch API over HTTPS.
+#   certs when communicating with the Opensearch API over HTTPS.
 #
 # @param api_host
-#   Default host to use when accessing Elasticsearch APIs.
+#   Default host to use when accessing Opensearch APIs.
 #
 # @param api_port
-#   Default port to use when accessing Elasticsearch APIs.
+#   Default port to use when accessing Opensearch APIs.
 #
 # @param api_protocol
-#   Default protocol to use when accessing Elasticsearch APIs.
+#   Default protocol to use when accessing Opensearch APIs.
 #
 # @param api_timeout
-#   Default timeout (in seconds) to use when accessing Elasticsearch APIs.
+#   Default timeout (in seconds) to use when accessing Opensearch APIs.
 #
 # @param autoupgrade
 #   If set to `true`, any managed package will be upgraded on each Puppet run
@@ -66,11 +66,11 @@
 #   ca_certificate.
 #
 # @param config
-#   Elasticsearch configuration hash.
+#   Opensearch configuration hash.
 #
 # @param configdir
-#   Directory containing the elasticsearch configuration.
-#   Use this setting if your packages deviate from the norm (`/etc/elasticsearch`)
+#   Directory containing the opensearch configuration.
+#   Use this setting if your packages deviate from the norm (`/etc/opensearch`)
 #
 # @param configdir_recurselimit
 #   Dictates how deeply the file copy recursion logic should descend when
@@ -80,20 +80,20 @@
 #   File pattern for the file appender log when file_rolling_type is 'dailyRollingFile'.
 #
 # @param datadir
-#   Allows you to set the data directory of Elasticsearch.
+#   Allows you to set the data directory of Opensearch.
 #
 # @param default_logging_level
-#   Default logging level for Elasticsearch.
+#   Default logging level for Opensearch.
 #
 # @param defaults_location
 #   Absolute path to directory containing init defaults file.
 #
 # @param deprecation_logging
 #   Whether to enable deprecation logging. If enabled, deprecation logs will be
-#   saved to ${cluster.name}_deprecation.log in the Elasticsearch log folder.
+#   saved to ${cluster.name}_deprecation.log in the Opensearch log folder.
 #
 # @param deprecation_logging_level
-#   Default deprecation logging level for Elasticsearch.
+#   Default deprecation logging level for Opensearch.
 #
 # @param download_tool
 #   Command-line invocation with which to retrieve an optional package_url.
@@ -106,12 +106,12 @@
 #   Whether or not to verify SSL/TLS certificates when retrieving package files
 #   using a download tool instead of a package management provider.
 #
-# @param elasticsearch_group
-#   The group Elasticsearch should run as. This also sets file group
+# @param opensearch_group
+#   The group Opensearch should run as. This also sets file group
 #   permissions.
 #
-# @param elasticsearch_user
-#   The user Elasticsearch should run as. This also sets file ownership.
+# @param opensearch_user
+#   The user Opensearch should run as. This also sets file ownership.
 #
 # @param file_rolling_type
 #   Configuration for the file appender rotation. It can be 'dailyRollingFile',
@@ -119,7 +119,7 @@
 #   or third don't rotate automatically.
 #
 # @param homedir
-#   Directory where the elasticsearch installation's files are kept (plugins, etc.)
+#   Directory where the opensearch installation's files are kept (plugins, etc.)
 #
 # @param indices
 #   Define indices via a hash. This is mainly used with Hiera's auto binding.
@@ -143,10 +143,10 @@
 #   Custom path to the Java keystore file. This parameter is optional.
 #
 # @param license
-#   Optional Elasticsearch license in hash or string form.
+#   Optional Opensearch license in hash or string form.
 #
 # @param logdir
-#   Directory that will be used for Elasticsearch logging.
+#   Directory that will be used for Opensearch logging.
 #
 # @param logging_config
 #   Representation of information to be included in the log4j.properties file.
@@ -156,17 +156,17 @@
 #   log4j.properties file.
 #
 # @param logging_level
-#   Default logging level for Elasticsearch.
+#   Default logging level for Opensearch.
 #
 # @param logging_template
 #   Use a custom logging template - just supply the relative path, i.e.
-#   `$module/elasticsearch/logging.yml.erb`
+#   `$module/opensearch/logging.yml.erb`
 #
 # @param manage_repo
 #   Enable repo management by enabling official Elastic repositories.
 #
 # @param oss
-#   Whether to use the purely open source Elasticsearch package distribution.
+#   Whether to use the purely open source Opensearch package distribution.
 #
 # @param package_dir
 #   Directory where packages are downloaded to.
@@ -187,14 +187,14 @@
 #   `puppet://` resource or `file:/` for local packages
 #
 # @param pid_dir
-#   Directory where the elasticsearch process should write out its PID.
+#   Directory where the opensearch process should write out its PID.
 #
 # @param pipelines
 #   Define pipelines via a hash. This is mainly used with Hiera's auto binding.
 #
 # @param plugindir
-#   Directory containing elasticsearch plugins.
-#   Use this setting if your packages deviate from the norm (/usr/share/elasticsearch/plugins)
+#   Directory containing opensearch plugins.
+#   Use this setting if your packages deviate from the norm (/usr/share/opensearch/plugins)
 #
 # @param plugins
 #   Define plugins via a hash. This is mainly used with Hiera's auto binding.
@@ -224,7 +224,7 @@
 # @param restart_on_change
 #   Determines if the application should be automatically restarted
 #   whenever the configuration, package, or plugins change. Enabling this
-#   setting will cause Elasticsearch to restart whenever there is cause to
+#   setting will cause Opensearch to restart whenever there is cause to
 #   re-read configuration files, load new plugins, or start the service using an
 #   updated/changed executable. This may be undesireable in highly available
 #   environments. If all other restart_* parameters are left unset, the value of
@@ -232,7 +232,7 @@
 #
 # @param restart_config_change
 #   Determines if the application should be automatically restarted
-#   whenever the configuration changes. This includes the Elasticsearch
+#   whenever the configuration changes. This includes the Opensearch
 #   configuration file, any service files, and defaults files.
 #   Disabling automatic restarts on config changes may be desired in an
 #   environment where you need to ensure restarts occur in a controlled/rolling
@@ -240,7 +240,7 @@
 #
 # @param restart_package_change
 #   Determines if the application should be automatically restarted
-#   whenever the package (or package version) for Elasticsearch changes.
+#   whenever the package (or package version) for Opensearch changes.
 #   Disabling automatic restarts on package changes may be desired in an
 #   environment where you need to ensure restarts occur in a controlled/rolling
 #   manner rather than during a Puppet run.
@@ -266,7 +266,7 @@
 #
 # @param secrets
 #   Optional default configuration hash of key/value pairs to store in the
-#   Elasticsearch keystore file. If unset, the keystore is left unmanaged.
+#   Opensearch keystore file. If unset, the keystore is left unmanaged.
 #
 # @param security_logging_content
 #   File content for x-pack logging configuration file (will be placed
@@ -277,10 +277,10 @@
 #   into log4j2.properties).
 #
 # @param service_name
-#   Elasticsearch service name
+#   Opensearch service name
 #
 # @param service_provider
-#   The service resource type provider to use when managing elasticsearch instances.
+#   The service resource type provider to use when managing opensearch instances.
 #
 # @param snapshot_repositories
 #   Define snapshot repositories via a hash. This is mainly used with Hiera's auto binding.
@@ -319,11 +319,11 @@
 # @param version
 #   To set the specific version you want to install.
 #
-# @author Richard Pijnenburg <richard.pijnenburg@elasticsearch.com>
+# @author Richard Pijnenburg <richard.pijnenburg@opensearch.com>
 # @author Tyler Langlois <tyler.langlois@elastic.co>
 # @author Gavin Williams <gavin.williams@elastic.co>
 #
-class elasticsearch (
+class opensearch (
   Enum['absent', 'present']                       $ensure,
   Optional[String]                                $api_basic_auth_password,
   Optional[String]                                $api_basic_auth_username,
@@ -338,15 +338,15 @@ class elasticsearch (
   Stdlib::Absolutepath                            $configdir,
   Integer                                         $configdir_recurselimit,
   String                                          $daily_rolling_date_pattern,
-  Elasticsearch::Multipath                        $datadir,
+  Opensearch::Multipath                        $datadir,
   Optional[Stdlib::Absolutepath]                  $defaults_location,
   Boolean                                         $deprecation_logging,
   String                                          $deprecation_logging_level,
   Optional[String]                                $download_tool,
   Optional[String]                                $download_tool_insecure,
   Boolean                                         $download_tool_verify_certificates,
-  String                                          $elasticsearch_group,
-  String                                          $elasticsearch_user,
+  String                                          $opensearch_group,
+  String                                          $opensearch_user,
   Enum['dailyRollingFile', 'rollingFile', 'file'] $file_rolling_type,
   Stdlib::Absolutepath                            $homedir,
   Hash                                            $indices,
@@ -388,7 +388,7 @@ class elasticsearch (
   Enum['init', 'openbsd', 'openrc', 'systemd']    $service_provider,
   Hash                                            $snapshot_repositories,
   Boolean                                         $ssl,
-  Elasticsearch::Status                           $status,
+  Opensearch::Status                           $status,
   Optional[String]                                $system_key,
   Stdlib::Absolutepath                            $systemd_service_path,
   Hash                                            $templates,
@@ -429,8 +429,8 @@ class elasticsearch (
   # This value serves as an unchanging default for platforms as a default for
   # init scripts to fallback on.
   $_datadir_default = $facts['kernel'] ? {
-    'Linux'   => '/var/lib/elasticsearch',
-    'OpenBSD' => '/var/elasticsearch/data',
+    'Linux'   => '/var/lib/opensearch',
+    'OpenBSD' => '/var/opensearch/data',
     default   => undef,
   }
 
@@ -448,26 +448,26 @@ class elasticsearch (
     $real_plugindir = $plugindir
   }
 
-  # Should we restart Elasticsearch on config change?
-  $_notify_service = $elasticsearch::restart_config_change ? {
-    true  => Service[$elasticsearch::service_name],
+  # Should we restart Opensearch on config change?
+  $_notify_service = $opensearch::restart_config_change ? {
+    true  => Service[$opensearch::service_name],
     false => undef,
   }
 
   #### Manage actions
 
-  contain elasticsearch::package
-  contain elasticsearch::config
-  contain elasticsearch::service
+  contain opensearch::package
+  contain opensearch::config
+  contain opensearch::service
 
-  create_resources('elasticsearch::index', $elasticsearch::indices)
-  create_resources('elasticsearch::pipeline', $elasticsearch::pipelines)
-  create_resources('elasticsearch::plugin', $elasticsearch::plugins)
-  create_resources('elasticsearch::role', $elasticsearch::roles)
-  create_resources('elasticsearch::script', $elasticsearch::scripts)
-  create_resources('elasticsearch::snapshot_repository', $elasticsearch::snapshot_repositories)
-  create_resources('elasticsearch::template', $elasticsearch::templates)
-  create_resources('elasticsearch::user', $elasticsearch::users)
+  create_resources('opensearch::index', $opensearch::indices)
+  create_resources('opensearch::pipeline', $opensearch::pipelines)
+  create_resources('opensearch::plugin', $opensearch::plugins)
+  create_resources('opensearch::role', $opensearch::roles)
+  create_resources('opensearch::script', $opensearch::scripts)
+  create_resources('opensearch::snapshot_repository', $opensearch::snapshot_repositories)
+  create_resources('opensearch::template', $opensearch::templates)
+  create_resources('opensearch::user', $opensearch::users)
 
   if ($manage_repo == true) {
     if ($repo_stage == false) {
@@ -475,7 +475,7 @@ class elasticsearch (
       contain elastic_stack::repo
 
       Class['elastic_stack::repo']
-      -> Class['elasticsearch::package']
+      -> Class['opensearch::package']
     } else {
       # Use staging for ordering
       if !(defined(Stage[$repo_stage])) {
@@ -490,7 +490,7 @@ class elasticsearch (
   }
 
   if ($license != undef) {
-    contain elasticsearch::license
+    contain opensearch::license
   }
 
   #### Manage relationships
@@ -502,99 +502,99 @@ class elasticsearch (
   #
   # forgive me for what you're about to see
 
-  if defined(Class['java']) { Class['java'] -> Class['elasticsearch::config'] }
+  if defined(Class['java']) { Class['java'] -> Class['opensearch::config'] }
 
   if $ensure == 'present' {
     # Installation, configuration and service
-    Class['elasticsearch::package']
-    -> Class['elasticsearch::config']
+    Class['opensearch::package']
+    -> Class['opensearch::config']
 
     if $restart_config_change {
-      Class['elasticsearch::config'] ~> Class['elasticsearch::service']
+      Class['opensearch::config'] ~> Class['opensearch::service']
     } else {
-      Class['elasticsearch::config'] -> Class['elasticsearch::service']
+      Class['opensearch::config'] -> Class['opensearch::service']
     }
 
     # Top-level ordering bindings for resources.
-    Class['elasticsearch::config']
-    -> Elasticsearch::Plugin <| ensure == 'present' or ensure == 'installed' |>
-    Elasticsearch::Plugin <| ensure == 'absent' |>
-    -> Class['elasticsearch::config']
-    Class['elasticsearch::config']
-    -> Elasticsearch::User <| ensure == 'present' |>
-    # Elasticsearch::User <| ensure == 'absent' |>
-    # -> Class['elasticsearch::config']
-    # Class['elasticsearch::config']
-    # -> Elasticsearch::Role <| |>
-    Class['elasticsearch::config']
-    -> Elasticsearch::Template <| |>
-    Class['elasticsearch::config']
-    -> Elasticsearch::Pipeline <| |>
-    Class['elasticsearch::config']
-    -> Elasticsearch::Index <| |>
-    Class['elasticsearch::config']
-    -> Elasticsearch::Snapshot_repository <| |>
+    Class['opensearch::config']
+    -> Opensearch::Plugin <| ensure == 'present' or ensure == 'installed' |>
+    Opensearch::Plugin <| ensure == 'absent' |>
+    -> Class['opensearch::config']
+    Class['opensearch::config']
+    -> Opensearch::User <| ensure == 'present' |>
+    # Opensearch::User <| ensure == 'absent' |>
+    # -> Class['opensearch::config']
+    # Class['opensearch::config']
+    # -> Opensearch::Role <| |>
+    Class['opensearch::config']
+    -> Opensearch::Template <| |>
+    Class['opensearch::config']
+    -> Opensearch::Pipeline <| |>
+    Class['opensearch::config']
+    -> Opensearch::Index <| |>
+    Class['opensearch::config']
+    -> Opensearch::Snapshot_repository <| |>
   } else {
     # Absent; remove configuration before the package.
-    Class['elasticsearch::config']
-    -> Class['elasticsearch::package']
+    Class['opensearch::config']
+    -> Class['opensearch::package']
 
     # Top-level ordering bindings for resources.
-    Elasticsearch::Plugin <| |>
-    -> Class['elasticsearch::config']
-    Elasticsearch::User <| |>
-    -> Class['elasticsearch::config']
-    Elasticsearch::Role <| |>
-    -> Class['elasticsearch::config']
-    Elasticsearch::Template <| |>
-    -> Class['elasticsearch::config']
-    Elasticsearch::Pipeline <| |>
-    -> Class['elasticsearch::config']
-    Elasticsearch::Index <| |>
-    -> Class['elasticsearch::config']
-    Elasticsearch::Snapshot_repository <| |>
-    -> Class['elasticsearch::config']
+    Opensearch::Plugin <| |>
+    -> Class['opensearch::config']
+    Opensearch::User <| |>
+    -> Class['opensearch::config']
+    Opensearch::Role <| |>
+    -> Class['opensearch::config']
+    Opensearch::Template <| |>
+    -> Class['opensearch::config']
+    Opensearch::Pipeline <| |>
+    -> Class['opensearch::config']
+    Opensearch::Index <| |>
+    -> Class['opensearch::config']
+    Opensearch::Snapshot_repository <| |>
+    -> Class['opensearch::config']
   }
 
   # Install plugins before managing users/roles
-  Elasticsearch::Plugin <| ensure == 'present' or ensure == 'installed' |>
-  -> Elasticsearch::User <| |>
-  Elasticsearch::Plugin <| ensure == 'present' or ensure == 'installed' |>
-  -> Elasticsearch::Role <| |>
+  Opensearch::Plugin <| ensure == 'present' or ensure == 'installed' |>
+  -> Opensearch::User <| |>
+  Opensearch::Plugin <| ensure == 'present' or ensure == 'installed' |>
+  -> Opensearch::Role <| |>
 
   # Remove plugins after managing users/roles
-  Elasticsearch::User <| |>
-  -> Elasticsearch::Plugin <| ensure == 'absent' |>
-  Elasticsearch::Role <| |>
-  -> Elasticsearch::Plugin <| ensure == 'absent' |>
+  Opensearch::User <| |>
+  -> Opensearch::Plugin <| ensure == 'absent' |>
+  Opensearch::Role <| |>
+  -> Opensearch::Plugin <| ensure == 'absent' |>
 
   # Ensure roles are defined before managing users that reference roles
-  Elasticsearch::Role <| |>
-  -> Elasticsearch::User <| ensure == 'present' |>
+  Opensearch::Role <| |>
+  -> Opensearch::User <| ensure == 'present' |>
   # Ensure users are removed before referenced roles are managed
-  Elasticsearch::User <| ensure == 'absent' |>
-  -> Elasticsearch::Role <| |>
+  Opensearch::User <| ensure == 'absent' |>
+  -> Opensearch::Role <| |>
 
   # Ensure users and roles are managed before calling out to REST resources
-  Elasticsearch::Role <| |>
-  -> Elasticsearch::Template <| |>
-  Elasticsearch::User <| |>
-  -> Elasticsearch::Template <| |>
-  Elasticsearch::Role <| |>
-  -> Elasticsearch::Pipeline <| |>
-  Elasticsearch::User <| |>
-  -> Elasticsearch::Pipeline <| |>
-  Elasticsearch::Role <| |>
-  -> Elasticsearch::Index <| |>
-  Elasticsearch::User <| |>
-  -> Elasticsearch::Index <| |>
-  Elasticsearch::Role <| |>
-  -> Elasticsearch::Snapshot_repository <| |>
-  Elasticsearch::User <| |>
-  -> Elasticsearch::Snapshot_repository <| |>
+  Opensearch::Role <| |>
+  -> Opensearch::Template <| |>
+  Opensearch::User <| |>
+  -> Opensearch::Template <| |>
+  Opensearch::Role <| |>
+  -> Opensearch::Pipeline <| |>
+  Opensearch::User <| |>
+  -> Opensearch::Pipeline <| |>
+  Opensearch::Role <| |>
+  -> Opensearch::Index <| |>
+  Opensearch::User <| |>
+  -> Opensearch::Index <| |>
+  Opensearch::Role <| |>
+  -> Opensearch::Snapshot_repository <| |>
+  Opensearch::User <| |>
+  -> Opensearch::Snapshot_repository <| |>
 
   # Ensure that any command-line based user changes are performed before the
   # file is modified
-  Elasticsearch_user <| |>
-  -> Elasticsearch_user_file <| |>
+  Opensearch_user <| |>
+  -> Opensearch_user_file <| |>
 }

@@ -19,7 +19,7 @@ module Puppet::Parser::Functions
         es_plugin_name('plug')
         es_plugin_name('foo/plug')
         es_plugin_name('foo/plug/1.0.0')
-        es_plugin_name('foo/elasticsearch-plug')
+        es_plugin_name('foo/opensearch-plug')
         es_plugin_name('foo/es-plug/1.3.2')
 
     @return String

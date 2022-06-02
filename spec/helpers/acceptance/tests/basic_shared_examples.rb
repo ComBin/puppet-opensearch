@@ -6,17 +6,17 @@ require 'helpers/acceptance/tests/manifest_shared_examples'
 shared_examples 'basic acceptance tests' do |es_config|
   include_examples('manifest application')
 
-  describe package("elasticsearch#{v[:oss] ? '-oss' : ''}") do
+  describe package("opensearch#{v[:oss] ? '-oss' : ''}") do
     it {
       expect(subject).to be_installed.
-        with_version(v[:elasticsearch_full_version])
+        with_version(v[:opensearch_full_version])
     }
   end
 
   %w[
-    /etc/elasticsearch
-    /usr/share/elasticsearch
-    /var/lib/elasticsearch
+    /etc/opensearch
+    /usr/share/opensearch
+    /var/lib/opensearch
   ].each do |dir|
     describe file(dir) do
       it { is_expected.to be_directory }
@@ -24,7 +24,7 @@ shared_examples 'basic acceptance tests' do |es_config|
   end
 
   describe 'resources' do
-    describe service('elasticsearch') do
+    describe service('opensearch') do
       it { send(es_config.empty? ? :should_not : :should, be_enabled) }
       it { send(es_config.empty? ? :should_not : :should, be_running) }
     end
@@ -35,7 +35,7 @@ shared_examples 'basic acceptance tests' do |es_config|
         its(:content) { is_expected.to match(%r{[0-9]+}) }
       end
 
-      describe file('/etc/elasticsearch/elasticsearch.yml') do
+      describe file('/etc/opensearch/opensearch.yml') do
         it { is_expected.to be_file }
         it { is_expected.to contain "name: #{es_config['node.name']}" }
       end
@@ -58,7 +58,7 @@ shared_examples 'basic acceptance tests' do |es_config|
 
         it 'uses the default data path', :with_retries do
           json = JSON.parse(subject.stdout)['nodes'].values.first
-          data_dir = ['/var/lib/elasticsearch']
+          data_dir = ['/var/lib/opensearch']
           expect(
             json['settings']['path']
           ).to include(

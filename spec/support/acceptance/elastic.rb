@@ -16,7 +16,7 @@ require_relative '../../../lib/puppet_x/elastic/deep_to_s'
 # end
 
 # FIXME: This value should better not be hardcoded
-ENV['ELASTICSEARCH_VERSION'] = '7.10.1'
+ENV['OPENSEARCH_VERSION'] = '7.10.1'
 ENV.delete('BEAKER_debug')
 
 run_puppet_install_helper('agent') unless ENV['BEAKER_provision'] == 'no'
@@ -33,13 +33,13 @@ RSpec.configure do |c|
     v[:is_snapshot] = ENV['SNAPSHOT_TEST'] == 'true'
   end
 
-  unless ENV['ELASTICSEARCH_VERSION'].nil? && v[:snapshot_version].nil?
-    v[:elasticsearch_full_version] = ENV['ELASTICSEARCH_VERSION'] || v[:snapshot_version]
-    v[:elasticsearch_major_version] = v[:elasticsearch_full_version].split('.').first.to_i
-    v[:elasticsearch_package] = {}
-    v[:template] = if v[:elasticsearch_major_version] == 6
+  unless ENV['OPENSEARCH_VERSION'].nil? && v[:snapshot_version].nil?
+    v[:opensearch_full_version] = ENV['OPENSEARCH_VERSION'] || v[:snapshot_version]
+    v[:opensearch_major_version] = v[:opensearch_full_version].split('.').first.to_i
+    v[:opensearch_package] = {}
+    v[:template] = if v[:opensearch_major_version] == 6
                      JSON.parse(File.read('spec/fixtures/templates/6.x.json'))
-                   elsif v[:elasticsearch_major_version] >= 8
+                   elsif v[:opensearch_major_version] >= 8
                      JSON.parse(File.read('spec/fixtures/templates/post_8.0.json'))
                    else
                      JSON.parse(File.read('spec/fixtures/templates/7.x.json'))
@@ -48,16 +48,16 @@ RSpec.configure do |c|
     v[:pipeline] = JSON.parse(File.read('spec/fixtures/pipelines/example.json'))
   end
 
-  v[:elasticsearch_plugins] = Dir[
-    artifact("*#{v[:elasticsearch_full_version]}.zip", ['plugins'])
+  v[:opensearch_plugins] = Dir[
+    artifact("*#{v[:opensearch_full_version]}.zip", ['plugins'])
   ].map do |plugin|
     plugin_filename = File.basename(plugin)
-    plugin_name = plugin_filename.match(%r{^(?<name>.+)-#{v[:elasticsearch_full_version]}.zip})[:name]
+    plugin_name = plugin_filename.match(%r{^(?<name>.+)-#{v[:opensearch_full_version]}.zip})[:name]
     [
       plugin_name,
       {
         path: plugin,
-        url: derive_plugin_urls_for(v[:elasticsearch_full_version], [plugin_name]).keys.first,
+        url: derive_plugin_urls_for(v[:opensearch_full_version], [plugin_name]).keys.first,
       },
     ]
   end.to_h
@@ -76,16 +76,16 @@ RSpec.configure do |c|
   # Helper hook for module cleanup
   c.after :context, :with_cleanup do
     apply_manifest <<-MANIFEST
-      class { 'elasticsearch':
+      class { 'opensearch':
         ensure      => 'absent',
         manage_repo => true,
         oss         => #{v[:oss]},
       }
-      file { '/usr/share/elasticsearch/plugin':
+      file { '/usr/share/opensearch/plugin':
         ensure  => 'absent',
         force   => true,
         recurse => true,
-        require => Class['elasticsearch'],
+        require => Class['opensearch'],
       }
     MANIFEST
   end
@@ -118,7 +118,7 @@ RSpec.configure do |c|
 
     raise 'No license found!' unless licenses
 
-    # license = case v[:elasticsearch_major_version]
+    # license = case v[:opensearch_major_version]
     #           when 6
     #             licenses[:v5]
     #           else
@@ -126,15 +126,15 @@ RSpec.configure do |c|
     #           end
     license = licenses[:v7]
     create_remote_file hosts, '/tmp/license.json', license
-    v[:elasticsearch_license_path] = '/tmp/license.json'
+    v[:opensearch_license_path] = '/tmp/license.json'
   end
 
   c.after :context, :then_purge do
-    shell 'rm -rf {/usr/share,/etc,/var/lib}/elasticsearch*'
+    shell 'rm -rf {/usr/share,/etc,/var/lib}/opensearch*'
   end
 
   c.before :context, :first_purge do
-    shell 'rm -rf {/usr/share,/etc,/var/lib}/elasticsearch*'
+    shell 'rm -rf {/usr/share,/etc,/var/lib}/opensearch*'
   end
 
   # Provide a hook filter to spit out some ES logs if the example fails.
@@ -171,9 +171,9 @@ hosts.each do |host|
               'rpm'
             end
 
-  v[:elasticsearch_package]&.merge!(
+  v[:opensearch_package]&.merge!(
     derive_full_package_url(
-      v[:elasticsearch_full_version], [v[:ext]]
+      v[:opensearch_full_version], [v[:ext]]
     ).flat_map do |url, filename|
       [[:url, url], [:filename, filename], [:path, artifact(filename)]]
     end.to_h
@@ -184,14 +184,14 @@ RSpec.configure do |c|
   if v[:is_snapshot]
     c.before :suite do
       scp_to default,
-             "#{files_dir}/elasticsearch-snapshot.#{v[:ext]}",
-             "/tmp/elasticsearch-snapshot.#{v[:ext]}"
-      v[:snapshot_package] = "file:/tmp/elasticsearch-snapshot.#{v[:ext]}"
+             "#{files_dir}/opensearch-snapshot.#{v[:ext]}",
+             "/tmp/opensearch-snapshot.#{v[:ext]}"
+      v[:snapshot_package] = "file:/tmp/opensearch-snapshot.#{v[:ext]}"
     end
   end
 
   c.before :suite do
-    fetch_archives(derive_artifact_urls_for(ENV['ELASTICSEARCH_VERSION']))
+    fetch_archives(derive_artifact_urls_for(ENV['OPENSEARCH_VERSION']))
 
     # Use the Java class once before the suite of tests
     unless shell('command -v java', accept_all_exit_codes: true).exit_code.zero?

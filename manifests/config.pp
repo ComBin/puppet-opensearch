@@ -5,13 +5,13 @@
 # definitions or other modules.
 #
 # @example importing this class into other classes to use its functionality:
-#   class { 'elasticsearch::config': }
+#   class { 'opensearch::config': }
 #
-# @author Richard Pijnenburg <richard.pijnenburg@elasticsearch.com>
+# @author Richard Pijnenburg <richard.pijnenburg@opensearch.com>
 # @author Tyler Langlois <tyler.langlois@elastic.co>
 # @author Gavin Williams <gavin.williams@elastic.co>
 #
-class elasticsearch::config {
+class opensearch::config {
   #### Configuration
 
   Exec {
@@ -21,35 +21,35 @@ class elasticsearch::config {
 
   $init_defaults = {
     'MAX_OPEN_FILES' => '65535',
-  }.merge($elasticsearch::init_defaults)
+  }.merge($opensearch::init_defaults)
 
-  if ($elasticsearch::ensure == 'present') {
+  if ($opensearch::ensure == 'present') {
     file {
-      $elasticsearch::homedir:
+      $opensearch::homedir:
         ensure => 'directory',
-        group  => $elasticsearch::elasticsearch_group,
-        owner  => $elasticsearch::elasticsearch_user;
-      $elasticsearch::configdir:
+        group  => $opensearch::opensearch_group,
+        owner  => $opensearch::opensearch_user;
+      $opensearch::configdir:
         ensure => 'directory',
-        group  => $elasticsearch::elasticsearch_group,
-        owner  => $elasticsearch::elasticsearch_user,
+        group  => $opensearch::opensearch_group,
+        owner  => $opensearch::opensearch_user,
         mode   => '2750';
-      $elasticsearch::datadir:
+      $opensearch::datadir:
         ensure => 'directory',
-        group  => $elasticsearch::elasticsearch_group,
-        owner  => $elasticsearch::elasticsearch_user,
+        group  => $opensearch::opensearch_group,
+        owner  => $opensearch::opensearch_user,
         mode   => '2750';
-      $elasticsearch::logdir:
+      $opensearch::logdir:
         ensure => 'directory',
-        group  => $elasticsearch::elasticsearch_group,
-        owner  => $elasticsearch::elasticsearch_user,
+        group  => $opensearch::opensearch_group,
+        owner  => $opensearch::opensearch_user,
         mode   => '2750';
-      $elasticsearch::real_plugindir:
+      $opensearch::real_plugindir:
         ensure => 'directory',
-        group  => $elasticsearch::elasticsearch_group,
-        owner  => $elasticsearch::elasticsearch_user,
+        group  => $opensearch::opensearch_group,
+        owner  => $opensearch::opensearch_user,
         mode   => 'o+Xr';
-      "${elasticsearch::homedir}/lib":
+      "${opensearch::homedir}/lib":
         ensure  => 'directory',
         group   => '0',
         owner   => 'root',
@@ -57,50 +57,50 @@ class elasticsearch::config {
     }
 
     # Defaults file, either from file source or from hash to augeas commands
-    if ($elasticsearch::init_defaults_file != undef) {
-      file { "${elasticsearch::defaults_location}/elasticsearch":
-        ensure => $elasticsearch::ensure,
-        source => $elasticsearch::init_defaults_file,
+    if ($opensearch::init_defaults_file != undef) {
+      file { "${opensearch::defaults_location}/opensearch":
+        ensure => $opensearch::ensure,
+        source => $opensearch::init_defaults_file,
         owner  => 'root',
-        group  => $elasticsearch::elasticsearch_group,
+        group  => $opensearch::opensearch_group,
         mode   => '0660',
-        before => Service['elasticsearch'],
-        notify => $elasticsearch::_notify_service,
+        before => Service['opensearch'],
+        notify => $opensearch::_notify_service,
       }
     } else {
-      augeas { "${elasticsearch::defaults_location}/elasticsearch":
-        incl    => "${elasticsearch::defaults_location}/elasticsearch",
+      augeas { "${opensearch::defaults_location}/opensearch":
+        incl    => "${opensearch::defaults_location}/opensearch",
         lens    => 'Shellvars.lns',
         changes => template("${module_name}/etc/sysconfig/defaults.erb"),
-        before  => Service['elasticsearch'],
-        notify  => $elasticsearch::_notify_service,
+        before  => Service['opensearch'],
+        notify  => $opensearch::_notify_service,
       }
     }
 
     # Generate config file
-    $_config = deep_implode($elasticsearch::config)
+    $_config = deep_implode($opensearch::config)
 
     # Generate SSL config
-    if $elasticsearch::ssl {
-      if ($elasticsearch::keystore_password == undef) {
+    if $opensearch::ssl {
+      if ($opensearch::keystore_password == undef) {
         fail('keystore_password required')
       }
 
-      if ($elasticsearch::keystore_path == undef) {
-        $_keystore_path = "${elasticsearch::configdir}/elasticsearch.ks"
+      if ($opensearch::keystore_path == undef) {
+        $_keystore_path = "${opensearch::configdir}/opensearch.ks"
       } else {
-        $_keystore_path = $elasticsearch::keystore_path
+        $_keystore_path = $opensearch::keystore_path
       }
 
       # Set the correct xpack. settings based on ES version
-      if (versioncmp($elasticsearch::version, '7') >= 0) {
+      if (versioncmp($opensearch::version, '7') >= 0) {
         $_tls_config = {
           'xpack.security.http.ssl.enabled'                => true,
           'xpack.security.http.ssl.keystore.path'          => $_keystore_path,
-          'xpack.security.http.ssl.keystore.password'      => $elasticsearch::keystore_password,
+          'xpack.security.http.ssl.keystore.password'      => $opensearch::keystore_password,
           'xpack.security.transport.ssl.enabled'           => true,
           'xpack.security.transport.ssl.keystore.path'     => $_keystore_path,
-          'xpack.security.transport.ssl.keystore.password' => $elasticsearch::keystore_password,
+          'xpack.security.transport.ssl.keystore.password' => $opensearch::keystore_password,
         }
       }
       else {
@@ -108,130 +108,130 @@ class elasticsearch::config {
           'xpack.security.transport.ssl.enabled' => true,
           'xpack.security.http.ssl.enabled'      => true,
           'xpack.ssl.keystore.path'              => $_keystore_path,
-          'xpack.ssl.keystore.password'          => $elasticsearch::keystore_password,
+          'xpack.ssl.keystore.password'          => $opensearch::keystore_password,
         }
       }
 
       # Trust CA Certificate
-      java_ks { 'elasticsearch_ca':
+      java_ks { 'opensearch_ca':
         ensure       => 'latest',
-        certificate  => $elasticsearch::ca_certificate,
+        certificate  => $opensearch::ca_certificate,
         target       => $_keystore_path,
-        password     => $elasticsearch::keystore_password,
+        password     => $opensearch::keystore_password,
         trustcacerts => true,
       }
 
       # Load node certificate and private key
-      java_ks { 'elasticsearch_node':
+      java_ks { 'opensearch_node':
         ensure      => 'latest',
-        certificate => $elasticsearch::certificate,
-        private_key => $elasticsearch::private_key,
+        certificate => $opensearch::certificate,
+        private_key => $opensearch::private_key,
         target      => $_keystore_path,
-        password    => $elasticsearch::keystore_password,
+        password    => $opensearch::keystore_password,
       }
     } else {
       $_tls_config = {}
     }
 
     # # Logging file or hash
-    # if ($elasticsearch::logging_file != undef) {
+    # if ($opensearch::logging_file != undef) {
     #   $_log4j_content = undef
     # } else {
-    #   if ($elasticsearch::logging_template != undef ) {
-    #     $_log4j_content = template($elasticsearch::logging_template)
+    #   if ($opensearch::logging_template != undef ) {
+    #     $_log4j_content = template($opensearch::logging_template)
     #   } else {
-    #     $_log4j_content = template("${module_name}/etc/elasticsearch/log4j2.properties.erb")
+    #     $_log4j_content = template("${module_name}/etc/opensearch/log4j2.properties.erb")
     #   }
     #   $_logging_source = undef
     # }
     # file {
-    #   "${elasticsearch::configdir}/log4j2.properties":
+    #   "${opensearch::configdir}/log4j2.properties":
     #     ensure  => file,
     #     content => $_log4j_content,
     #     source  => $_logging_source,
     #     mode    => '0644',
-    #     notify  => $elasticsearch::_notify_service,
-    #     require => Class['elasticsearch::package'],
-    #     before  => Class['elasticsearch::service'],
+    #     notify  => $opensearch::_notify_service,
+    #     require => Class['opensearch::package'],
+    #     before  => Class['opensearch::service'],
     # }
 
-    # Generate Elasticsearch config
+    # Generate Opensearch config
     $_es_config = merge(
-      $elasticsearch::config,
-      { 'path.data' => $elasticsearch::datadir },
-      { 'path.logs' => $elasticsearch::logdir },
+      $opensearch::config,
+      { 'path.data' => $opensearch::datadir },
+      { 'path.logs' => $opensearch::logdir },
       $_tls_config
     )
 
     datacat_fragment { 'main_config':
-      target => "${elasticsearch::configdir}/elasticsearch.yml",
+      target => "${opensearch::configdir}/opensearch.yml",
       data   => $_es_config,
     }
 
-    datacat { "${elasticsearch::configdir}/elasticsearch.yml":
-      template => "${module_name}/etc/elasticsearch/elasticsearch.yml.erb",
-      notify   => $elasticsearch::_notify_service,
-      require  => Class['elasticsearch::package'],
-      owner    => $elasticsearch::elasticsearch_user,
-      group    => $elasticsearch::elasticsearch_group,
+    datacat { "${opensearch::configdir}/opensearch.yml":
+      template => "${module_name}/etc/opensearch/opensearch.yml.erb",
+      notify   => $opensearch::_notify_service,
+      require  => Class['opensearch::package'],
+      owner    => $opensearch::opensearch_user,
+      group    => $opensearch::opensearch_group,
       mode     => '0440',
     }
 
-    if ($elasticsearch::version != false and versioncmp($elasticsearch::version, '7.7.0') >= 0) {
-      # https://www.elastic.co/guide/en/elasticsearch/reference/master/advanced-configuration.html#set-jvm-options
-      # https://github.com/elastic/elasticsearch/pull/51882
+    if ($opensearch::version != false and versioncmp($opensearch::version, '7.7.0') >= 0) {
+      # https://www.elastic.co/guide/en/opensearch/reference/master/advanced-configuration.html#set-jvm-options
+      # https://github.com/elastic/opensearch/pull/51882
       # >> "Do not modify the root jvm.options file. Use files in jvm.options.d/ instead."
       $_epp_hash = {
-        sorted_jvm_options => sort(unique($elasticsearch::jvm_options)),
+        sorted_jvm_options => sort(unique($opensearch::jvm_options)),
       }
-      file { "${elasticsearch::configdir}/jvm.options.d/jvm.options":
+      file { "${opensearch::configdir}/jvm.options.d/jvm.options":
         ensure  => 'file',
-        content => epp("${module_name}/etc/elasticsearch/jvm.options.d/jvm.options.epp", $_epp_hash),
-        owner   => $elasticsearch::elasticsearch_user,
-        group   => $elasticsearch::elasticsearch_group,
+        content => epp("${module_name}/etc/opensearch/jvm.options.d/jvm.options.epp", $_epp_hash),
+        owner   => $opensearch::opensearch_user,
+        group   => $opensearch::opensearch_group,
         mode    => '0640',
-        notify  => $elasticsearch::_notify_service,
+        notify  => $opensearch::_notify_service,
       }
     }
     else {
       # Add any additional JVM options
-      $elasticsearch::jvm_options.each |String $jvm_option| {
+      $opensearch::jvm_options.each |String $jvm_option| {
         file_line { "jvm_option_${jvm_option}":
           ensure => present,
-          path   => "${elasticsearch::configdir}/jvm.options",
+          path   => "${opensearch::configdir}/jvm.options",
           line   => $jvm_option,
-          notify => $elasticsearch::_notify_service,
+          notify => $opensearch::_notify_service,
         }
       }
     }
 
-    if $elasticsearch::system_key != undef {
-      file { "${elasticsearch::configdir}/system_key":
+    if $opensearch::system_key != undef {
+      file { "${opensearch::configdir}/system_key":
         ensure => 'file',
-        source => $elasticsearch::system_key,
+        source => $opensearch::system_key,
         mode   => '0400',
       }
     }
 
     # Add secrets to keystore
-    if $elasticsearch::secrets != undef {
-      elasticsearch_keystore { 'elasticsearch_secrets':
-        configdir => $elasticsearch::configdir,
-        purge     => $elasticsearch::purge_secrets,
-        settings  => $elasticsearch::secrets,
-        notify    => $elasticsearch::_notify_service,
+    if $opensearch::secrets != undef {
+      opensearch_keystore { 'opensearch_secrets':
+        configdir => $opensearch::configdir,
+        purge     => $opensearch::purge_secrets,
+        settings  => $opensearch::secrets,
+        notify    => $opensearch::_notify_service,
       }
     }
-  } elsif ( $elasticsearch::ensure == 'absent' ) {
-    file { $elasticsearch::real_plugindir:
+  } elsif ( $opensearch::ensure == 'absent' ) {
+    file { $opensearch::real_plugindir:
       ensure => 'absent',
       force  => true,
       backup => false,
     }
 
-    file { "${elasticsearch::defaults_location}/elasticsearch":
+    file { "${opensearch::defaults_location}/opensearch":
       ensure    => 'absent',
-      subscribe => Service['elasticsearch'],
+      subscribe => Service['opensearch'],
     }
   }
 }

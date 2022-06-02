@@ -5,7 +5,7 @@ module Puppet_X # rubocop:disable Style/ClassAndModuleCamelCase
   module Elastic
     # When given a hash, this method recurses deeply into all values to convert
     # any that aren't data structures into strings. This is necessary when
-    # comparing results from Elasticsearch API calls, because values like
+    # comparing results from Opensearch API calls, because values like
     # integers and booleans are in string form.
     def self.deep_to_s(obj)
       if obj.is_a? Array

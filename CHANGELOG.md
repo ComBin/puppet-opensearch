@@ -4,84 +4,84 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
-## [v8.0.2](https://github.com/voxpupuli/puppet-elasticsearch/tree/v8.0.2) (2022-04-08)
+## [v8.0.2](https://github.com/voxpupuli/puppet-opensearch/tree/v8.0.2) (2022-04-08)
 
-[Full Changelog](https://github.com/voxpupuli/puppet-elasticsearch/compare/v8.0.1...v8.0.2)
+[Full Changelog](https://github.com/voxpupuli/puppet-opensearch/compare/v8.0.1...v8.0.2)
 
 **Merged pull requests:**
 
-- puppetlabs/java: Allow 8.x [\#1156](https://github.com/voxpupuli/puppet-elasticsearch/pull/1156) ([bastelfreak](https://github.com/bastelfreak))
+- puppetlabs/java: Allow 8.x [\#1156](https://github.com/voxpupuli/puppet-opensearch/pull/1156) ([bastelfreak](https://github.com/bastelfreak))
 
-## [v8.0.1](https://github.com/voxpupuli/puppet-elasticsearch/tree/v8.0.1) (2022-03-18)
+## [v8.0.1](https://github.com/voxpupuli/puppet-opensearch/tree/v8.0.1) (2022-03-18)
 
-[Full Changelog](https://github.com/voxpupuli/puppet-elasticsearch/compare/v8.0.0...v8.0.1)
+[Full Changelog](https://github.com/voxpupuli/puppet-opensearch/compare/v8.0.0...v8.0.1)
 
 **Fixed bugs:**
 
-- Define default\_target for parsed file providers [\#1150](https://github.com/voxpupuli/puppet-elasticsearch/pull/1150) ([towo](https://github.com/towo))
+- Define default\_target for parsed file providers [\#1150](https://github.com/voxpupuli/puppet-opensearch/pull/1150) ([towo](https://github.com/towo))
 
 **Merged pull requests:**
 
-- Cleanup README.md [\#1143](https://github.com/voxpupuli/puppet-elasticsearch/pull/1143) ([bastelfreak](https://github.com/bastelfreak))
+- Cleanup README.md [\#1143](https://github.com/voxpupuli/puppet-opensearch/pull/1143) ([bastelfreak](https://github.com/bastelfreak))
 
-## [v8.0.0](https://github.com/voxpupuli/puppet-elasticsearch/tree/v8.0.0) (2022-01-07)
+## [v8.0.0](https://github.com/voxpupuli/puppet-opensearch/tree/v8.0.0) (2022-01-07)
 
-[Full Changelog](https://github.com/voxpupuli/puppet-elasticsearch/compare/7.0.0...v8.0.0)
+[Full Changelog](https://github.com/voxpupuli/puppet-opensearch/compare/7.0.0...v8.0.0)
 
 **Breaking changes:**
 
-- Unlist Operating Systems which have reached EOL [\#1127](https://github.com/voxpupuli/puppet-elasticsearch/pull/1127) ([smortex](https://github.com/smortex))
-- Drop support of Puppet 4 and 5 \(EOL\) [\#1126](https://github.com/voxpupuli/puppet-elasticsearch/pull/1126) ([smortex](https://github.com/smortex))
+- Unlist Operating Systems which have reached EOL [\#1127](https://github.com/voxpupuli/puppet-opensearch/pull/1127) ([smortex](https://github.com/smortex))
+- Drop support of Puppet 4 and 5 \(EOL\) [\#1126](https://github.com/voxpupuli/puppet-opensearch/pull/1126) ([smortex](https://github.com/smortex))
 
 **Implemented enhancements:**
 
-- Add support for Debian 11 [\#1132](https://github.com/voxpupuli/puppet-elasticsearch/pull/1132) ([smortex](https://github.com/smortex))
-- Add support for Puppet 7 [\#1128](https://github.com/voxpupuli/puppet-elasticsearch/pull/1128) ([smortex](https://github.com/smortex))
+- Add support for Debian 11 [\#1132](https://github.com/voxpupuli/puppet-opensearch/pull/1132) ([smortex](https://github.com/smortex))
+- Add support for Puppet 7 [\#1128](https://github.com/voxpupuli/puppet-opensearch/pull/1128) ([smortex](https://github.com/smortex))
 
 **Fixed bugs:**
 
-- typo in config.pp [\#1130](https://github.com/voxpupuli/puppet-elasticsearch/issues/1130)
-- fix error in custom fact resolution when conf file is empty [\#1140](https://github.com/voxpupuli/puppet-elasticsearch/pull/1140) ([fe80](https://github.com/fe80))
-- regression: Fix rubocop cleanup [\#1139](https://github.com/voxpupuli/puppet-elasticsearch/pull/1139) ([bastelfreak](https://github.com/bastelfreak))
-- config.pp: fix typo [\#1131](https://github.com/voxpupuli/puppet-elasticsearch/pull/1131) ([Aseiide](https://github.com/Aseiide))
-- Fix more failing master tests [\#1077](https://github.com/voxpupuli/puppet-elasticsearch/pull/1077) ([fatmcgav](https://github.com/fatmcgav))
+- typo in config.pp [\#1130](https://github.com/voxpupuli/puppet-opensearch/issues/1130)
+- fix error in custom fact resolution when conf file is empty [\#1140](https://github.com/voxpupuli/puppet-opensearch/pull/1140) ([fe80](https://github.com/fe80))
+- regression: Fix rubocop cleanup [\#1139](https://github.com/voxpupuli/puppet-opensearch/pull/1139) ([bastelfreak](https://github.com/bastelfreak))
+- config.pp: fix typo [\#1131](https://github.com/voxpupuli/puppet-opensearch/pull/1131) ([Aseiide](https://github.com/Aseiide))
+- Fix more failing master tests [\#1077](https://github.com/voxpupuli/puppet-opensearch/pull/1077) ([fatmcgav](https://github.com/fatmcgav))
 
 **Closed issues:**
 
-- elasticsearch::init does not respect service\_name other than 'elasticsearch' [\#1110](https://github.com/voxpupuli/puppet-elasticsearch/issues/1110)
-- Centos/RHEL 8 support [\#1100](https://github.com/voxpupuli/puppet-elasticsearch/issues/1100)
-- RFC: Remove support for instances [\#1025](https://github.com/voxpupuli/puppet-elasticsearch/issues/1025)
-- Add support for other OS's / distro's [\#94](https://github.com/voxpupuli/puppet-elasticsearch/issues/94)
+- opensearch::init does not respect service\_name other than 'opensearch' [\#1110](https://github.com/voxpupuli/puppet-opensearch/issues/1110)
+- Centos/RHEL 8 support [\#1100](https://github.com/voxpupuli/puppet-opensearch/issues/1100)
+- RFC: Remove support for instances [\#1025](https://github.com/voxpupuli/puppet-opensearch/issues/1025)
+- Add support for other OS's / distro's [\#94](https://github.com/voxpupuli/puppet-opensearch/issues/94)
 
 **Merged pull requests:**
 
-- puppetlabs/stdlib: Allow 8.x & elastic\_stack: Migrate from elastic to puppet namespace [\#1141](https://github.com/voxpupuli/puppet-elasticsearch/pull/1141) ([bastelfreak](https://github.com/bastelfreak))
-- update metadata.json for Vox Pupuli namespace [\#1136](https://github.com/voxpupuli/puppet-elasticsearch/pull/1136) ([bastelfreak](https://github.com/bastelfreak))
-- Stop using Travis CI [\#1124](https://github.com/voxpupuli/puppet-elasticsearch/pull/1124) ([jmlrt](https://github.com/jmlrt))
-- Increase of the role-name length to 40 [\#1115](https://github.com/voxpupuli/puppet-elasticsearch/pull/1115) ([Kuermel](https://github.com/Kuermel))
-- Do not restart Elasticsearch on config change when restart\_config\_change is set to false [\#1114](https://github.com/voxpupuli/puppet-elasticsearch/pull/1114) ([sanderc85](https://github.com/sanderc85))
-- make sure plugins installed before service is started [\#1106](https://github.com/voxpupuli/puppet-elasticsearch/pull/1106) ([shamil](https://github.com/shamil))
-- Bump module version to `7.0.0` and update docs [\#1105](https://github.com/voxpupuli/puppet-elasticsearch/pull/1105) ([fatmcgav](https://github.com/fatmcgav))
-- Bump Elasticsearch version and some cleanup [\#1104](https://github.com/voxpupuli/puppet-elasticsearch/pull/1104) ([fatmcgav](https://github.com/fatmcgav))
-- Add Elasticsearch 7 to test matrix [\#1088](https://github.com/voxpupuli/puppet-elasticsearch/pull/1088) ([fatmcgav](https://github.com/fatmcgav))
-- Remove multi instance support [\#1085](https://github.com/voxpupuli/puppet-elasticsearch/pull/1085) ([fatmcgav](https://github.com/fatmcgav))
-- Add some more badges [\#1076](https://github.com/voxpupuli/puppet-elasticsearch/pull/1076) ([fatmcgav](https://github.com/fatmcgav))
-- Bump Beaker versions to support latest OS' [\#1075](https://github.com/voxpupuli/puppet-elasticsearch/pull/1075) ([fatmcgav](https://github.com/fatmcgav))
-- Fix failing tests on master [\#1074](https://github.com/voxpupuli/puppet-elasticsearch/pull/1074) ([fatmcgav](https://github.com/fatmcgav))
-- Fix misspelling of openSUSE [\#1073](https://github.com/voxpupuli/puppet-elasticsearch/pull/1073) ([m-rey](https://github.com/m-rey))
-- Fix intake failure for variable\_scope [\#1066](https://github.com/voxpupuli/puppet-elasticsearch/pull/1066) ([fatmcgav](https://github.com/fatmcgav))
+- puppetlabs/stdlib: Allow 8.x & elastic\_stack: Migrate from elastic to puppet namespace [\#1141](https://github.com/voxpupuli/puppet-opensearch/pull/1141) ([bastelfreak](https://github.com/bastelfreak))
+- update metadata.json for Vox Pupuli namespace [\#1136](https://github.com/voxpupuli/puppet-opensearch/pull/1136) ([bastelfreak](https://github.com/bastelfreak))
+- Stop using Travis CI [\#1124](https://github.com/voxpupuli/puppet-opensearch/pull/1124) ([jmlrt](https://github.com/jmlrt))
+- Increase of the role-name length to 40 [\#1115](https://github.com/voxpupuli/puppet-opensearch/pull/1115) ([Kuermel](https://github.com/Kuermel))
+- Do not restart Opensearch on config change when restart\_config\_change is set to false [\#1114](https://github.com/voxpupuli/puppet-opensearch/pull/1114) ([sanderc85](https://github.com/sanderc85))
+- make sure plugins installed before service is started [\#1106](https://github.com/voxpupuli/puppet-opensearch/pull/1106) ([shamil](https://github.com/shamil))
+- Bump module version to `7.0.0` and update docs [\#1105](https://github.com/voxpupuli/puppet-opensearch/pull/1105) ([fatmcgav](https://github.com/fatmcgav))
+- Bump Opensearch version and some cleanup [\#1104](https://github.com/voxpupuli/puppet-opensearch/pull/1104) ([fatmcgav](https://github.com/fatmcgav))
+- Add Opensearch 7 to test matrix [\#1088](https://github.com/voxpupuli/puppet-opensearch/pull/1088) ([fatmcgav](https://github.com/fatmcgav))
+- Remove multi instance support [\#1085](https://github.com/voxpupuli/puppet-opensearch/pull/1085) ([fatmcgav](https://github.com/fatmcgav))
+- Add some more badges [\#1076](https://github.com/voxpupuli/puppet-opensearch/pull/1076) ([fatmcgav](https://github.com/fatmcgav))
+- Bump Beaker versions to support latest OS' [\#1075](https://github.com/voxpupuli/puppet-opensearch/pull/1075) ([fatmcgav](https://github.com/fatmcgav))
+- Fix failing tests on master [\#1074](https://github.com/voxpupuli/puppet-opensearch/pull/1074) ([fatmcgav](https://github.com/fatmcgav))
+- Fix misspelling of openSUSE [\#1073](https://github.com/voxpupuli/puppet-opensearch/pull/1073) ([m-rey](https://github.com/m-rey))
+- Fix intake failure for variable\_scope [\#1066](https://github.com/voxpupuli/puppet-opensearch/pull/1066) ([fatmcgav](https://github.com/fatmcgav))
 
-## [7.0.0](https://github.com/voxpupuli/puppet-elasticsearch/tree/7.0.0) (2020-12-23)
+## [7.0.0](https://github.com/voxpupuli/puppet-opensearch/tree/7.0.0) (2020-12-23)
 
-This is a new major version release of the Elasticsearch module that contains a number of breaking changes and adds support for deploying
-and managing Elasticsearch 7.x.
+This is a new major version release of the Opensearch module that contains a number of breaking changes and adds support for deploying
+and managing Opensearch 7.x.
 
 ### Breaking changes
-* Removed support for running multiple instances of Elasticsearch on a single host
-* Removed support for Elasticsearch older than version 6.x
+* Removed support for running multiple instances of Opensearch on a single host
+* Removed support for Opensearch older than version 6.x
 
 ### Features
-* Support for deploying Elasticsearch 7.x
+* Support for deploying Opensearch 7.x
 * Support and Testing for a number of newer OS'
   * Amazon Linux 2
   * CentOS 8
@@ -109,20 +109,20 @@ Various little bug fixes as a result of cleaning up and refactoring a lot of the
 Puppet 4.10.0 is the new minimum required version of Puppet.
 
 #### Fixes
-* The Elasticsearch log directory is no longer recursively managed to avoid stomping on the user/mode settings that Elasticsearch prefers.
+* The Opensearch log directory is no longer recursively managed to avoid stomping on the user/mode settings that Opensearch prefers.
 * Package management on apt-based systems no longer encounters dependency errors when `manage_repo => false`.
-* Plugin configuration files are now more well-supported by respecting subdirectory copy recursion. See `elasticsearch::configdir_recurselimit` for more information.
-* An error related to elasticsearch_roles and `yield` errors has been fixed
+* Plugin configuration files are now more well-supported by respecting subdirectory copy recursion. See `opensearch::configdir_recurselimit` for more information.
+* An error related to opensearch_roles and `yield` errors has been fixed
 * Correctly permit instances to be set to `absent` without errors.
 
 ## 6.3.3 (September 7, 2018)
 
-Note that this release includes changes to a default value that may affect users that rely on `curl` or `wget` to retrieve Elasticsearch package files, as now all certificates are validated by default.
-To preserve existing behavior, set `$elasticsearch::download_tool_verify_certificates` to `false`.
+Note that this release includes changes to a default value that may affect users that rely on `curl` or `wget` to retrieve Opensearch package files, as now all certificates are validated by default.
+To preserve existing behavior, set `$opensearch::download_tool_verify_certificates` to `false`.
 
 #### Fixes
 * Update puppetlabs-stdlib dependency to < 6.0.0
-* By default, package files downloaded with tools like wget or curl (i.e., the `$elasticsearch::download_tool` parameter) now verify certificates by default and a new boolean parameter has been added to indicate whether to ignore certificates (`$elasticsearch::download_tool_verify_certificates`).
+* By default, package files downloaded with tools like wget or curl (i.e., the `$opensearch::download_tool` parameter) now verify certificates by default and a new boolean parameter has been added to indicate whether to ignore certificates (`$opensearch::download_tool_verify_certificates`).
 
 ## 6.3.2 (August 28, 2018)
 
@@ -134,7 +134,7 @@ To preserve existing behavior, set `$elasticsearch::download_tool_verify_certifi
 Primarily a bugfix release.
 
 #### Fixes
-* REST-based resources are now coerced to string values to uniformly compare user defined values and Elasticsearch API responses.
+* REST-based resources are now coerced to string values to uniformly compare user defined values and Opensearch API responses.
 * Resolve deprecation warnings related to use of the deprecated is_array() function.
 * Fixed an erroneous inclusion of '<' in logging.yml
 * Resolve deprecation warnings related to use of the deprecated is_string() function.
@@ -143,27 +143,27 @@ Primarily a bugfix release.
 
 ### Migration Guide
 
-Elasticsearch 6.3 includes several big changes that are reflected in this module.
+Opensearch 6.3 includes several big changes that are reflected in this module.
 When upgrading from module versions prior to 6.3, there are a number of upgrade considerations to take into account:
 
 * This module defaults to the upstream package repositories, which now include X-Pack bundled by default. To preserve previous behavior which does _not_ include X-Pack, follow the `README` instructions to configure `oss`-only repositories/packages.
-  * Note that if your system was previously using the `elasticsearch` package and you instead choose to move to the `oss` distribution, the `elasticsearch` and `elasticsearch-oss` packages may conflict. If that occurs, consider ensuring that the `elasticsearch` package is absent before the `::elasticsearch` class runs. This module does not explicitly remove the conflicting package to avoid unexpected package removal.
+  * Note that if your system was previously using the `opensearch` package and you instead choose to move to the `oss` distribution, the `opensearch` and `opensearch-oss` packages may conflict. If that occurs, consider ensuring that the `opensearch` package is absent before the `::opensearch` class runs. This module does not explicitly remove the conflicting package to avoid unexpected package removal.
 * Use of the `elastic_stack::repo` class for managing package repositories brings a couple changes:
-  * All repository-level parameters and settings have been removed from the `::elasticsearch` class. These parameters can now be set on the `elastic_stack::repo` class.
-  * This may mean that leftover yum/apt/etc. repositories named `elasticsearch` may persist after upgrade.
+  * All repository-level parameters and settings have been removed from the `::opensearch` class. These parameters can now be set on the `elastic_stack::repo` class.
+  * This may mean that leftover yum/apt/etc. repositories named `opensearch` may persist after upgrade.
 * Some changes have been made to align this module's file-level permissions with upstream defaults on some configuration, data, and logging directories. Though these have been tested, operators should be aware that some permissions may change on-disk after upgrading to version >= 6.3.x of this module.
 
 #### Features
-* Added support for managing Elasticsearch licenses.
+* Added support for managing Opensearch licenses.
 * This module now uses the elastic-stack module to manage package repositories.
 * Supports OSS packaging distribution.
 * X-Pack bundled with 6.3 support.
 
 #### Fixes
-* Ensure that the stock Elasticsearch service is not running.
+* Ensure that the stock Opensearch service is not running.
 * Service files for removed instances were previously set to ensure => absent on removal. Because this limits Puppet's ability to verify that the named service is running or not, these service files are always present now whether an instance is set to present or absent.
 * The service defaults file now enforces user/group ownership inline with the service user runtime.
-* The `scripts` configuration directory is now recursively copied instead of symlinked to avoid Elasticsearch security manager permission errors.
+* The `scripts` configuration directory is now recursively copied instead of symlinked to avoid Opensearch security manager permission errors.
 * X-Pack and other meta-plugins are now properly detected as installed by the native plugin provider.
 
 ## 6.2.2 (March 13, 2018)
@@ -173,20 +173,20 @@ When upgrading from module versions prior to 6.3, there are a number of upgrade 
 
 ## 6.2.1 (February 14, 2018)
 
-This is primarily a bugfix release to address an issue when installing Elasticsearch 6.2.x plugins such as X-Pack that use the new meta-plugin architecture.
-While the change has been tested with several plugins and versions of Elasticsearch, if any unexpected behavior arises, help is available on the [Elastic forums](https://discuss.elastic.co/) or via [an issue in the puppet-elasticsearch Github repository](https://github.com/elastic/puppet-elasticsearch/issues).
+This is primarily a bugfix release to address an issue when installing Opensearch 6.2.x plugins such as X-Pack that use the new meta-plugin architecture.
+While the change has been tested with several plugins and versions of Opensearch, if any unexpected behavior arises, help is available on the [Elastic forums](https://discuss.elastic.co/) or via [an issue in the puppet-opensearch Github repository](https://github.com/elastic/puppet-opensearch/issues).
 
 #### Fixes
-* Rewrote the `exists?` logic for the `elasticsearch_plugin` provider. This fundamentally changes how the module detects the presence of plugins but should be backwards compatible.
+* Rewrote the `exists?` logic for the `opensearch_plugin` provider. This fundamentally changes how the module detects the presence of plugins but should be backwards compatible.
 
 ## 6.2.0 (February 9, 2018)
 
 #### Features
 * Add support for Amazon Linux 2
-* Add support for managing Elasticsearch Snapshot Repository resources
+* Add support for managing Opensearch Snapshot Repository resources
 
 #### Fixes
-* Fixed an issue when setting `file_rolling_type => file` in Elasticsearch 6.
+* Fixed an issue when setting `file_rolling_type => file` in Opensearch 6.
 * Removed ExecStartPre=- from systemd template
 
 ## 6.1.0 (December 18, 2017)
@@ -194,7 +194,7 @@ While the change has been tested with several plugins and versions of Elasticsea
 #### Features
 * Removed `tea` module dependency for pre-existing types in `stdlib` module.
 * Support `file` as a `file_rolling_type`.
-* Added `java_opts` parameter to `elasticsearch::plugin` resource.
+* Added `java_opts` parameter to `opensearch::plugin` resource.
 * Brought some options in `jvm.options` up-to-date with upstream.
 * Plugins can now have their `JAVA_HOME` set through the `java_home` parameter.
 
@@ -214,7 +214,7 @@ Major version upgrade with several important deprecations:
 
 Minor:
 
-* elasticsearch::plugin only accepts `present` or `absent`
+* opensearch::plugin only accepts `present` or `absent`
 * Some REST-resource based providers (such as templates and pipelines) now validate parameters (such as numeric port numbers) more rigorously.
 
 The following migration guide is intended to help aid in upgrading this module.
@@ -241,8 +241,8 @@ If you still wish to configure Java alongside this module, consider using the [p
 class { "java" : distribution => "jre" }
 ```
 
-This will install a version of Java suitable for Elasticsearch in most situations.
-Note that in some older distributions, you may need to take extra steps to install a more recent version of Java that supports Elasticsearch.
+This will install a version of Java suitable for Opensearch in most situations.
+Note that in some older distributions, you may need to take extra steps to install a more recent version of Java that supports Opensearch.
 
 #### Removal of Python and Ruby Resources
 
@@ -250,7 +250,7 @@ These resource types were simple wrappers around `package` resources with their 
 Simply defining your own resources similarly to:
 
 ```puppet
-package { 'elasticsearch' : provider => 'pip' }
+package { 'opensearch' : provider => 'pip' }
 ```
 
 Is sufficient.
@@ -261,7 +261,7 @@ This parameter is now set to `true` by default to automatically manage the Elast
 If you do not wish to configure the repository to automatically retrieve package updates, set this parameter to `false`:
 
 ```puppet
-class { 'elasticsearch': manage_repo => false }
+class { 'opensearch': manage_repo => false }
 ```
 
 #### Removal of `hiera_merge` Parameters
@@ -285,7 +285,7 @@ Read [the upstream Hiera documentation regarding `lookup_options`](https://puppe
 * Bumped puppet/java dependency to < 3.0.0
 
 #### Fixes
-* Append `--quiet` flag to >= 5.x versions of Elasticsearch systemd service units
+* Append `--quiet` flag to >= 5.x versions of Opensearch systemd service units
 * Disable es_facts collection on SearchGuard nodes with TLS enabled
 
 ## 5.4.2 (August 18, 2017)
@@ -298,14 +298,14 @@ Read [the upstream Hiera documentation regarding `lookup_options`](https://puppe
 
 ## 5.4.1 (August 7, 2017)
 
-Fixed an issue where `logging_yml_ensure` and `log4j2_ensure` would not propagate to `elasticsearch::instance` resources.
+Fixed an issue where `logging_yml_ensure` and `log4j2_ensure` would not propagate to `opensearch::instance` resources.
 
 ## 5.4.0 (August 3, 2017)
 
 #### Features
 * The `api_timeout` parameter is now passed to the `es_instance_conn_validator` resource for index, pipeline, and template defined types.
 * Updated puppetlabs/apt dependency to < 5.0.0.
-* Both the `logging.yml` and `log4j2.properties` files can be selectively enabled/disabled with the `logging_yml_ensure` and `log4j2_ensure` parameters on the `elasticsearch` class and `elasticsearch::instance` defined type.
+* Both the `logging.yml` and `log4j2.properties` files can be selectively enabled/disabled with the `logging_yml_ensure` and `log4j2_ensure` parameters on the `opensearch` class and `opensearch::instance` defined type.
 * `jvm_options` are now controllable on a per-instance basis.
 
 #### Fixes
@@ -316,24 +316,24 @@ Fixed an issue where `logging_yml_ensure` and `log4j2_ensure` would not propagat
 ## 5.3.1 (June 14, 2017)
 
 ### Summary
-Minor release to fix bugs related to the `elasticsearch_keystore` type and generated docs.
+Minor release to fix bugs related to the `opensearch_keystore` type and generated docs.
 
 #### Features
 * Moved documentation to Yard for doc auto-generation for all classes/types/etc.
 
 #### Fixes
-* Fixed dependency order bug with the `elasticsearch_keystore` type and augeas defaults resource.
+* Fixed dependency order bug with the `opensearch_keystore` type and augeas defaults resource.
 
 ## 5.3.0 (June 5, 2017)
 
 ### Summary
-Minor bugfix release with added support for managing Elasticsearch keystores, custom repository URLs, and more.
+Minor bugfix release with added support for managing Opensearch keystores, custom repository URLs, and more.
 
 #### Features
 * Failures are no longer raised when no instances are defined for a plugin and service restarts are not requested.
 * The `datadir` for instances can now be shared among multiple instances by using the `datadir_instance_directories` parameter.
 * `repo_baseurl` is now exposed as a top-level parameter for users who wish to control custom repositories.
-* `elasticsearch-keystore` values can now be managed via native Puppet resources.
+* `opensearch-keystore` values can now be managed via native Puppet resources.
 
 #### Fixes
 * log4j template now properly respects deprecation logging settings.
@@ -345,12 +345,12 @@ Release supporting several new features and bugfixes for 5.4.0 users and users w
 
 #### Features
 * Support for Shield/X-Pack logging configuration file added.
-* The `elasticsearch::script` type now supports recursively managing directories of scripts.
-* All module defined types can now be managed as top-level hash parameters to the `elasticsearch` class (primarily for hiera and PE)
+* The `opensearch::script` type now supports recursively managing directories of scripts.
+* All module defined types can now be managed as top-level hash parameters to the `opensearch` class (primarily for hiera and PE)
 
 #### Fixes
 * Fixed a bug that prevented plugins from being updated properly.
-* Fixed deprecated `default.path` options introduced in Elasticsearch 5.4.0.
+* Fixed deprecated `default.path` options introduced in Opensearch 5.4.0.
 
 ## 5.1.1 (April 13, 2017)
 
@@ -361,9 +361,9 @@ Release supporting several new features and bugfixes for 5.4.0 users and users w
     config file.
 
 #### Fixes
-This is a hotfix release to support users affected by [an upstream Elasticsearch issue](https://github.com/elastic/elasticsearch/issues/6887).
-See the [associated issue](https://github.com/elastic/puppet-elasticsearch/issues/802#issuecomment-293295930) for details regarding the workaround.
-The change implemented in this release is to place the `elasticsearch::instance` `config` parameter at the highest precedence when merging the final config yaml which permits users manually override `path.data` values.
+This is a hotfix release to support users affected by [an upstream Opensearch issue](https://github.com/elastic/opensearch/issues/6887).
+See the [associated issue](https://github.com/elastic/puppet-opensearch/issues/802#issuecomment-293295930) for details regarding the workaround.
+The change implemented in this release is to place the `opensearch::instance` `config` parameter at the highest precedence when merging the final config yaml which permits users manually override `path.data` values.
 
 ## 5.1.0 (February 28, 2017)
 
@@ -376,13 +376,13 @@ Minor bugfixes.
 * Index settings support.
 
 #### Fixes
-* Custom facts no longer fail when trying to read unreadable elasticsearch config files.
+* Custom facts no longer fail when trying to read unreadable opensearch config files.
 * `Accept` and `Content-Type` headers properly set for providers (to support ES 6.x)
 
 ## 5.0.0 (February 9, 2017)
 
-Going forward, This module will follow Elasticsearch's upstream major version to indicate compatability.
-That is, version 5.x of this module supports version 5 of Elasticsearch, and version 6.x of this module will be released once Elasticsearch 6 support is added.
+Going forward, This module will follow Opensearch's upstream major version to indicate compatability.
+That is, version 5.x of this module supports version 5 of Opensearch, and version 6.x of this module will be released once Opensearch 6 support is added.
 
 ### Summary
 Note that this is a **major version release**!
@@ -390,30 +390,30 @@ Please read the release notes carefully before upgrading to avoid downtime/unexp
 Remember to restart any puppetmaster servers to clear provider caches and pull in updated code.
 
 ### Backwards-Incompatible Changes
-* The `elasticsearch::shield::user` and `elasticsearch::shield::role` resources have been renamed to `elasticsearch::user` and `elasticsearch::role` since the resource now handles both Shield and X-Pack.
-* Both Shield and X-Pack configuration files are kept in `/etc/elasticsearch/shield` and `/etc/elasticsearch/x-pack`, respectively. If you previously managed Shield resources with version 0.x of this module, you may need to migrate files from `/usr/share/elasticsearch/shield`.
-* The default data directory has been changed to `/var/lib/elasticsearch`. If you used the previous default (the Elasticsearch home directory, `/usr/share/elasticsearch/data`), you may need to migrate your data.
-* The first changes that may be Elasticsearch 1.x-incompatible have been introduced (see the [elasticsearch support lifecycle](https://www.elastic.co/support/eol)). This only impacts version 1.x running on systemd-based distributions.
+* The `opensearch::shield::user` and `opensearch::shield::role` resources have been renamed to `opensearch::user` and `opensearch::role` since the resource now handles both Shield and X-Pack.
+* Both Shield and X-Pack configuration files are kept in `/etc/opensearch/shield` and `/etc/opensearch/x-pack`, respectively. If you previously managed Shield resources with version 0.x of this module, you may need to migrate files from `/usr/share/opensearch/shield`.
+* The default data directory has been changed to `/var/lib/opensearch`. If you used the previous default (the Opensearch home directory, `/usr/share/opensearch/data`), you may need to migrate your data.
+* The first changes that may be Opensearch 1.x-incompatible have been introduced (see the [opensearch support lifecycle](https://www.elastic.co/support/eol)). This only impacts version 1.x running on systemd-based distributions.
 * sysctl management has been removed (and the module removed as a dependency for this module), and puppet/yum is used in lieu of ceritsc/yum.
 
 #### Features
 * Support management of the global jvm.options configuration file.
 * X-Pack support added.
-* Restricted permissions to the elasticsearch.yml file.
+* Restricted permissions to the opensearch.yml file.
 * Deprecation log configuration support added.
 * Synced systemd service file with upstream.
 
 #### Bugfixes
 * Fixed case in which index template could prepend an additional 'index.' to index settings.
 * Fixed a case in which dependency cycles could arise when pinning packages on CentOS.
-* No longer recursively change the Elasticsearch home directory's lib/ to the elasticsearch user.
+* No longer recursively change the Opensearch home directory's lib/ to the opensearch user.
 * Unused defaults values now purged from instance init defaults files.
 
 #### Changes
 * Changed default data directory to /var/lib
 * sysctl settings are no longer managed by the thias/sysctl module.
-* Calls to `elasticsearch -version` in elasticsearch::plugin code replaced with native Puppet code to resolve Elasticsearch package version. Should improve resiliency when managing plugins.
-* Shield and X-Pack configuration files are stored in /etc/elasticsearch instead of /usr/share/elasticsearch.
+* Calls to `opensearch -version` in opensearch::plugin code replaced with native Puppet code to resolve Opensearch package version. Should improve resiliency when managing plugins.
+* Shield and X-Pack configuration files are stored in /etc/opensearch instead of /usr/share/opensearch.
 * Removed deprecated ceritsc/yum module in favor of puppet/yum.
 
 #### Testing changes
@@ -421,13 +421,13 @@ Remember to restart any puppetmaster servers to clear provider caches and pull i
 ## 0.15.1 (December 1, 2016)
 
 ### Summary
-Primarily a bugfix release for Elasticsearch 5.x support-related issues.
+Primarily a bugfix release for Opensearch 5.x support-related issues.
 Note updated minimum required puppet versions as well.
 
 #### Features
 
 #### Bugfixes
-* Removed ES_HEAP_SIZE check in init scripts for Elasticsearch 5.x
+* Removed ES_HEAP_SIZE check in init scripts for Opensearch 5.x
 * Changed sysctl value to a string to avoid type errors for some versions
 * Fixed a $LOAD_PATH error that appeared in some cases for puppet_x/elastic/es_versioning
 
@@ -440,11 +440,11 @@ Note updated minimum required puppet versions as well.
 
 ### Summary
 * Support for Ubuntu Xenial (16.04) formally declared.
-* Initial support for running Elasticsearch 5.x series.
+* Initial support for running Opensearch 5.x series.
 
 #### Features
 * Support management of 5.x-style Elastic yum/apt package repositories.
-* Support service scripts for 5.x series of Elasticsearch
+* Support service scripts for 5.x series of Opensearch
 
 #### Bugfixes
 * Update the apt::source call to not cause deprecation warnings
@@ -465,17 +465,17 @@ This release also adds the ability to define logging rolling file settings and a
 * Added 'file_rolling_type' parameter to allow selecting file logging rotation type between "dailyRollingFile" or "rollingFile". Also added 'daily_rolling_date_pattern', 'rolling_file_max_backup_index' and 'rolling_file_max_file_size' for file rolling customization.
 
 #### Bugfixes
-* Permissions on the Elasticsearch plugin directory have been fixed to permit world read rights.
+* Permissions on the Opensearch plugin directory have been fixed to permit world read rights.
 * The service systemd unit now `Wants=` a network target to fix bootup parallelization problems.
-* Recursively create the logdir for elasticsearch when creating multiple instances
+* Recursively create the logdir for opensearch when creating multiple instances
 * Files and directories with root ownership now specify UID/GID 0 instead to improve compatability with *BSDs.
-* Elasticsearch Debian init file changed to avoid throwing errors when DATA_DIR, WORK_DIR and/or LOG_DIR were an empty variable.
-* Fixed a broken File dependency when a plugin was set to absent and ::elasticsearch set to present.
-* Fixed issue when using the `proxy` parameter on plugins in Elasticsearch 2.x.
+* Opensearch Debian init file changed to avoid throwing errors when DATA_DIR, WORK_DIR and/or LOG_DIR were an empty variable.
+* Fixed a broken File dependency when a plugin was set to absent and ::opensearch set to present.
+* Fixed issue when using the `proxy` parameter on plugins in Opensearch 2.x.
 
 #### Changes
 * The `api_ca_file` and `api_ca_path` parameters have been added to support custom CA bundles for API access.
-* Numerics in elasticsearch.yml will always be properly unquoted.
+* Numerics in opensearch.yml will always be properly unquoted.
 * puppetlabs/java is now listed as a dependency in metadata.json to avoid unexpected installation problems.
 
 #### Testing changes
@@ -483,18 +483,18 @@ This release also adds the ability to define logging rolling file settings and a
 ## 0.13.2 (August 29, 2016)
 
 ### Summary
-Primarily a bugfix release to resolve HTTPS use in elasticsearch::template resources, 5.x plugin operations, and plugin file permission enforcement.
+Primarily a bugfix release to resolve HTTPS use in opensearch::template resources, 5.x plugin operations, and plugin file permission enforcement.
 
 #### Features
-* Plugin installation for the 5.x series of Elasticsearch is now properly supported.
+* Plugin installation for the 5.x series of Opensearch is now properly supported.
 
 #### Bugfixes
-* Recursively enforce correct plugin directory mode to avoid Elasticsearch startup permissions errors.
+* Recursively enforce correct plugin directory mode to avoid Opensearch startup permissions errors.
 * Fixed an edge case where dependency cycles could arise when managing absent resources.
-* Elasticsearch templates now properly use HTTPS when instructed to do so.
+* Opensearch templates now properly use HTTPS when instructed to do so.
 
 #### Changes
-* Updated the elasticsearch_template type to return more helpful error output.
+* Updated the opensearch_template type to return more helpful error output.
 * Updated the es_instance_conn_validator type to silence deprecation warnings in Puppet >= 4.
 
 #### Testing changes
@@ -502,17 +502,17 @@ Primarily a bugfix release to resolve HTTPS use in elasticsearch::template resou
 ## 0.13.1 (August 8, 2016)
 
 ### Summary
-Lingering bugfixes from elasticsearch::template changes.
+Lingering bugfixes from opensearch::template changes.
 More robust systemd mask handling.
 Updated some upstream module parameters for deprecation warnings.
 Support for the Shield `system_key` file.
 
 #### Features
-* Added `system_key` parameter to the `elasticsearch` class and `elasticsearch::instance` type for placing Shield system keys.
+* Added `system_key` parameter to the `opensearch` class and `opensearch::instance` type for placing Shield system keys.
 
 #### Bugfixes
-* Fixed systemd elasticsearch.service unit masking to use systemctl rather than raw symlinking to avoid puppet file backup errors.
-* Fixed a couple of cases that broke compatability with older versions of puppet (elasticsearch_template types on puppet versions prior to 3.6 and yumrepo parameters on puppet versions prior to 3.5.1)
+* Fixed systemd opensearch.service unit masking to use systemctl rather than raw symlinking to avoid puppet file backup errors.
+* Fixed a couple of cases that broke compatability with older versions of puppet (opensearch_template types on puppet versions prior to 3.6 and yumrepo parameters on puppet versions prior to 3.5.1)
 * Fixed issues that caused templates to be incorrectly detected as out-of-sync and thus always changed on each puppet run.
 * Resources are now explicitly ordered to ensure behavior such as plugins being installed before instance start, users managed before templates changed, etc.
 
@@ -524,29 +524,29 @@ Support for the Shield `system_key` file.
 ## 0.13.0 (August 1, 2016)
 
 ### Summary
-Rewritten elasticsearch::template using native type and provider.
-Fixed and added additional proxy parameters to elasticsearch::plugin instances.
+Rewritten opensearch::template using native type and provider.
+Fixed and added additional proxy parameters to opensearch::plugin instances.
 Exposed repo priority parameters for apt and yum repos.
 
 #### Features
-* In addition to better consistency, the `elasticsearch::template` type now also accepts various `api_*` parameters to control how access to the Elasticsearch API is configured (there are top-level parameters that are inherited and can be overwritten in `elasticsearch::api_*`).
-* The `elasticsearch::config` parameter now supports deep hiera merging.
-* Added the `elasticsearch::repo_priority` parameter to support apt and yum repository priority configuration.
-* Added `proxy_username` and `proxy_password` parameters to `elasticsearch::plugin`.
+* In addition to better consistency, the `opensearch::template` type now also accepts various `api_*` parameters to control how access to the Opensearch API is configured (there are top-level parameters that are inherited and can be overwritten in `opensearch::api_*`).
+* The `opensearch::config` parameter now supports deep hiera merging.
+* Added the `opensearch::repo_priority` parameter to support apt and yum repository priority configuration.
+* Added `proxy_username` and `proxy_password` parameters to `opensearch::plugin`.
 
 #### Bugfixes
-* Content of templates should now properly trigger new API PUT requests when the index template stored in Elasticsearch differs from the template defined in puppet.
+* Content of templates should now properly trigger new API PUT requests when the index template stored in Opensearch differs from the template defined in puppet.
 * Installing plugins with proxy parameters now works correctly due to changed Java property flags.
-* The `elasticsearch::plugin::module_dir` parameter has been re-implemented to aid in working around plugins with non-standard plugin directories.
+* The `opensearch::plugin::module_dir` parameter has been re-implemented to aid in working around plugins with non-standard plugin directories.
 
 #### Changes
-* The `file` parameter on the `elasticsearch::template` defined type has been deprecated to be consistent with usage of the `source` parameter for other types.
+* The `file` parameter on the `opensearch::template` defined type has been deprecated to be consistent with usage of the `source` parameter for other types.
 
 #### Testing changes
 
 ## 0.12.0 (July 20, 2016)
 
-IMPORTANT! A bug was fixed that mistakenly added /var/lib to the list of DATA_DIR paths on Debian-based systems.  This release removes that environment variable, which could potentially change path.data directories for instances of Elasticsearch.  Take proper precautions when upgrading to avoid unexpected downtime or data loss (test module upgrades, et cetera).
+IMPORTANT! A bug was fixed that mistakenly added /var/lib to the list of DATA_DIR paths on Debian-based systems.  This release removes that environment variable, which could potentially change path.data directories for instances of Opensearch.  Take proper precautions when upgrading to avoid unexpected downtime or data loss (test module upgrades, et cetera).
 
 ### Summary
 Rewritten yaml generator, code cleanup, and various bugfixes. Configuration file yaml no longer nested. Service no longer restarts by default, and exposes more granular restart options.
@@ -557,14 +557,14 @@ Rewritten yaml generator, code cleanup, and various bugfixes. Configuration file
 #### Bugfixes
 * Special yaml cases such as arrays of hashes and strings like "::" are properly supported.
 * Previous Debian SysV init scripts mistakenly set the `DATA_DIR` environment variable to a non-default value.
-* Some plugins failed installation due to capitalization munging, the elasticsearch_plugin provider no longer forces downcasing.
+* Some plugins failed installation due to capitalization munging, the opensearch_plugin provider no longer forces downcasing.
 
 #### Changes
-* The `install_options` parameter on the `elasticsearch::plugin` type has been removed. This was an undocumented parameter that often caused problems for users.
-* The `elasticsearch.service` systemd unit is no longer removed but masked by default, effectively hiding it from systemd but retaining the upstream vendor unit on disk for package management consistency.
+* The `install_options` parameter on the `opensearch::plugin` type has been removed. This was an undocumented parameter that often caused problems for users.
+* The `opensearch.service` systemd unit is no longer removed but masked by default, effectively hiding it from systemd but retaining the upstream vendor unit on disk for package management consistency.
 * `restart_on_change` now defaults to false to reduce unexpected cluster downtime (can be set to true if desired).
 * Package pinning is now contained within a separate class, so users can opt to manage package repositories manually and still use this module's pinning feature.
-* All configuration hashes are now flattened into dot-notated yaml in the elasticsearch configuration file. This should be fairly transparent in terms of behavior, though the config file formatting will change.
+* All configuration hashes are now flattened into dot-notated yaml in the opensearch configuration file. This should be fairly transparent in terms of behavior, though the config file formatting will change.
 
 #### Testing changes
 * The acceptance test suite has been dramatically slimmed to cut down on testing time and reduce false positives.
@@ -579,11 +579,11 @@ Shield support, SLES support, and overhauled testing setup.
   * TLS Certificate management
   * Users (role and password management for file-based realms)
   * Roles (file-based with mapping support)
-* Support (repository proxies)[https://github.com/elastic/puppet-elasticsearch/pull/615]
-* Support for (SSL auth on API calls)[https://github.com/elastic/puppet-elasticsearch/pull/577]
+* Support (repository proxies)[https://github.com/elastic/puppet-opensearch/pull/615]
+* Support for (SSL auth on API calls)[https://github.com/elastic/puppet-opensearch/pull/577]
 
 #### Bugfixes
-* (Fix Facter calls)[https://github.com/elastic/puppet-elasticsearch/pull/590] in custom providers
+* (Fix Facter calls)[https://github.com/elastic/puppet-opensearch/pull/590] in custom providers
 
 #### Changes
 
@@ -611,7 +611,7 @@ Adding support for OpenBSD and minor fixes
 * Notify service when upgrading the package
 
 ####Changes
-* Remove plugin dir when upgrading Elasticsearch
+* Remove plugin dir when upgrading Opensearch
 
 ####Testing changes
 
@@ -760,7 +760,7 @@ This releases adds several important features and fixes an important plugin inst
 
 ####Testing changes
 * Added unit testing for package pinning feature
-* Added integration testing with Elasticsearch to find issues earlier
+* Added integration testing with Opensearch to find issues earlier
 * Fix openSUSE 13 testing
 
 ####Known bugs
@@ -820,7 +820,7 @@ Bugfix release 0.9.4
 * Add the ability to create and populate scripts
 
 ####Bugfixes
-* add support for init_defaults_file to elasticsearch::instance
+* add support for init_defaults_file to opensearch::instance
 * Update apt key to full 40characters
 
 ####Changes
@@ -847,7 +847,7 @@ Bugfix release 0.9.3
 * Systemd file did not contain User/Group values
 
 ####Changes
-* Brand rename from Elasticsearch to Elastic
+* Brand rename from Opensearch to Elastic
 
 ####Testing changes
 * Moved from multiple Gemfiles to single Gemfile
@@ -906,7 +906,7 @@ Our planning is to provide LTS releases with the puppet module
 ####Features
 * Support for using hiera to define instances and plugins.
 * Support for openSUSE 13.x
-* Custom facts about the installed Elasticsearch instance(s)
+* Custom facts about the installed Opensearch instance(s)
 * Proxy host/port support for the plugin installation
 * Ability to supply a custom logging.yml template
 

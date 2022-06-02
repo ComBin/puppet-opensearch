@@ -22,7 +22,7 @@ module Puppet_X # rubocop:disable Style/ClassAndModuleCamelCase
       %w[/ :].each do |delimiter|
         parts = original_string.split(delimiter)
         # If the string successfully split, assume we found the right format
-        return parts[position].gsub(%r{(elasticsearch-|es-)}, '') unless parts[position].nil?
+        return parts[position].gsub(%r{(opensearch-|es-)}, '') unless parts[position].nil?
       end
 
       unless soft_fail

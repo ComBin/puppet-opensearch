@@ -1,7 +1,7 @@
 {
   "status" : 200,
   "name" : "Warlock",
-  "cluster_name" : "elasticsearch",
+  "cluster_name" : "opensearch",
   "version" : {
     "number" : "1.4.2",
     "build_hash" : "927caff6f05403e936c20bf4529f144f0c89fd8c",

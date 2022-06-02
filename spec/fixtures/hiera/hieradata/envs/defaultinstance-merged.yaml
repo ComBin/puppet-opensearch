@@ -1,9 +1,9 @@
 ---
 lookup_options:
-  elasticsearch::instances:
+  opensearch::instances:
     merge: deep
 
-elasticsearch::instances:
+opensearch::instances:
   default:
     config:
       node.name: 'default'

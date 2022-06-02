@@ -33,7 +33,7 @@ class Puppet::Provider::ElasticREST < Puppet::Provider
                 timeout = 10,
                 username = nil,
                 password = nil,
-                validate_tls: true)
+                validate_tls = true)
 
     if username && password
       req.basic_auth username, password
@@ -56,12 +56,12 @@ class Puppet::Provider::ElasticREST < Puppet::Provider
       # only fail when HTTP operations fail for mutating methods.
       unless %w[GET OPTIONS HEAD].include? req.method
         raise Puppet::Error,
-              "Received '#{e}' from the Elasticsearch API. Are your API settings correct?"
+              "Received '#{e}' from the Opensearch API. Are your API settings correct?"
       end
     end
   end
 
-  # Helper to format a remote URL request for Elasticsearch which takes into
+  # Helper to format a remote URL request for Opensearch which takes into
   # account path ordering, et cetera.
   def self.format_uri(resource_path, property_flush = {})
     return api_uri if resource_path.nil? || api_resource_style == :bare
@@ -78,8 +78,8 @@ class Puppet::Provider::ElasticREST < Puppet::Provider
     end
   end
 
-  # Fetch Elasticsearch API objects. Accepts a variety of argument functions
-  # dictating how to connect to the Elasticsearch API.
+  # Fetch Opensearch API objects. Accepts a variety of argument functions
+  # dictating how to connect to the Opensearch API.
   #
   # @return Array
   #   an array of Hashes representing the found API objects, whether they be
@@ -92,7 +92,7 @@ class Puppet::Provider::ElasticREST < Puppet::Provider
                        password = nil,
                        ca_file = nil,
                        ca_path = nil,
-                       validate_tls: true)
+                       validate_tls = true)
 
     uri = URI("#{protocol}://#{host}:#{port}/#{format_uri(api_discovery_uri)}")
     http = Net::HTTP.new uri.host, uri.port
@@ -136,14 +136,14 @@ class Puppet::Provider::ElasticREST < Puppet::Provider
     end
   end
 
-  # Fetch an array of provider objects from the Elasticsearch API.
+  # Fetch an array of provider objects from the Opensearch API.
   def self.instances
     api_objects.map { |resource| new resource }
   end
 
   # Unlike a typical #prefetch, which just ties discovered #instances to the
   # correct resources, we need to quantify all the ways the resources in the
-  # catalog know about Elasticsearch API access and use those settings to
+  # catalog know about Opensearch API access and use those settings to
   # fetch any templates we can before associating resources and providers.
   def self.prefetch(resources)
     # Get all relevant API access methods from the resources we know about
@@ -190,7 +190,7 @@ class Puppet::Provider::ElasticREST < Puppet::Provider
     )
   end
 
-  # Call Elasticsearch's REST API to appropriately PUT/DELETE/or otherwise
+  # Call Opensearch's REST API to appropriately PUT/DELETE/or otherwise
   # update any managed API objects.
   def flush
     Puppet.debug('Got to flush')
@@ -214,15 +214,20 @@ class Puppet::Provider::ElasticREST < Puppet::Provider
       req = Net::HTTP::Put.new uri.request_uri
       req.body = generate_body
       Puppet.debug("Generated body looks like: #{req.body.inspect}")
-      # As of Elasticsearch 6.x, required when requesting with a payload (so we
+      # As of Opensearch 6.x, required when requesting with a payload (so we
       # set it always to be safe)
       req['Content-Type'] = 'application/json' if req['Content-Type'].nil?
     end
 
     http = Net::HTTP.new uri.host, uri.port
     http.use_ssl = uri.scheme == 'https'
-    %i[ca_file ca_path].each do |arg|
-      http.send "#{arg}=".to_sym, resource[arg] if !resource[arg].nil? && http.respond_to?(arg)
+    #%i[ca_file ca_path].each do |arg|
+    #  http.send "#{arg}=".to_sym, resource[arg] if !resource[arg].nil? && http.respond_to?(arg)
+    #end
+    [:ca_file, :ca_path].each do |arg|
+      if !resource[arg].nil? and http.respond_to? arg
+        http.send "#{arg}=".to_sym, resource[arg]
+      end
     end
 
     response = self.class.rest(
@@ -253,7 +258,7 @@ class Puppet::Provider::ElasticREST < Puppet::Provider
                   "HTTP #{response.code}"
                 end
 
-      raise Puppet::Error, "Elasticsearch API responded with: #{err_msg}"
+      raise Puppet::Error, "Opensearch API responded with: #{err_msg}"
     end
     @property_hash = self.class.api_objects(
       resource[:protocol],

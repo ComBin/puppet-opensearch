@@ -6,18 +6,18 @@ require 'uri'
 require 'puppet_x/elastic/es_versioning'
 require 'puppet_x/elastic/plugin_parsing'
 
-# Generalized parent class for providers that behave like Elasticsearch's plugin
+# Generalized parent class for providers that behave like Opensearch's plugin
 # command line tool.
 class Puppet::Provider::ElasticPlugin < Puppet::Provider
-  # Elasticsearch's home directory.
+  # Opensearch's home directory.
   #
   # @return String
   def homedir
     case Facter.value('osfamily')
     when 'OpenBSD'
-      '/usr/local/elasticsearch'
+      '/usr/local/opensearch'
     else
-      '/usr/share/elasticsearch'
+      '/usr/share/opensearch'
     end
   end
 
@@ -25,7 +25,7 @@ class Puppet::Provider::ElasticPlugin < Puppet::Provider
     # First, attempt to list whether the named plugin exists by finding a
     # plugin descriptor file, which each plugin should have. We must wildcard
     # the name to match meta plugins, see upstream issue for this change:
-    # https://github.com/elastic/elasticsearch/pull/28022
+    # https://github.com/elastic/opensearch/pull/28022
     properties_files = Dir[File.join(@resource[:plugin_dir], plugin_path, '**', '*plugin-descriptor.properties')]
     return false if properties_files.empty?
 
@@ -56,7 +56,7 @@ class Puppet::Provider::ElasticPlugin < Puppet::Provider
       properties = properties.find { |prop| prop.key? 'version' }
 
       if properties && properties['version'] != plugin_version
-        debug "Elasticsearch plugin #{@resource[:name]} not version #{plugin_version}, reinstalling"
+        debug "Opensearch plugin #{@resource[:name]} not version #{plugin_version}, reinstalling"
         destroy
         return false
       end
@@ -73,7 +73,7 @@ class Puppet::Provider::ElasticPlugin < Puppet::Provider
     @resource[:plugin_path] || Puppet_X::Elastic.plugin_name(@resource[:name])
   end
 
-  # Intelligently returns the correct installation arguments for Elasticsearch.
+  # Intelligently returns the correct installation arguments for Opensearch.
   #
   # @return [Array<String>]
   #   arguments to pass to the plugin installation utility
@@ -87,7 +87,7 @@ class Puppet::Provider::ElasticPlugin < Puppet::Provider
     end
   end
 
-  # Format proxy arguments for consumption by the elasticsearch plugin
+  # Format proxy arguments for consumption by the opensearch plugin
   # management tool (i.e., Java properties).
   #
   # @return Array
@@ -141,7 +141,7 @@ class Puppet::Provider::ElasticPlugin < Puppet::Provider
     }
     saved_vars = {}
 
-    # Use 'java_home' param if supplied, otherwise default to Elasticsearch shipped JDK
+    # Use 'java_home' param if supplied, otherwise default to Opensearch shipped JDK
     env_vars['JAVA_HOME'] = if @resource[:java_home].nil? || @resource[:java_home] == ''
                               "#{homedir}/jdk"
                             else

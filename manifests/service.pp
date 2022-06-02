@@ -5,15 +5,15 @@
 # in general and is used in a platform-independent way. E.g. "service" means
 # "daemon" in relation to Unix-like systems.
 #
-# @author Richard Pijnenburg <richard.pijnenburg@elasticsearch.com>
+# @author Richard Pijnenburg <richard.pijnenburg@opensearch.com>
 # @author Tyler Langlois <tyler.langlois@elastic.co>
 # @author Gavin Williams <gavin.williams@elastic.co>
 #
-class elasticsearch::service {
+class opensearch::service {
   #### Service management
 
-  if $elasticsearch::ensure == 'present' {
-    case $elasticsearch::status {
+  if $opensearch::ensure == 'present' {
+    case $opensearch::status {
       # make sure service is currently running, start it on boot
       'enabled': {
         $_service_ensure = 'running'
@@ -45,7 +45,7 @@ class elasticsearch::service {
     $_service_enable = false
   }
 
-  service { $elasticsearch::service_name:
+  service { $opensearch::service_name:
     ensure => $_service_ensure,
     enable => $_service_enable,
   }

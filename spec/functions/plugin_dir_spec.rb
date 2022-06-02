@@ -27,14 +27,14 @@ describe 'plugin_dir' do
   end
 
   {
-    'mobz/elasticsearch-head' => 'head',
+    'mobz/opensearch-head' => 'head',
     'lukas-vlcek/bigdesk/2.4.0' => 'bigdesk',
-    'elasticsearch/elasticsearch-cloud-aws/2.5.1' => 'cloud-aws',
-    'com.sksamuel.elasticsearch/elasticsearch-river-redis/1.1.0' => 'river-redis',
-    'com.github.lbroudoux.elasticsearch/amazon-s3-river/1.4.0' => 'amazon-s3-river',
-    'elasticsearch/elasticsearch-lang-groovy/2.0.0' => 'lang-groovy',
-    'royrusso/elasticsearch-hq' => 'hq',
-    'polyfractal/elasticsearch-inquisitor' => 'inquisitor',
+    'opensearch/opensearch-cloud-aws/2.5.1' => 'cloud-aws',
+    'com.sksamuel.opensearch/opensearch-river-redis/1.1.0' => 'river-redis',
+    'com.github.lbroudoux.opensearch/amazon-s3-river/1.4.0' => 'amazon-s3-river',
+    'opensearch/opensearch-lang-groovy/2.0.0' => 'lang-groovy',
+    'royrusso/opensearch-hq' => 'hq',
+    'polyfractal/opensearch-inquisitor' => 'inquisitor',
     'mycustomplugin' => 'mycustomplugin'
   }.each do |plugin, dir|
     describe "parsed dir for #{plugin}" do

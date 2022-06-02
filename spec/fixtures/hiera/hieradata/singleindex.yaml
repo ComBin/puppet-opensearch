@@ -1,5 +1,5 @@
 ---
-elasticsearch::indices:
+opensearch::indices:
   baz:
     ensure: 'present'
     settings:

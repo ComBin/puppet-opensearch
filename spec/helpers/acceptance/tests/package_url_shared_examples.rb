@@ -4,7 +4,7 @@ require 'json'
 require 'helpers/acceptance/tests/basic_shared_examples'
 
 shared_examples 'package_url acceptance tests' do |es_config|
-  describe 'elasticsearch::package_url' do
+  describe 'opensearch::package_url' do
     # Override default manifest to remove `package`
     let(:manifest) do
       <<-MANIFEST
@@ -27,7 +27,7 @@ shared_examples 'package_url acceptance tests' do |es_config|
       let(:manifest_class_parameters) do
         <<-MANIFEST
           manage_repo => false,
-          package_url => '#{v[:elasticsearch_package][:url]}'
+          package_url => '#{v[:opensearch_package][:url]}'
         MANIFEST
       end
 
@@ -37,14 +37,14 @@ shared_examples 'package_url acceptance tests' do |es_config|
     context 'via local filesystem', :with_cleanup do
       before :all do # rubocop:disable RSpec/BeforeAfterAll
         scp_to default,
-               v[:elasticsearch_package][:path],
-               "/tmp/#{v[:elasticsearch_package][:filename]}"
+               v[:opensearch_package][:path],
+               "/tmp/#{v[:opensearch_package][:filename]}"
       end
 
       let(:manifest_class_parameters) do
         <<-MANIFEST
           manage_repo => false,
-          package_url => 'file:/tmp/#{v[:elasticsearch_package][:filename]}'
+          package_url => 'file:/tmp/#{v[:opensearch_package][:filename]}'
         MANIFEST
       end
 
@@ -56,14 +56,14 @@ shared_examples 'package_url acceptance tests' do |es_config|
         shell "mkdir -p #{default['distmoduledir']}/another/files"
 
         scp_to default,
-               v[:elasticsearch_package][:path],
-               "#{default['distmoduledir']}/another/files/#{v[:elasticsearch_package][:filename]}"
+               v[:opensearch_package][:path],
+               "#{default['distmoduledir']}/another/files/#{v[:opensearch_package][:filename]}"
       end
 
       let(:manifest_class_parameters) do
         <<-MANIFEST
           manage_repo => false,
-          package_url => 'puppet:///modules/another/#{v[:elasticsearch_package][:filename]}',
+          package_url => 'puppet:///modules/another/#{v[:opensearch_package][:filename]}',
         MANIFEST
       end
 

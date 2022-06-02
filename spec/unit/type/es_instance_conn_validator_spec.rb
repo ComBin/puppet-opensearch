@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../../helpers/unit/type/elasticsearch_rest_shared_examples'
+require_relative '../../helpers/unit/type/opensearch_rest_shared_examples'
 
 describe Puppet::Type.type(:es_instance_conn_validator) do
   let(:resource_name) { 'conn-validator' }

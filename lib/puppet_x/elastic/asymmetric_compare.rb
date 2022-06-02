@@ -3,7 +3,7 @@
 module Puppet_X # rubocop:disable Style/ClassAndModuleCamelCase
   # Custom Elastic functions
   module Elastic
-    # Certain Elasticsearch APIs return fields that are present in responses
+    # Certain Opensearch APIs return fields that are present in responses
     # but not present when sending API requests such as creation time, and so
     # on. When comparing desired settings and extant settings, only indicate
     # that a value differs from another when user-desired settings differ from

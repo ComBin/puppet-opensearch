@@ -1,7 +1,7 @@
 # Manages x-pack users.
 #
 # @example creates and manage a user with membership in the 'logstash' and 'kibana4' roles.
-#   elasticsearch::user { 'bob':
+#   opensearch::user { 'bob':
 #     password => 'foobar',
 #     roles    => ['logstash', 'kibana4'],
 #   }
@@ -22,28 +22,28 @@
 # @author Tyler Langlois <tyler.langlois@elastic.co>
 # @author Gavin Williams <gavin.williams@elastic.co>
 #
-define elasticsearch::user (
+define opensearch::user (
   String                    $password,
   Enum['absent', 'present'] $ensure = 'present',
   Array                     $roles  = [],
 ) {
   if $password =~ /^\$2a\$/ {
-    elasticsearch_user_file { $name:
+    opensearch_user_file { $name:
       ensure          => $ensure,
-      configdir       => $elasticsearch::configdir,
+      configdir       => $opensearch::configdir,
       hashed_password => $password,
-      before          => Elasticsearch_user_roles[$name],
+      before          => Opensearch_user_roles[$name],
     }
   } else {
-    elasticsearch_user { $name:
+    opensearch_user { $name:
       ensure    => $ensure,
-      configdir => $elasticsearch::configdir,
+      configdir => $opensearch::configdir,
       password  => $password,
-      before    => Elasticsearch_user_roles[$name],
+      before    => Opensearch_user_roles[$name],
     }
   }
 
-  elasticsearch_user_roles { $name:
+  opensearch_user_roles { $name:
     ensure => $ensure,
     roles  => $roles,
   }

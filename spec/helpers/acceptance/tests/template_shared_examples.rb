@@ -9,7 +9,7 @@ shared_examples 'template application' do |es_config, name, template, param|
   context 'present' do
     let(:extra_manifest) do
       <<-MANIFEST
-        elasticsearch::template { '#{name}':
+        opensearch::template { '#{name}':
           ensure => 'present',
           #{param}
         }
@@ -24,7 +24,7 @@ shared_examples 'template application' do |es_config, name, template, param|
   context 'absent' do
     let(:extra_manifest) do
       <<-MANIFEST
-        elasticsearch::template { '#{name}':
+        opensearch::template { '#{name}':
           ensure => absent,
         }
       MANIFEST
@@ -36,15 +36,15 @@ end
 
 # Verifies the content of a loaded index template.
 shared_examples 'template content' do |es_config, template|
-  elasticsearch_port = es_config['http.port']
-  describe port(elasticsearch_port) do
+  opensearch_port = es_config['http.port']
+  describe port(opensearch_port) do
     it 'open', :with_retries do
       expect(subject).to be_listening
     end
   end
 
-  describe "http://localhost:#{elasticsearch_port}/_template" do
-    subject { shell("curl http://localhost:#{elasticsearch_port}/_template") }
+  describe "http://localhost:#{opensearch_port}/_template" do
+    subject { shell("curl http://localhost:#{opensearch_port}/_template") }
 
     it 'returns the installed template', :with_retries do
       expect(JSON.parse(subject.stdout).values).
@@ -96,7 +96,7 @@ shared_examples 'template operations' do |es_config, template|
       context 'bad json' do
         let(:extra_manifest) do
           <<-MANIFEST
-            elasticsearch::template { '#{SecureRandom.hex(8)}':
+            opensearch::template { '#{SecureRandom.hex(8)}':
               ensure => 'present',
               file => 'puppet:///modules/another/bad.json'
             }

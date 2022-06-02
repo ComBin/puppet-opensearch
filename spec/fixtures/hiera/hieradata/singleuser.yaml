@@ -1,5 +1,5 @@
 ---
-elasticsearch::users:
+opensearch::users:
   elastic:
     ensure: present
     password: password

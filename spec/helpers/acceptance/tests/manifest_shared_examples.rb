@@ -7,7 +7,7 @@ shared_examples 'manifest application' do |idempotency_check = true|
                <<-MANIFEST
                  class { 'elastic_stack::repo':
                    oss => #{v[:oss]},
-                   version => #{v[:elasticsearch_major_version]},
+                   version => #{v[:opensearch_major_version]},
                  }
                MANIFEST
              else
@@ -17,7 +17,7 @@ shared_examples 'manifest application' do |idempotency_check = true|
       <<-MANIFEST
         #{repo}
 
-        class { 'elasticsearch' :
+        class { 'opensearch' :
           #{manifest}
           #{defined?(manifest_class_parameters) && manifest_class_parameters}
         }

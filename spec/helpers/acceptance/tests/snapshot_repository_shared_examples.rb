@@ -5,11 +5,11 @@ require 'helpers/acceptance/tests/manifest_shared_examples'
 
 # Main entrypoint for snapshot tests
 shared_examples 'snapshot repository acceptance tests' do
-  describe 'elasticsearch::snapshot_repository', :with_cleanup do
+  describe 'opensearch::snapshot_repository', :with_cleanup do
     es_config = {
       'http.port' => 9200,
-      'node.name' => 'elasticsearchSnapshot01',
-      'path.repo' => '/var/lib/elasticsearch'
+      'node.name' => 'opensearchSnapshot01',
+      'path.repo' => '/var/lib/opensearch'
     }
 
     # Override the manifest in order to populate 'path.repo'
@@ -22,7 +22,7 @@ shared_examples 'snapshot repository acceptance tests' do
                 else
                   <<-MANIFEST
                     # Hard version set here due to plugin incompatibilities.
-                    version => '#{v[:elasticsearch_full_version]}',
+                    version => '#{v[:opensearch_full_version]}',
                   MANIFEST
                 end
 
@@ -46,10 +46,10 @@ shared_examples 'snapshot repository acceptance tests' do
 
     let(:extra_manifest) do
       <<-MANIFEST
-        elasticsearch::snapshot_repository { 'backup':
+        opensearch::snapshot_repository { 'backup':
           ensure            => 'present',
           api_timeout       => 60,
-          location          => '/var/lib/elasticsearch/backup',
+          location          => '/var/lib/opensearch/backup',
           max_restore_rate  => '20mb',
           max_snapshot_rate => '80mb',
         }
@@ -71,7 +71,7 @@ shared_examples 'snapshot repository acceptance tests' do
       it 'returns the snapshot repository', :with_retries do
         expect(JSON.parse(subject.stdout)['backup']).
           to include('settings' => a_hash_including(
-            'location' => '/var/lib/elasticsearch/backup',
+            'location' => '/var/lib/opensearch/backup',
             'max_restore_rate' => '20mb',
             'max_snapshot_rate' => '80mb'
           ))

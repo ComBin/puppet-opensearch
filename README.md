@@ -1,18 +1,18 @@
-# Elasticsearch Puppet Module
-[![Build Status](https://github.com/voxpupuli/puppet-elasticsearch/workflows/CI/badge.svg)](https://github.com/voxpupuli/puppet-elasticsearch/actions?query=workflow%3ACI)
-[![Release](https://github.com/voxpupuli/puppet-elasticsearch/actions/workflows/release.yml/badge.svg)](https://github.com/voxpupuli/puppet-elasticsearch/actions/workflows/release.yml)
-[![Puppet Forge](https://img.shields.io/puppetforge/v/puppet/elasticsearch.svg)](https://forge.puppetlabs.com/puppet/elasticsearch)
-[![Puppet Forge - downloads](https://img.shields.io/puppetforge/dt/puppet/elasticsearch.svg)](https://forge.puppetlabs.com/puppet/elasticsearch)
-[![Puppet Forge - endorsement](https://img.shields.io/puppetforge/e/puppet/elasticsearch.svg)](https://forge.puppetlabs.com/puppet/elasticsearch)
-[![Puppet Forge - scores](https://img.shields.io/puppetforge/f/puppet/elasticsearch.svg)](https://forge.puppetlabs.com/puppet/elasticsearch)
-[![puppetmodule.info docs](http://www.puppetmodule.info/images/badge.png)](http://www.puppetmodule.info/m/puppet-elasticsearch)
-[![Apache-2 License](https://img.shields.io/github/license/voxpupuli/puppet-elasticsearch.svg)](LICENSE)
+# Opensearch Puppet Module
+[![Build Status](https://github.com/voxpupuli/puppet-opensearch/workflows/CI/badge.svg)](https://github.com/voxpupuli/puppet-opensearch/actions?query=workflow%3ACI)
+[![Release](https://github.com/voxpupuli/puppet-opensearch/actions/workflows/release.yml/badge.svg)](https://github.com/voxpupuli/puppet-opensearch/actions/workflows/release.yml)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/puppet/opensearch.svg)](https://forge.puppetlabs.com/puppet/opensearch)
+[![Puppet Forge - downloads](https://img.shields.io/puppetforge/dt/puppet/opensearch.svg)](https://forge.puppetlabs.com/puppet/opensearch)
+[![Puppet Forge - endorsement](https://img.shields.io/puppetforge/e/puppet/opensearch.svg)](https://forge.puppetlabs.com/puppet/opensearch)
+[![Puppet Forge - scores](https://img.shields.io/puppetforge/f/puppet/opensearch.svg)](https://forge.puppetlabs.com/puppet/opensearch)
+[![puppetmodule.info docs](http://www.puppetmodule.info/images/badge.png)](http://www.puppetmodule.info/m/puppet-opensearch)
+[![Apache-2 License](https://img.shields.io/github/license/voxpupuli/puppet-opensearch.svg)](LICENSE)
 [![Donated by Elastic](https://img.shields.io/badge/donated%20by-Elastic-fb7047.svg)](#transfer-notice)
 
 #### Table of Contents
 
 1. [Module description - What the module does and why it is useful](#module-description)
-2. [Setup - The basics of getting started with Elasticsearch](#setup)
+2. [Setup - The basics of getting started with Opensearch](#setup)
   * [The module manages the following](#the-module-manages-the-following)
   * [Requirements](#requirements)
 3. [Usage - Configuration options and additional functionality](#usage)
@@ -25,18 +25,12 @@
 
 ## Module description
 
-This module sets up [Elasticsearch](https://www.elastic.co/overview/elasticsearch/) instances with additional resource for plugins, templates, and more.
+While waiting officail module from OpenSearch community: https://github.com/opensearch-project/opensearch-devops/issues/67
+Fork from official [puppet mudule for ElasticSearch](https://github.com/voxpupuli/puppet-elasticsearch) made by just seding, renaming elasticsearch -> opensearch. Basically works (most of basic functions), partialy not (for example template management).
 
-This module is actively tested against Elasticsearch 2.x, 5.x, and 6.x.
+This module sets up [Opensearch](https://opensearch.org/) instances with additional resource for plugins, templates, and more.
 
-# WARNING: The 7.x major release of this module contains breaking changes!
-
-In order to simplify the management of Elasticsearch moving forward, and add support for both Elasticsearch 6.x and 7.x, support for
-running multiple instances of Elasticsearch has been removed.
-
-This module also does not currently handle the migration from the instance based configuration to the new single deployment model.
-Therefore in-place upgrades from version 6.x of this module to 7.x, or migrations from multi-instance to single deployment is not currently supported.
-We hope to add support for this in a future release.
+This module is actively tested against Opensearch 2.0.0
 
 Therefore please ensure that you test this major release in your environment before using it in production!
 
@@ -44,18 +38,18 @@ Therefore please ensure that you test this major release in your environment bef
 
 ### The module manages the following
 
-* Elasticsearch repository files.
-* Elasticsearch package.
-* Elasticsearch configuration file.
-* Elasticsearch service.
-* Elasticsearch plugins.
-* Elasticsearch snapshot repositories.
-* Elasticsearch templates.
-* Elasticsearch ingest pipelines.
-* Elasticsearch index settings.
-* Elasticsearch users, roles, and certificates.
-* Elasticsearch licenses.
-* Elasticsearch keystores.
+* Opensearch repository files.
+* Opensearch package.
+* Opensearch configuration file.
+* Opensearch service.
+* Opensearch plugins.
+* Opensearch snapshot repositories.
+* Opensearch templates.
+* Opensearch ingest pipelines.
+* Opensearch index settings.
+* Opensearch users, roles, and certificates.
+* Opensearch licenses.
+* Opensearch keystores.
 
 ### Requirements
 
@@ -64,7 +58,7 @@ Therefore please ensure that you test this major release in your environment bef
 * [Augeas](http://augeas.net/)
 * [puppetlabs-java_ks](https://forge.puppetlabs.com/puppetlabs/java_ks) for certificate management (optional).
 
-Beginning with Elasticsearch 7.0.0, a Java JDK has been bundled as part of the elasticsearch package.
+Beginning with Opensearch 7.0.0, a Java JDK has been bundled as part of the opensearch package.
 However there still needs to be a version of Java present on the system being managed in order for Puppet to be able to run various utilities.
 We recommend managing your Java installation with the [puppetlabs-java](https://forge.puppetlabs.com/puppetlabs/java) module.
 
@@ -76,27 +70,27 @@ When using the repository management, the following module dependencies are requ
 * Debian/Ubuntu: [Puppetlabs/apt](https://forge.puppetlabs.com/puppetlabs/apt)
 * openSUSE/SLES: [puppet/zypprepo](https://forge.puppetlabs.com/puppet/zypprepo)
 
-### Beginning with Elasticsearch
+### Beginning with Opensearch
 
-Declare the top-level `elasticsearch` class (managing repositories) and set up an instance:
+Declare the top-level `opensearch` class (managing repositories) and set up an instance:
 
 ```puppet
 include ::java
 
-class { 'elasticsearch': }
+class { 'opensearch': }
 ```
 
 ## Usage
 
 ### Main class
 
-Most top-level parameters in the `elasticsearch` class are set to reasonable defaults.
+Most top-level parameters in the `opensearch` class are set to reasonable defaults.
 The following are some parameters that may be useful to override:
 
 #### Install a specific version
 
 ```puppet
-class { 'elasticsearch':
+class { 'opensearch':
   version => '7.9.3'
 }
 ```
@@ -105,11 +99,11 @@ Note: This will only work when using the repository.
 
 #### Automatically restarting the service (default set to false)
 
-By default, the module will not restart Elasticsearch when the configuration file, package, or plugins change.
+By default, the module will not restart Opensearch when the configuration file, package, or plugins change.
 This can be overridden globally with the following option:
 
 ```puppet
-class { 'elasticsearch':
+class { 'opensearch':
   restart_on_change => true
 }
 ```
@@ -119,7 +113,7 @@ Or controlled with the more granular options: `restart_config_change`, `restart_
 #### Automatic upgrades (default set to false)
 
 ```puppet
-class { 'elasticsearch':
+class { 'opensearch':
   autoupgrade => true
 }
 ```
@@ -127,7 +121,7 @@ class { 'elasticsearch':
 #### Removal/Decommissioning
 
 ```puppet
-class { 'elasticsearch':
+class { 'opensearch':
   ensure => 'absent'
 }
 ```
@@ -135,18 +129,18 @@ class { 'elasticsearch':
 #### Install everything but disable service(s) afterwards
 
 ```puppet
-class { 'elasticsearch':
+class { 'opensearch':
   status => 'disabled'
 }
 ```
 
 #### API Settings
 
-Some resources, such as `elasticsearch::template`, require communicating with the Elasticsearch REST API.
+Some resources, such as `opensearch::template`, require communicating with the Opensearch REST API.
 By default, these API settings are set to:
 
 ```puppet
-class { 'elasticsearch':
+class { 'opensearch':
   api_protocol            => 'http',
   api_host                => 'localhost',
   api_port                => 9200,
@@ -159,15 +153,15 @@ class { 'elasticsearch':
 }
 ```
 
-Each of these can be set at the top-level `elasticsearch` class and inherited for each resource or overridden on a per-resource basis.
+Each of these can be set at the top-level `opensearch` class and inherited for each resource or overridden on a per-resource basis.
 
 #### Dynamically Created Resources
 
 This module supports managing all of its defined types through top-level parameters to better support Hiera and Puppet Enterprise.
-For example, to manage an index template directly from the `elasticsearch` class:
+For example, to manage an index template directly from the `opensearch` class:
 
 ```puppet
-class { 'elasticsearch':
+class { 'opensearch':
   templates => {
     'logstash' => {
       'content' => {
@@ -182,20 +176,20 @@ class { 'elasticsearch':
 ```
 ### Plugins
 
-This module can help manage [a variety of plugins](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/modules-plugins.html#known-plugins).
+This module can help manage [a variety of plugins](http://www.opensearch.org/guide/en/opensearch/reference/current/modules-plugins.html#known-plugins).
 Note that `module_dir` is where the plugin will install itself to and must match that published by the plugin author; it is not where you would like to install it yourself.
 
 #### From an official repository
 
 ```puppet
-elasticsearch::plugin { 'x-pack': }
+opensearch::plugin { 'x-pack': }
 ```
 
 #### From a custom url
 
 ```puppet
-elasticsearch::plugin { 'jetty':
-  url => 'https://oss-es-plugins.s3.amazonaws.com/elasticsearch-jetty/elasticsearch-jetty-1.2.1.zip'
+opensearch::plugin { 'jetty':
+  url => 'https://oss-es-plugins.s3.amazonaws.com/opensearch-jetty/opensearch-jetty-1.2.1.zip'
 }
 ```
 
@@ -203,7 +197,7 @@ elasticsearch::plugin { 'jetty':
 
 You can also use a proxy if required by setting the `proxy_host` and `proxy_port` options:
 ```puppet
-elasticsearch::plugin { 'lmenezes/elasticsearch-kopf',
+opensearch::plugin { 'lmenezes/opensearch-kopf',
   proxy_host => 'proxy.host.com',
   proxy_port => 3128
 }
@@ -213,7 +207,7 @@ Proxies that require usernames and passwords are similarly supported with the `p
 
 Plugin name formats that are supported include:
 
-* `elasticsearch/plugin/version` (for official elasticsearch plugins downloaded from download.elastic.co)
+* `opensearch/plugin/version` (for official opensearch plugins downloaded from download.elastic.co)
 * `groupId/artifactId/version` (for community plugins downloaded from maven central or OSS Sonatype)
 * `username/repository` (for site plugins downloaded from github master)
 
@@ -222,29 +216,29 @@ Plugin name formats that are supported include:
 When you specify a certain plugin version, you can upgrade that plugin by specifying the new version.
 
 ```puppet
-elasticsearch::plugin { 'elasticsearch/elasticsearch-cloud-aws/2.1.1': }
+opensearch::plugin { 'opensearch/opensearch-cloud-aws/2.1.1': }
 ```
 
 And to upgrade, you would simply change it to
 
 ```puppet
-elasticsearch::plugin { 'elasticsearch/elasticsearch-cloud-aws/2.4.1': }
+opensearch::plugin { 'opensearch/opensearch-cloud-aws/2.4.1': }
 ```
 
 Please note that this does not work when you specify 'latest' as a version number.
 
 #### ES 6.x and 7.x official plugins
-For the Elasticsearch commercial plugins you can refer them to the simple name.
+For the Opensearch commercial plugins you can refer them to the simple name.
 
-See [Plugin installation](https://www.elastic.co/guide/en/elasticsearch/plugins/current/installation.html) for more details.
+See [Plugin installation](https://www.elastic.co/guide/en/opensearch/plugins/current/installation.html) for more details.
 
 ### Scripts
 
-Installs [scripts](http://www.elastic.co/guide/en/elasticsearch/reference/current/modules-scripting.html) to be used by Elasticsearch.
+Installs [scripts](http://www.elastic.co/guide/en/opensearch/reference/current/modules-scripting.html) to be used by Opensearch.
 These scripts are shared across all defined instances on the same host.
 
 ```puppet
-elasticsearch::script { 'myscript':
+opensearch::script { 'myscript':
   ensure => 'present',
   source => 'puppet:///path/to/my/script.groovy'
 }
@@ -253,7 +247,7 @@ elasticsearch::script { 'myscript':
 Script directories can also be recursively managed for large collections of scripts:
 
 ```puppet
-elasticsearch::script { 'myscripts_dir':
+opensearch::script { 'myscripts_dir':
   ensure  => 'directory,
   source  => 'puppet:///path/to/myscripts_dir'
   recurse => 'remote',
@@ -262,11 +256,11 @@ elasticsearch::script { 'myscripts_dir':
 
 ### Templates
 
-By default templates use the top-level `elasticsearch::api_*` settings to communicate with Elasticsearch.
+By default templates use the top-level `opensearch::api_*` settings to communicate with Opensearch.
 The following is an example of how to override these settings:
 
 ```puppet
-elasticsearch::template { 'templatename':
+opensearch::template { 'templatename':
   api_protocol            => 'https',
   api_host                => $::ipaddress,
   api_port                => 9201,
@@ -282,20 +276,20 @@ elasticsearch::template { 'templatename':
 
 #### Add a new template using a file
 
-This will install and/or replace the template in Elasticsearch:
+This will install and/or replace the template in Opensearch:
 
 ```puppet
-elasticsearch::template { 'templatename':
+opensearch::template { 'templatename':
   source => 'puppet:///path/to/template.json',
 }
 ```
 
 #### Add a new template using content
 
-This will install and/or replace the template in Elasticsearch:
+This will install and/or replace the template in Opensearch:
 
 ```puppet
-elasticsearch::template { 'templatename':
+opensearch::template { 'templatename':
   content => {
     'template' => "*",
     'settings' => {
@@ -308,7 +302,7 @@ elasticsearch::template { 'templatename':
 Plain JSON strings are also supported.
 
 ```puppet
-elasticsearch::template { 'templatename':
+opensearch::template { 'templatename':
   content => '{"template":"*","settings":{"number_of_replicas":0}}'
 }
 ```
@@ -316,7 +310,7 @@ elasticsearch::template { 'templatename':
 #### Delete a template
 
 ```puppet
-elasticsearch::template { 'templatename':
+opensearch::template { 'templatename':
   ensure => 'absent'
 }
 ```
@@ -324,17 +318,17 @@ elasticsearch::template { 'templatename':
 ### Ingestion Pipelines
 
 Pipelines behave similar to templates in that their contents can be controlled
-over the Elasticsearch REST API with a custom Puppet resource.
+over the Opensearch REST API with a custom Puppet resource.
 API parameters follow the same rules as templates (those settings can either be
-controlled at the top-level in the `elasticsearch` class or set per-resource).
+controlled at the top-level in the `opensearch` class or set per-resource).
 
 #### Adding a new pipeline
 
-This will install and/or replace an ingestion pipeline in Elasticsearch
+This will install and/or replace an ingestion pipeline in Opensearch
 (ingestion settings are compared against the present configuration):
 
 ```puppet
-elasticsearch::pipeline { 'addfoo':
+opensearch::pipeline { 'addfoo':
   content => {
     'description' => 'Add the foo field',
     'processors' => [{
@@ -350,7 +344,7 @@ elasticsearch::pipeline { 'addfoo':
 #### Delete a pipeline
 
 ```puppet
-elasticsearch::pipeline { 'addfoo':
+opensearch::pipeline { 'addfoo':
   ensure => 'absent'
 }
 ```
@@ -369,7 +363,7 @@ Note that some settings (such as `number_of_shards`) can only be set at index
 creation time.
 
 ```puppet
-elasticsearch::index { 'foo':
+opensearch::index { 'foo':
   settings => {
     'index' => {
       'number_of_replicas' => 0
@@ -381,18 +375,18 @@ elasticsearch::index { 'foo':
 #### Delete an index
 
 ```puppet
-elasticsearch::index { 'foo':
+opensearch::index { 'foo':
   ensure => 'absent'
 }
 ```
 
 ### Snapshot Repositories
 
-By default snapshot_repositories use the top-level `elasticsearch::api_*` settings to communicate with Elasticsearch.
+By default snapshot_repositories use the top-level `opensearch::api_*` settings to communicate with Opensearch.
 The following is an example of how to override these settings:
 
 ```puppet
-elasticsearch::snapshot_repository { 'backups':
+opensearch::snapshot_repository { 'backups':
   api_protocol            => 'https',
   api_host                => $::ipaddress,
   api_port                => 9201,
@@ -409,7 +403,7 @@ elasticsearch::snapshot_repository { 'backups':
 #### Delete a snapshot repository
 
 ```puppet
-elasticsearch::snapshot_repository { 'backups':
+opensearch::snapshot_repository { 'backups':
   ensure   => 'absent',
   location => '/backup'
 }
@@ -436,12 +430,12 @@ class { 'kibana4' :
 
 ### Package installation
 
-There are two different ways of installing Elasticsearch:
+There are two different ways of installing Opensearch:
 
 #### Repository
 
 
-##### Choosing an Elasticsearch major version
+##### Choosing an Opensearch major version
 
 This module uses the `elastic/elastic_stack` module to manage package repositories. Because there is a separate repository for each major version of the Elastic stack, selecting which version to configure is necessary to change the default repository value, like this:
 
@@ -451,19 +445,19 @@ class { 'elastic_stack::repo':
   version => 6,
 }
 
-class { 'elasticsearch':
+class { 'opensearch':
   version => '6.8.12',
 }
 ```
 
-This module defaults to the upstream package repositories, which as of Elasticsearch 6.3, includes X-Pack. In order to use the purely OSS (open source) package and repository, the appropriate `oss` flag must be set on the `elastic_stack::repo` and `elasticsearch` classes:
+This module defaults to the upstream package repositories, which as of Opensearch 6.3, includes X-Pack. In order to use the purely OSS (open source) package and repository, the appropriate `oss` flag must be set on the `elastic_stack::repo` and `opensearch` classes:
 
 ```puppet
 class { 'elastic_stack::repo':
   oss => true,
 }
 
-class { 'elasticsearch':
+class { 'opensearch':
   oss => true,
 }
 ```
@@ -473,7 +467,7 @@ class { 'elasticsearch':
 You may want to manage repositories manually. You can disable automatic repository management like this:
 
 ```puppet
-class { 'elasticsearch':
+class { 'opensearch':
   manage_repo => false,
 }
 ```
@@ -485,39 +479,39 @@ When a repository is not available or preferred you can install the packages fro
 ##### http/https/ftp
 
 ```puppet
-class { 'elasticsearch':
-  package_url => 'https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.4.2.deb',
+class { 'opensearch':
+  package_url => 'https://download.opensearch.org/opensearch/opensearch/opensearch-1.4.2.deb',
   proxy_url   => 'http://proxy.example.com:8080/',
 }
 ```
 
 Setting `proxy_url` to a location will enable download using the provided proxy
 server.
-This parameter is also used by `elasticsearch::plugin`.
+This parameter is also used by `opensearch::plugin`.
 Setting the port in the `proxy_url` is mandatory.
 `proxy_url` defaults to `undef` (proxy disabled).
 
 ##### puppet://
 ```puppet
-class { 'elasticsearch':
-  package_url => 'puppet:///path/to/elasticsearch-1.4.2.deb'
+class { 'opensearch':
+  package_url => 'puppet:///path/to/opensearch-1.4.2.deb'
 }
 ```
 
 ##### Local file
 
 ```puppet
-class { 'elasticsearch':
-  package_url => 'file:/path/to/elasticsearch-1.4.2.deb'
+class { 'opensearch':
+  package_url => 'file:/path/to/opensearch-1.4.2.deb'
 }
 ```
 
 ### JVM Configuration
 
-When configuring Elasticsearch's memory usage, you can modify it by setting `jvm_options`:
+When configuring Opensearch's memory usage, you can modify it by setting `jvm_options`:
 
 ```puppet
-class { 'elasticsearch':
+class { 'opensearch':
   jvm_options => [
     '-Xms4g',
     '-Xmx4g'
@@ -531,13 +525,13 @@ Currently only the basic SysV-style [init](https://en.wikipedia.org/wiki/Init) a
 
 #### Defaults File
 
-The *defaults* file (`/etc/defaults/elasticsearch` or `/etc/sysconfig/elasticsearch`) for the Elasticsearch service can be populated as necessary.
+The *defaults* file (`/etc/defaults/opensearch` or `/etc/sysconfig/opensearch`) for the Opensearch service can be populated as necessary.
 This can either be a static file resource or a simple key value-style  [hash](http://docs.puppetlabs.com/puppet/latest/reference/lang_datatypes.html#hashes) object, the latter being particularly well-suited to pulling out of a data source such as Hiera.
 
 ##### File source
 
 ```puppet
-class { 'elasticsearch':
+class { 'opensearch':
   init_defaults_file => 'puppet:///path/to/defaults'
 }
 ```
@@ -548,7 +542,7 @@ $config_hash = {
   'ES_HEAP_SIZE' => '30g',
 }
 
-class { 'elasticsearch':
+class { 'opensearch':
   init_defaults => $config_hash
 }
 ```
@@ -565,11 +559,11 @@ File-based users, roles, and certificates can be managed by this module.
 
 #### Roles
 
-Roles in the file realm can be managed using the `elasticsearch::role` type.
+Roles in the file realm can be managed using the `opensearch::role` type.
 For example, to create a role called `myrole`, you could use the following resource:
 
 ```puppet
-elasticsearch::role { 'myrole':
+opensearch::role { 'myrole':
   privileges => {
     'cluster' => [ 'monitor' ],
     'indices' => [{
@@ -581,24 +575,24 @@ elasticsearch::role { 'myrole':
 ```
 
 This role would grant users access to cluster monitoring and read access to all indices.
-See the [Security](https://www.elastic.co/guide/en/elasticsearch/reference/current/elasticsearch-security.html) documentation for your version to determine what `privileges` to use and how to format them (the Puppet hash representation will simply be translated into yaml.)
+See the [Security](https://www.elastic.co/guide/en/opensearch/reference/current/opensearch-security.html) documentation for your version to determine what `privileges` to use and how to format them (the Puppet hash representation will simply be translated into yaml.)
 
-**Note**: The Puppet provider for `elasticsearch_user` has fine-grained control over the `roles.yml` file and thus will leave the default roles in-place.
+**Note**: The Puppet provider for `opensearch_user` has fine-grained control over the `roles.yml` file and thus will leave the default roles in-place.
 If you would like to explicitly purge the default roles (leaving only roles managed by puppet), you can do so by including the following in your manifest:
 
 ```puppet
-resources { 'elasticsearch_role':
+resources { 'opensearch_role':
   purge => true,
 }
 ```
 
 ##### Mappings
 
-Associating mappings with a role for file-based management is done by passing an array of strings to the `mappings` parameter of the `elasticsearch::role` type.
+Associating mappings with a role for file-based management is done by passing an array of strings to the `mappings` parameter of the `opensearch::role` type.
 For example, to define a role with mappings:
 
 ```puppet
-elasticsearch::role { 'logstash':
+opensearch::role { 'logstash':
   mappings   => [
     'cn=group,ou=devteam',
   ],
@@ -619,40 +613,40 @@ elasticsearch::role { 'logstash':
 If you'd like to keep the mappings file purged of entries not under Puppet's control, you should use the following `resources` declaration because mappings are a separate low-level type:
 
 ```puppet
-resources { 'elasticsearch_role_mapping':
+resources { 'opensearch_role_mapping':
   purge => true,
 }
 ```
 
 #### Users
 
-Users can be managed using the `elasticsearch::user` type.
+Users can be managed using the `opensearch::user` type.
 For example, to create a user `mysuser` with membership in `myrole`:
 
 ```puppet
-elasticsearch::user { 'myuser':
+opensearch::user { 'myuser':
   password => 'mypassword',
   roles    => ['myrole'],
 }
 ```
 
-The `password` parameter will also accept password hashes generated from the `esusers`/`users` utility and ensure the password is kept in-sync with the Shield `users` file for all Elasticsearch instances.
+The `password` parameter will also accept password hashes generated from the `esusers`/`users` utility and ensure the password is kept in-sync with the Shield `users` file for all Opensearch instances.
 
 ```puppet
-elasticsearch::user { 'myuser':
+opensearch::user { 'myuser':
   password => '$2a$10$IZMnq6DF4DtQ9c4sVovgDubCbdeH62XncmcyD1sZ4WClzFuAdqspy',
   roles    => ['myrole'],
 }
 ```
 
-**Note**: When using the `esusers`/`users` provider (the default for plaintext passwords), Puppet has no way to determine whether the given password is in-sync with the password hashed by Elasticsearch.
-In order to work around this, the `elasticsearch::user` resource has been designed to accept refresh events in order to update password values.
+**Note**: When using the `esusers`/`users` provider (the default for plaintext passwords), Puppet has no way to determine whether the given password is in-sync with the password hashed by Opensearch.
+In order to work around this, the `opensearch::user` resource has been designed to accept refresh events in order to update password values.
 This is not ideal, but allows you to instruct the resource to change the password when needed.
 For example, to update the aforementioned user's password, you could include the following your manifest:
 
 ```puppet
 notify { 'update password': } ~>
-elasticsearch::user { 'myuser':
+opensearch::user { 'myuser':
   password => 'mynewpassword',
   roles    => ['myrole'],
 }
@@ -663,7 +657,7 @@ elasticsearch::user { 'myuser':
 SSL/TLS can be enabled by providing the appropriate class params with paths to the certificate and private key files, and a password for the keystore.
 
 ```puppet
-class { 'elasticsearch' :
+class { 'opensearch' :
   ssl                  => true,
   ca_certificate       => '/path/to/ca.pem',
   certificate          => '/path/to/cert.pem',
@@ -674,15 +668,15 @@ class { 'elasticsearch' :
 
 **Note**: Setting up a proper CA and certificate infrastructure is outside the scope of this documentation, see the aforementioned security guide for more information regarding the generation of these certificate files.
 
-The module will set up a keystore file for the node to use and set the relevant options in `elasticsearch.yml` to enable TLS/SSL using the certificates and key provided.
+The module will set up a keystore file for the node to use and set the relevant options in `opensearch.yml` to enable TLS/SSL using the certificates and key provided.
 
 #### System Keys
 
 System keys can be passed to the module, where they will be placed into individual instance configuration directories.
-This can be set at the `elasticsearch` class and inherited across all instances:
+This can be set at the `opensearch` class and inherited across all instances:
 
 ```puppet
-class { 'elasticsearch':
+class { 'opensearch':
   system_key => 'puppet:///path/to/key',
 }
 ```
@@ -692,30 +686,30 @@ class { 'elasticsearch':
 If you use the aforementioned security features, you may need to install a user license to leverage particular features outside of a trial license.
 This module can handle installation of licenses without the need to write custom `exec` or `curl` code to install license data.
 
-You may instruct the module to install a license through the `elasticsearch::license` parameter:
+You may instruct the module to install a license through the `opensearch::license` parameter:
 
 ```puppet
-class { 'elasticsearch':
+class { 'opensearch':
   license => $license,
 }
 ```
 
 The `license` parameter will accept either a Puppet hash representation of the license file json or a plain json string that will be parsed into a native Puppet hash.
-Although dependencies are automatically created to ensure that the Elasticsearch service is listening and ready before API calls are made, you may need to set the appropriate `api_*` parameters to ensure that the module can interact with the Elasticsearch API over the appropriate port, protocol, and with sufficient user rights to install the license.
+Although dependencies are automatically created to ensure that the Opensearch service is listening and ready before API calls are made, you may need to set the appropriate `api_*` parameters to ensure that the module can interact with the Opensearch API over the appropriate port, protocol, and with sufficient user rights to install the license.
 
 The native provider for licenses will _not_ print license signatures as part of Puppet's changelog to ensure that sensitive values are not included in console output or Puppet reports.
-Any fields present in the `license` parameter that differ from the license installed in a cluster will trigger a flush of the resource and new `POST` to the Elasticsearch API with the license content, though the sensitive `signature` field is not compared as it is not returned from the Elasticsearch licensing APIs.
+Any fields present in the `license` parameter that differ from the license installed in a cluster will trigger a flush of the resource and new `POST` to the Opensearch API with the license content, though the sensitive `signature` field is not compared as it is not returned from the Opensearch licensing APIs.
 
 ### Data directories
 
-There are several different ways of setting data directories for Elasticsearch.
-In every case the required configuration options are placed in the `elasticsearch.yml` file.
+There are several different ways of setting data directories for Opensearch.
+In every case the required configuration options are placed in the `opensearch.yml` file.
 
 #### Default
 
 By default we use:
 
-    /var/lib/elasticsearch
+    /var/lib/opensearch
 
 Which mirrors the upstream defaults.
 
@@ -724,8 +718,8 @@ Which mirrors the upstream defaults.
 It is possible to override the default data directory by specifying the `datadir` param:
 
 ```puppet
-class { 'elasticsearch':
-  datadir => '/var/lib/elasticsearch-data'
+class { 'opensearch':
+  datadir => '/var/lib/opensearch-data'
 }
 ```
 
@@ -734,16 +728,16 @@ class { 'elasticsearch':
 It's also possible to specify multiple data directories using the `datadir` param:
 
 ```puppet
-class { 'elasticsearch':
+class { 'opensearch':
   datadir => [ '/var/lib/es-data1', '/var/lib/es-data2']
 }
 ```
 
-See [the Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-node.html#max-local-storage-nodes) for additional information regarding this configuration.
+See [the Opensearch documentation](https://www.elastic.co/guide/en/opensearch/reference/current/modules-node.html#max-local-storage-nodes) for additional information regarding this configuration.
 
-### Elasticsearch configuration
+### Opensearch configuration
 
-The `config` option can be used to provide additional configuration options to Elasticsearch.
+The `config` option can be used to provide additional configuration options to Opensearch.
 
 #### Configuration writeup
 
@@ -754,7 +748,7 @@ The `config` hash can be written in 2 different ways:
 Instead of writing the full hash representation:
 
 ```puppet
-class { 'elasticsearch':
+class { 'opensearch':
   config                 => {
    'cluster'             => {
      'name'              => 'ClusterName',
@@ -773,7 +767,7 @@ class { 'elasticsearch':
 ##### Short hash writeup
 
 ```puppet
-class { 'elasticsearch':
+class { 'opensearch':
   config => {
     'cluster' => {
       'name' => 'ClusterName',
@@ -785,16 +779,16 @@ class { 'elasticsearch':
 
 #### Keystore Settings
 
-Recent versions of Elasticsearch include the [elasticsearch-keystore](https://www.elastic.co/guide/en/elasticsearch/reference/current/secure-settings.html) utility to create and manage the `elasticsearch.keystore` file which can store sensitive values for certain settings.
+Recent versions of Opensearch include the [opensearch-keystore](https://www.elastic.co/guide/en/opensearch/reference/current/secure-settings.html) utility to create and manage the `opensearch.keystore` file which can store sensitive values for certain settings.
 The settings and values for this file can be controlled by this module.
-Settings follow the behavior of the `config` parameter for the top-level Elasticsearch class and `elasticsearch::instance` defined types.
-That is, you may define keystore settings globally, and all values will be merged with instance-specific settings for final inclusion in the `elasticsearch.keystore` file.
-Note that each hash key is passed to the `elasticsearch-keystore` utility in a straightforward manner, so you should specify the hash passed to `secrets` in flattened form (that is, without full nested hash representation).
+Settings follow the behavior of the `config` parameter for the top-level Opensearch class and `opensearch::instance` defined types.
+That is, you may define keystore settings globally, and all values will be merged with instance-specific settings for final inclusion in the `opensearch.keystore` file.
+Note that each hash key is passed to the `opensearch-keystore` utility in a straightforward manner, so you should specify the hash passed to `secrets` in flattened form (that is, without full nested hash representation).
 
 For example, to define cloud plugin credentials for all instances:
 
 ```puppet
-class { 'elasticsearch':
+class { 'opensearch':
   secrets => {
     'cloud.aws.access_key' => 'AKIA....',
     'cloud.aws.secret_key' => 'AKIA....',
@@ -805,16 +799,16 @@ class { 'elasticsearch':
 ##### Purging Secrets
 
 By default, if a secret setting exists on-disk that is not present in the `secrets` hash, this module will leave it intact.
-If you prefer to keep only secrets in the keystore that are specified in the `secrets` hash, use the `purge_secrets` boolean parameter either on the `elasticsearch` class to set it globally or per-instance.
+If you prefer to keep only secrets in the keystore that are specified in the `secrets` hash, use the `purge_secrets` boolean parameter either on the `opensearch` class to set it globally or per-instance.
 
 ##### Notifying Services
 
-Any changes to keystore secrets will notify running elasticsearch services by respecting the `restart_on_change` and `restart_config_change` parameters.
+Any changes to keystore secrets will notify running opensearch services by respecting the `restart_on_change` and `restart_config_change` parameters.
 
 ## Reference
 
 Class parameters are available in [the auto-generated documentation
-pages](https://elastic.github.io/puppet-elasticsearch/puppet_classes/elasticsearch.html).
+pages](https://elastic.github.io/puppet-opensearch/puppet_classes/opensearch.html).
 Autogenerated documentation for types, providers, and ruby helpers is also
 available on the same documentation site.
 
@@ -837,11 +831,11 @@ Testing on other platforms has been light and cannot be guaranteed.
 
 ## Development
 
-Please see the [CONTRIBUTING.md](https://github.com/voxpupuli/puppet-elasticsearch/blob/master/.github/CONTRIBUTING.md) file for instructions regarding development environments and testing.
+Please see the [CONTRIBUTING.md](https://github.com/voxpupuli/puppet-opensearch/blob/master/.github/CONTRIBUTING.md) file for instructions regarding development environments and testing.
 
 ## Support
 
-The Puppet Elasticsearch module is community supported and not officially supported by Elastic Support.
+The Puppet Opensearch module is community supported and not officially supported by Elastic Support.
 
 ## Transfer Notice
 

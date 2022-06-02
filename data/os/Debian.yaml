@@ -1,2 +1,2 @@
 ---
-elasticsearch::defaults_location: /etc/default
+opensearch::defaults_location: /etc/default

@@ -24,7 +24,7 @@ describe Puppet::Provider::ElasticParsedFile do
 
     describe 'xpack_config' do
       value = 'somefile'
-      result = '/etc/elasticsearch/somefile'
+      result = '/etc/opensearch/somefile'
 
       it 'fails when no value is given' do
         expect { described_class.xpack_config }.to raise_error(ArgumentError)
@@ -39,7 +39,7 @@ describe Puppet::Provider::ElasticParsedFile do
 
   context 'whene there is a default_target' do
     describe 'xpack_config' do
-      default_target = '/etc/elasticsearch/somefile'
+      default_target = '/etc/opensearch/somefile'
       value = 'otherfile'
       described_class.instance_variable_set(:@default_target, default_target)
 

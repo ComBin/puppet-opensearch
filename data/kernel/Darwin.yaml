@@ -1,5 +1,5 @@
 ---
-elasticsearch::download_tool: curl -o
-elasticsearch::download_tool_insecure: curl --insecure -o
-elasticsearch::elasticsearch_user: elasticsearch
-elasticsearch::elasticsearch_group: elasticsearch
+opensearch::download_tool: curl -o
+opensearch::download_tool_insecure: curl --insecure -o
+opensearch::opensearch_user: opensearch
+opensearch::opensearch_group: opensearch

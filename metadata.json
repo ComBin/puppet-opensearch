@@ -1,12 +1,12 @@
 {
-  "name": "puppet-elasticsearch",
+  "name": "puppet-opensearch",
   "version": "8.0.3-rc0",
-  "source": "https://github.com/voxpupuli/puppet-elasticsearch",
+  "source": "https://github.com/voxpupuli/puppet-opensearch",
   "author": "voxpupuli@groups.io",
   "license": "Apache-2.0",
-  "summary": "Module for managing and configuring Elasticsearch nodes",
-  "project_page": "https://github.com/voxpupuli/puppet-elasticsearch",
-  "issues_url": "https://github.com/voxpupuli/puppet-elasticsearch/issues",
+  "summary": "Module for managing and configuring Opensearch nodes",
+  "project_page": "https://github.com/voxpupuli/puppet-opensearch",
+  "issues_url": "https://github.com/voxpupuli/puppet-opensearch/issues",
   "dependencies": [
     {
       "name": "puppet/elastic_stack",

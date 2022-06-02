@@ -5,7 +5,7 @@ require 'helpers/acceptance/tests/manifest_shared_examples'
 require 'helpers/acceptance/tests/plugin_api_shared_examples'
 
 shared_examples 'plugin upgrade acceptance tests' do |plugin|
-  describe 'elasticsearch::plugin' do
+  describe 'opensearch::plugin' do
     # Ensure that instances are restarted to include plugins
     let(:manifest_class_parameters) { 'restart_on_change => true' }
 
@@ -13,7 +13,7 @@ shared_examples 'plugin upgrade acceptance tests' do |plugin|
       'es-01' => {
         'config' => {
           'http.port' => 9200,
-          'node.name' => 'elasticsearch001'
+          'node.name' => 'opensearch001'
         }
       }
     }
@@ -23,7 +23,7 @@ shared_examples 'plugin upgrade acceptance tests' do |plugin|
         context 'initial installation' do
           let(:extra_manifest) do
             <<-MANIFEST
-              elasticsearch::plugin { '#{plugin[:repository]}-#{plugin[:name]}/v#{plugin[:initial]}':
+              opensearch::plugin { '#{plugin[:repository]}-#{plugin[:name]}/v#{plugin[:initial]}':
                 instances => 'es-01',
               }
             MANIFEST
@@ -46,7 +46,7 @@ shared_examples 'plugin upgrade acceptance tests' do |plugin|
         describe 'upgrading' do
           let(:extra_manifest) do
             <<-MANIFEST
-              elasticsearch::plugin { '#{plugin[:repository]}-#{plugin[:name]}/v#{plugin[:upgraded]}':
+              opensearch::plugin { '#{plugin[:repository]}-#{plugin[:name]}/v#{plugin[:upgraded]}':
                 instances => 'es-01',
               }
             MANIFEST

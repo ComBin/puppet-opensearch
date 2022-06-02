@@ -6,38 +6,38 @@
 
 ### Classes
 
-* [`elasticsearch`](#elasticsearch): Manages the installation of Elasticsearch and related options.
-* [`elasticsearch::config`](#elasticsearchconfig): This class exists to coordinate all configuration related actions, functionality and logical units in a central place.  It is not intended to
-* [`elasticsearch::license`](#elasticsearchlicense): A defined type to control Elasticsearch licenses.
-* [`elasticsearch::package`](#elasticsearchpackage): This class exists to coordinate all software package management related actions, functionality and logical units in a central place.  It is n
-* [`elasticsearch::service`](#elasticsearchservice): This class exists to coordinate all service management related actions, functionality and logical units in a central place.  *Note*: "service
+* [`opensearch`](#opensearch): Manages the installation of Opensearch and related options.
+* [`opensearch::config`](#opensearchconfig): This class exists to coordinate all configuration related actions, functionality and logical units in a central place.  It is not intended to
+* [`opensearch::license`](#opensearchlicense): A defined type to control Opensearch licenses.
+* [`opensearch::package`](#opensearchpackage): This class exists to coordinate all software package management related actions, functionality and logical units in a central place.  It is n
+* [`opensearch::service`](#opensearchservice): This class exists to coordinate all service management related actions, functionality and logical units in a central place.  *Note*: "service
 
 ### Defined types
 
-* [`elasticsearch::index`](#elasticsearchindex): A defined type to control Elasticsearch index-level settings.
-* [`elasticsearch::pipeline`](#elasticsearchpipeline): This define allows you to insert, update or delete Elasticsearch index  ingestion pipelines.   Pipeline content should be defined through the
-* [`elasticsearch::plugin`](#elasticsearchplugin): This define allows you to install arbitrary Elasticsearch plugins either by using the default repositories or by specifying an URL
-* [`elasticsearch::role`](#elasticsearchrole): Manage x-pack roles.
-* [`elasticsearch::script`](#elasticsearchscript): This define allows you to insert, update or delete scripts that are used  within Elasticsearch.
-* [`elasticsearch::snapshot_repository`](#elasticsearchsnapshot_repository): This define allows you to insert, update or delete Elasticsearch snapshot  repositories.
-* [`elasticsearch::template`](#elasticsearchtemplate): This define allows you to insert, update or delete Elasticsearch index  templates.   Template content should be defined through either the `c
-* [`elasticsearch::user`](#elasticsearchuser): Manages x-pack users.
+* [`opensearch::index`](#opensearchindex): A defined type to control Opensearch index-level settings.
+* [`opensearch::pipeline`](#opensearchpipeline): This define allows you to insert, update or delete Opensearch index  ingestion pipelines.   Pipeline content should be defined through the
+* [`opensearch::plugin`](#opensearchplugin): This define allows you to install arbitrary Opensearch plugins either by using the default repositories or by specifying an URL
+* [`opensearch::role`](#opensearchrole): Manage x-pack roles.
+* [`opensearch::script`](#opensearchscript): This define allows you to insert, update or delete scripts that are used  within Opensearch.
+* [`opensearch::snapshot_repository`](#opensearchsnapshot_repository): This define allows you to insert, update or delete Opensearch snapshot  repositories.
+* [`opensearch::template`](#opensearchtemplate): This define allows you to insert, update or delete Opensearch index  templates.   Template content should be defined through either the `c
+* [`opensearch::user`](#opensearchuser): Manages x-pack users.
 
 ### Resource types
 
-* [`elasticsearch_index`](#elasticsearch_index): Manages Elasticsearch index settings.
-* [`elasticsearch_keystore`](#elasticsearch_keystore): Manages an Elasticsearch keystore settings file.
-* [`elasticsearch_license`](#elasticsearch_license): Manages Elasticsearch licenses.
-* [`elasticsearch_pipeline`](#elasticsearch_pipeline): Manages Elasticsearch ingest pipelines.
-* [`elasticsearch_plugin`](#elasticsearch_plugin): Plugin installation type
-* [`elasticsearch_role`](#elasticsearch_role): Type to model Elasticsearch roles.
-* [`elasticsearch_role_mapping`](#elasticsearch_role_mapping): Type to model Elasticsearch role mappings.
-* [`elasticsearch_snapshot_repository`](#elasticsearch_snapshot_repository): Manages Elasticsearch snapshot repositories.
-* [`elasticsearch_template`](#elasticsearch_template): Manages Elasticsearch index templates.
-* [`elasticsearch_user`](#elasticsearch_user): Type to model Elasticsearch users.
-* [`elasticsearch_user_file`](#elasticsearch_user_file): Type to model Elasticsearch users.
-* [`elasticsearch_user_roles`](#elasticsearch_user_roles): Type to model Elasticsearch user roles.
-* [`es_instance_conn_validator`](#es_instance_conn_validator): Verify that a connection can be successfully established between a node and Elasticsearch. It could potentially be used for other purposes su
+* [`opensearch_index`](#opensearch_index): Manages Opensearch index settings.
+* [`opensearch_keystore`](#opensearch_keystore): Manages an Opensearch keystore settings file.
+* [`opensearch_license`](#opensearch_license): Manages Opensearch licenses.
+* [`opensearch_pipeline`](#opensearch_pipeline): Manages Opensearch ingest pipelines.
+* [`opensearch_plugin`](#opensearch_plugin): Plugin installation type
+* [`opensearch_role`](#opensearch_role): Type to model Opensearch roles.
+* [`opensearch_role_mapping`](#opensearch_role_mapping): Type to model Opensearch role mappings.
+* [`opensearch_snapshot_repository`](#opensearch_snapshot_repository): Manages Opensearch snapshot repositories.
+* [`opensearch_template`](#opensearch_template): Manages Opensearch index templates.
+* [`opensearch_user`](#opensearch_user): Type to model Opensearch users.
+* [`opensearch_user_file`](#opensearch_user_file): Type to model Opensearch users.
+* [`opensearch_user_roles`](#opensearch_user_roles): Type to model Opensearch user roles.
+* [`es_instance_conn_validator`](#es_instance_conn_validator): Verify that a connection can be successfully established between a node and Opensearch. It could potentially be used for other purposes su
 
 ### Functions
 
@@ -49,29 +49,29 @@
 
 ### Data types
 
-* [`Elasticsearch::Multipath`](#elasticsearchmultipath)
-* [`Elasticsearch::Status`](#elasticsearchstatus)
+* [`Opensearch::Multipath`](#opensearchmultipath)
+* [`Opensearch::Status`](#opensearchstatus)
 
 ## Classes
 
-### <a name="elasticsearch"></a>`elasticsearch`
+### <a name="opensearch"></a>`opensearch`
 
-Top-level Elasticsearch class which may manage installation of the
-Elasticsearch package, package repository, and other
+Top-level Opensearch class which may manage installation of the
+Opensearch package, package repository, and other
 global options and parameters.
 
 #### Examples
 
-##### install Elasticsearch
+##### install Opensearch
 
 ```puppet
-class { 'elasticsearch': }
+class { 'opensearch': }
 ```
 
 ##### removal and decommissioning
 
 ```puppet
-class { 'elasticsearch':
+class { 'opensearch':
   ensure => 'absent',
 }
 ```
@@ -79,14 +79,14 @@ class { 'elasticsearch':
 ##### install everything but disable service(s) afterwards
 
 ```puppet
-class { 'elasticsearch':
+class { 'opensearch':
   status => 'disabled',
 }
 ```
 
 #### Parameters
 
-The following parameters are available in the `elasticsearch` class:
+The following parameters are available in the `opensearch` class:
 
 * [`ensure`](#ensure)
 * [`api_basic_auth_password`](#api_basic_auth_password)
@@ -112,8 +112,8 @@ The following parameters are available in the `elasticsearch` class:
 * [`download_tool`](#download_tool)
 * [`download_tool_insecure`](#download_tool_insecure)
 * [`download_tool_verify_certificates`](#download_tool_verify_certificates)
-* [`elasticsearch_group`](#elasticsearch_group)
-* [`elasticsearch_user`](#elasticsearch_user)
+* [`opensearch_group`](#opensearch_group)
+* [`opensearch_user`](#opensearch_user)
 * [`file_rolling_type`](#file_rolling_type)
 * [`homedir`](#homedir)
 * [`indices`](#indices)
@@ -198,38 +198,38 @@ Defines the default REST basic auth username for API authentication.
 Data type: `Optional[String]`
 
 Path to a CA file which will be used to validate server certs when
-communicating with the Elasticsearch API over HTTPS.
+communicating with the Opensearch API over HTTPS.
 
 ##### <a name="api_ca_path"></a>`api_ca_path`
 
 Data type: `Optional[String]`
 
 Path to a directory with CA files which will be used to validate server
-certs when communicating with the Elasticsearch API over HTTPS.
+certs when communicating with the Opensearch API over HTTPS.
 
 ##### <a name="api_host"></a>`api_host`
 
 Data type: `String`
 
-Default host to use when accessing Elasticsearch APIs.
+Default host to use when accessing Opensearch APIs.
 
 ##### <a name="api_port"></a>`api_port`
 
 Data type: `Integer[0, 65535]`
 
-Default port to use when accessing Elasticsearch APIs.
+Default port to use when accessing Opensearch APIs.
 
 ##### <a name="api_protocol"></a>`api_protocol`
 
 Data type: `Enum['http', 'https']`
 
-Default protocol to use when accessing Elasticsearch APIs.
+Default protocol to use when accessing Opensearch APIs.
 
 ##### <a name="api_timeout"></a>`api_timeout`
 
 Data type: `Integer`
 
-Default timeout (in seconds) to use when accessing Elasticsearch APIs.
+Default timeout (in seconds) to use when accessing Opensearch APIs.
 
 ##### <a name="autoupgrade"></a>`autoupgrade`
 
@@ -261,14 +261,14 @@ Default value: ``undef``
 
 Data type: `Hash`
 
-Elasticsearch configuration hash.
+Opensearch configuration hash.
 
 ##### <a name="configdir"></a>`configdir`
 
 Data type: `Stdlib::Absolutepath`
 
-Directory containing the elasticsearch configuration.
-Use this setting if your packages deviate from the norm (`/etc/elasticsearch`)
+Directory containing the opensearch configuration.
+Use this setting if your packages deviate from the norm (`/etc/opensearch`)
 
 ##### <a name="configdir_recurselimit"></a>`configdir_recurselimit`
 
@@ -285,15 +285,15 @@ File pattern for the file appender log when file_rolling_type is 'dailyRollingFi
 
 ##### <a name="datadir"></a>`datadir`
 
-Data type: `Elasticsearch::Multipath`
+Data type: `Opensearch::Multipath`
 
-Allows you to set the data directory of Elasticsearch.
+Allows you to set the data directory of Opensearch.
 
 ##### <a name="default_logging_level"></a>`default_logging_level`
 
 Data type: `String`
 
-Default logging level for Elasticsearch.
+Default logging level for Opensearch.
 
 Default value: `$logging_level`
 
@@ -308,13 +308,13 @@ Absolute path to directory containing init defaults file.
 Data type: `Boolean`
 
 Whether to enable deprecation logging. If enabled, deprecation logs will be
-saved to ${cluster.name}_deprecation.log in the Elasticsearch log folder.
+saved to ${cluster.name}_deprecation.log in the Opensearch log folder.
 
 ##### <a name="deprecation_logging_level"></a>`deprecation_logging_level`
 
 Data type: `String`
 
-Default deprecation logging level for Elasticsearch.
+Default deprecation logging level for Opensearch.
 
 ##### <a name="download_tool"></a>`download_tool`
 
@@ -336,18 +336,18 @@ Data type: `Boolean`
 Whether or not to verify SSL/TLS certificates when retrieving package files
 using a download tool instead of a package management provider.
 
-##### <a name="elasticsearch_group"></a>`elasticsearch_group`
+##### <a name="opensearch_group"></a>`opensearch_group`
 
 Data type: `String`
 
-The group Elasticsearch should run as. This also sets file group
+The group Opensearch should run as. This also sets file group
 permissions.
 
-##### <a name="elasticsearch_user"></a>`elasticsearch_user`
+##### <a name="opensearch_user"></a>`opensearch_user`
 
 Data type: `String`
 
-The user Elasticsearch should run as. This also sets file ownership.
+The user Opensearch should run as. This also sets file ownership.
 
 ##### <a name="file_rolling_type"></a>`file_rolling_type`
 
@@ -361,7 +361,7 @@ or third don't rotate automatically.
 
 Data type: `Stdlib::Absolutepath`
 
-Directory where the elasticsearch installation's files are kept (plugins, etc.)
+Directory where the opensearch installation's files are kept (plugins, etc.)
 
 ##### <a name="indices"></a>`indices`
 
@@ -413,13 +413,13 @@ Default value: ``undef``
 
 Data type: `Optional[Variant[String, Hash]]`
 
-Optional Elasticsearch license in hash or string form.
+Optional Opensearch license in hash or string form.
 
 ##### <a name="logdir"></a>`logdir`
 
 Data type: `Stdlib::Absolutepath`
 
-Directory that will be used for Elasticsearch logging.
+Directory that will be used for Opensearch logging.
 
 ##### <a name="logging_config"></a>`logging_config`
 
@@ -438,14 +438,14 @@ log4j.properties file.
 
 Data type: `String`
 
-Default logging level for Elasticsearch.
+Default logging level for Opensearch.
 
 ##### <a name="logging_template"></a>`logging_template`
 
 Data type: `Optional[String]`
 
 Use a custom logging template - just supply the relative path, i.e.
-`$module/elasticsearch/logging.yml.erb`
+`$module/opensearch/logging.yml.erb`
 
 ##### <a name="manage_repo"></a>`manage_repo`
 
@@ -457,7 +457,7 @@ Enable repo management by enabling official Elastic repositories.
 
 Data type: `Boolean`
 
-Whether to use the purely open source Elasticsearch package distribution.
+Whether to use the purely open source Opensearch package distribution.
 
 ##### <a name="package_dir"></a>`package_dir`
 
@@ -496,7 +496,7 @@ This can be an http, https, or ftp resource for remote packages, or a
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
-Directory where the elasticsearch process should write out its PID.
+Directory where the opensearch process should write out its PID.
 
 ##### <a name="pipelines"></a>`pipelines`
 
@@ -508,8 +508,8 @@ Define pipelines via a hash. This is mainly used with Hiera's auto binding.
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
-Directory containing elasticsearch plugins.
-Use this setting if your packages deviate from the norm (/usr/share/elasticsearch/plugins)
+Directory containing opensearch plugins.
+Use this setting if your packages deviate from the norm (/usr/share/opensearch/plugins)
 
 ##### <a name="plugins"></a>`plugins`
 
@@ -565,7 +565,7 @@ Data type: `Boolean`
 
 Determines if the application should be automatically restarted
 whenever the configuration, package, or plugins change. Enabling this
-setting will cause Elasticsearch to restart whenever there is cause to
+setting will cause Opensearch to restart whenever there is cause to
 re-read configuration files, load new plugins, or start the service using an
 updated/changed executable. This may be undesireable in highly available
 environments. If all other restart_* parameters are left unset, the value of
@@ -576,7 +576,7 @@ environments. If all other restart_* parameters are left unset, the value of
 Data type: `Boolean`
 
 Determines if the application should be automatically restarted
-whenever the configuration changes. This includes the Elasticsearch
+whenever the configuration changes. This includes the Opensearch
 configuration file, any service files, and defaults files.
 Disabling automatic restarts on config changes may be desired in an
 environment where you need to ensure restarts occur in a controlled/rolling
@@ -589,7 +589,7 @@ Default value: `$restart_on_change`
 Data type: `Boolean`
 
 Determines if the application should be automatically restarted
-whenever the package (or package version) for Elasticsearch changes.
+whenever the package (or package version) for Opensearch changes.
 Disabling automatic restarts on package changes may be desired in an
 environment where you need to ensure restarts occur in a controlled/rolling
 manner rather than during a Puppet run.
@@ -637,7 +637,7 @@ Define scripts via a hash. This is mainly used with Hiera's auto binding.
 Data type: `Optional[Hash]`
 
 Optional default configuration hash of key/value pairs to store in the
-Elasticsearch keystore file. If unset, the keystore is left unmanaged.
+Opensearch keystore file. If unset, the keystore is left unmanaged.
 
 ##### <a name="security_logging_content"></a>`security_logging_content`
 
@@ -657,13 +657,13 @@ into log4j2.properties).
 
 Data type: `String`
 
-Elasticsearch service name
+Opensearch service name
 
 ##### <a name="service_provider"></a>`service_provider`
 
 Data type: `Enum['init', 'openbsd', 'openrc', 'systemd']`
 
-The service resource type provider to use when managing elasticsearch instances.
+The service resource type provider to use when managing opensearch instances.
 
 ##### <a name="snapshot_repositories"></a>`snapshot_repositories`
 
@@ -680,7 +680,7 @@ certificate, private_key and keystore_password parameters to be set.
 
 ##### <a name="status"></a>`status`
 
-Data type: `Elasticsearch::Status`
+Data type: `Opensearch::Status`
 
 To define the status of the service. If set to `enabled`, the service will
 be run and will be started at boot time. If set to `disabled`, the service
@@ -729,7 +729,7 @@ Data type: `Variant[String, Boolean]`
 
 To set the specific version you want to install.
 
-### <a name="elasticsearchconfig"></a>`elasticsearch::config`
+### <a name="opensearchconfig"></a>`opensearch::config`
 
 This class exists to coordinate all configuration related actions,
 functionality and logical units in a central place.
@@ -744,16 +744,16 @@ definitions or other modules.
 ##### importing this class into other classes to use its functionality:
 
 ```puppet
-class { 'elasticsearch::config': }
+class { 'opensearch::config': }
 ```
 
-### <a name="elasticsearchlicense"></a>`elasticsearch::license`
+### <a name="opensearchlicense"></a>`opensearch::license`
 
-A defined type to control Elasticsearch licenses.
+A defined type to control Opensearch licenses.
 
 #### Parameters
 
-The following parameters are available in the `elasticsearch::license` class:
+The following parameters are available in the `opensearch::license` class:
 
 * [`ensure`](#ensure)
 * [`api_basic_auth_password`](#api_basic_auth_password)
@@ -780,37 +780,37 @@ Default value: `'present'`
 
 Data type: `Optional[String]`
 
-HTTP basic auth password to use when communicating over the Elasticsearch
+HTTP basic auth password to use when communicating over the Opensearch
 API.
 
-Default value: `$elasticsearch::api_basic_auth_password`
+Default value: `$opensearch::api_basic_auth_password`
 
 ##### <a name="api_basic_auth_username"></a>`api_basic_auth_username`
 
 Data type: `Optional[String]`
 
-HTTP basic auth username to use when communicating over the Elasticsearch
+HTTP basic auth username to use when communicating over the Opensearch
 API.
 
-Default value: `$elasticsearch::api_basic_auth_username`
+Default value: `$opensearch::api_basic_auth_username`
 
 ##### <a name="api_ca_file"></a>`api_ca_file`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
 Path to a CA file which will be used to validate server certs when
-communicating with the Elasticsearch API over HTTPS.
+communicating with the Opensearch API over HTTPS.
 
-Default value: `$elasticsearch::api_ca_file`
+Default value: `$opensearch::api_ca_file`
 
 ##### <a name="api_ca_path"></a>`api_ca_path`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
 Path to a directory with CA files which will be used to validate server
-certs when communicating with the Elasticsearch API over HTTPS.
+certs when communicating with the Opensearch API over HTTPS.
 
-Default value: `$elasticsearch::api_ca_path`
+Default value: `$opensearch::api_ca_path`
 
 ##### <a name="api_host"></a>`api_host`
 
@@ -818,7 +818,7 @@ Data type: `String`
 
 Host name or IP address of the ES instance to connect to.
 
-Default value: `$elasticsearch::api_host`
+Default value: `$opensearch::api_host`
 
 ##### <a name="api_port"></a>`api_port`
 
@@ -826,23 +826,23 @@ Data type: `Integer[0, 65535]`
 
 Port number of the ES instance to connect to
 
-Default value: `$elasticsearch::api_port`
+Default value: `$opensearch::api_port`
 
 ##### <a name="api_protocol"></a>`api_protocol`
 
 Data type: `Enum['http', 'https']`
 
-Protocol that should be used to connect to the Elasticsearch API.
+Protocol that should be used to connect to the Opensearch API.
 
-Default value: `$elasticsearch::api_protocol`
+Default value: `$opensearch::api_protocol`
 
 ##### <a name="api_timeout"></a>`api_timeout`
 
 Data type: `Integer`
 
-Timeout period (in seconds) for the Elasticsearch API.
+Timeout period (in seconds) for the Opensearch API.
 
-Default value: `$elasticsearch::api_timeout`
+Default value: `$opensearch::api_timeout`
 
 ##### <a name="content"></a>`content`
 
@@ -850,18 +850,18 @@ Data type: `Variant[String, Hash]`
 
 License content in hash or string form.
 
-Default value: `$elasticsearch::license`
+Default value: `$opensearch::license`
 
 ##### <a name="validate_tls"></a>`validate_tls`
 
 Data type: `Boolean`
 
 Determines whether the validity of SSL/TLS certificates received from the
-Elasticsearch API should be verified or ignored.
+Opensearch API should be verified or ignored.
 
-Default value: `$elasticsearch::validate_tls`
+Default value: `$opensearch::validate_tls`
 
-### <a name="elasticsearchpackage"></a>`elasticsearch::package`
+### <a name="opensearchpackage"></a>`opensearch::package`
 
 This class exists to coordinate all software package management related
 actions, functionality and logical units in a central place.
@@ -874,10 +874,10 @@ definitions or other modules.
 ##### importing this class by other classes to use its functionality:
 
 ```puppet
-class { 'elasticsearch::package': }
+class { 'opensearch::package': }
 ```
 
-### <a name="elasticsearchservice"></a>`elasticsearch::service`
+### <a name="opensearchservice"></a>`opensearch::service`
 
 This class exists to coordinate all service management related actions,
 functionality and logical units in a central place.
@@ -888,13 +888,13 @@ in general and is used in a platform-independent way. E.g. "service" means
 
 ## Defined types
 
-### <a name="elasticsearchindex"></a>`elasticsearch::index`
+### <a name="opensearchindex"></a>`opensearch::index`
 
-A defined type to control Elasticsearch index-level settings.
+A defined type to control Opensearch index-level settings.
 
 #### Parameters
 
-The following parameters are available in the `elasticsearch::index` defined type:
+The following parameters are available in the `opensearch::index` defined type:
 
 * [`ensure`](#ensure)
 * [`api_basic_auth_password`](#api_basic_auth_password)
@@ -921,37 +921,37 @@ Default value: `'present'`
 
 Data type: `Optional[String]`
 
-HTTP basic auth password to use when communicating over the Elasticsearch
+HTTP basic auth password to use when communicating over the Opensearch
 API.
 
-Default value: `$elasticsearch::api_basic_auth_password`
+Default value: `$opensearch::api_basic_auth_password`
 
 ##### <a name="api_basic_auth_username"></a>`api_basic_auth_username`
 
 Data type: `Optional[String]`
 
-HTTP basic auth username to use when communicating over the Elasticsearch
+HTTP basic auth username to use when communicating over the Opensearch
 API.
 
-Default value: `$elasticsearch::api_basic_auth_username`
+Default value: `$opensearch::api_basic_auth_username`
 
 ##### <a name="api_ca_file"></a>`api_ca_file`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
 Path to a CA file which will be used to validate server certs when
-communicating with the Elasticsearch API over HTTPS.
+communicating with the Opensearch API over HTTPS.
 
-Default value: `$elasticsearch::api_ca_file`
+Default value: `$opensearch::api_ca_file`
 
 ##### <a name="api_ca_path"></a>`api_ca_path`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
 Path to a directory with CA files which will be used to validate server
-certs when communicating with the Elasticsearch API over HTTPS.
+certs when communicating with the Opensearch API over HTTPS.
 
-Default value: `$elasticsearch::api_ca_path`
+Default value: `$opensearch::api_ca_path`
 
 ##### <a name="api_host"></a>`api_host`
 
@@ -959,7 +959,7 @@ Data type: `String`
 
 Host name or IP address of the ES instance to connect to.
 
-Default value: `$elasticsearch::api_host`
+Default value: `$opensearch::api_host`
 
 ##### <a name="api_port"></a>`api_port`
 
@@ -967,23 +967,23 @@ Data type: `Integer[0, 65535]`
 
 Port number of the ES instance to connect to
 
-Default value: `$elasticsearch::api_port`
+Default value: `$opensearch::api_port`
 
 ##### <a name="api_protocol"></a>`api_protocol`
 
 Data type: `Enum['http', 'https']`
 
-Protocol that should be used to connect to the Elasticsearch API.
+Protocol that should be used to connect to the Opensearch API.
 
-Default value: `$elasticsearch::api_protocol`
+Default value: `$opensearch::api_protocol`
 
 ##### <a name="api_timeout"></a>`api_timeout`
 
 Data type: `Integer`
 
-Timeout period (in seconds) for the Elasticsearch API.
+Timeout period (in seconds) for the Opensearch API.
 
-Default value: `$elasticsearch::api_timeout`
+Default value: `$opensearch::api_timeout`
 
 ##### <a name="settings"></a>`settings`
 
@@ -998,20 +998,20 @@ Default value: `{}`
 Data type: `Boolean`
 
 Determines whether the validity of SSL/TLS certificates received from the
-Elasticsearch API should be verified or ignored.
+Opensearch API should be verified or ignored.
 
-Default value: `$elasticsearch::validate_tls`
+Default value: `$opensearch::validate_tls`
 
-### <a name="elasticsearchpipeline"></a>`elasticsearch::pipeline`
+### <a name="opensearchpipeline"></a>`opensearch::pipeline`
 
-This define allows you to insert, update or delete Elasticsearch index
+This define allows you to insert, update or delete Opensearch index
  ingestion pipelines.
 
  Pipeline content should be defined through the `content` parameter.
 
 #### Parameters
 
-The following parameters are available in the `elasticsearch::pipeline` defined type:
+The following parameters are available in the `opensearch::pipeline` defined type:
 
 * [`ensure`](#ensure)
 * [`content`](#content)
@@ -1046,37 +1046,37 @@ Default value: `{}`
 
 Data type: `Optional[String]`
 
-HTTP basic auth password to use when communicating over the Elasticsearch
+HTTP basic auth password to use when communicating over the Opensearch
 API.
 
-Default value: `$elasticsearch::api_basic_auth_password`
+Default value: `$opensearch::api_basic_auth_password`
 
 ##### <a name="api_basic_auth_username"></a>`api_basic_auth_username`
 
 Data type: `Optional[String]`
 
-HTTP basic auth username to use when communicating over the Elasticsearch
+HTTP basic auth username to use when communicating over the Opensearch
 API.
 
-Default value: `$elasticsearch::api_basic_auth_username`
+Default value: `$opensearch::api_basic_auth_username`
 
 ##### <a name="api_ca_file"></a>`api_ca_file`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
 Path to a CA file which will be used to validate server certs when
-communicating with the Elasticsearch API over HTTPS.
+communicating with the Opensearch API over HTTPS.
 
-Default value: `$elasticsearch::api_ca_file`
+Default value: `$opensearch::api_ca_file`
 
 ##### <a name="api_ca_path"></a>`api_ca_path`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
 Path to a directory with CA files which will be used to validate server
-certs when communicating with the Elasticsearch API over HTTPS.
+certs when communicating with the Opensearch API over HTTPS.
 
-Default value: `$elasticsearch::api_ca_path`
+Default value: `$opensearch::api_ca_path`
 
 ##### <a name="api_host"></a>`api_host`
 
@@ -1084,7 +1084,7 @@ Data type: `String`
 
 Host name or IP address of the ES instance to connect to.
 
-Default value: `$elasticsearch::api_host`
+Default value: `$opensearch::api_host`
 
 ##### <a name="api_port"></a>`api_port`
 
@@ -1092,36 +1092,36 @@ Data type: `Integer[0, 65535]`
 
 Port number of the ES instance to connect to
 
-Default value: `$elasticsearch::api_port`
+Default value: `$opensearch::api_port`
 
 ##### <a name="api_protocol"></a>`api_protocol`
 
 Data type: `Enum['http', 'https']`
 
-Protocol that should be used to connect to the Elasticsearch API.
+Protocol that should be used to connect to the Opensearch API.
 
-Default value: `$elasticsearch::api_protocol`
+Default value: `$opensearch::api_protocol`
 
 ##### <a name="api_timeout"></a>`api_timeout`
 
 Data type: `Integer`
 
-Timeout period (in seconds) for the Elasticsearch API.
+Timeout period (in seconds) for the Opensearch API.
 
-Default value: `$elasticsearch::api_timeout`
+Default value: `$opensearch::api_timeout`
 
 ##### <a name="validate_tls"></a>`validate_tls`
 
 Data type: `Boolean`
 
 Determines whether the validity of SSL/TLS certificates received from the
-Elasticsearch API should be verified or ignored.
+Opensearch API should be verified or ignored.
 
-Default value: `$elasticsearch::validate_tls`
+Default value: `$opensearch::validate_tls`
 
-### <a name="elasticsearchplugin"></a>`elasticsearch::plugin`
+### <a name="opensearchplugin"></a>`opensearch::plugin`
 
-This define allows you to install arbitrary Elasticsearch plugins
+This define allows you to install arbitrary Opensearch plugins
 either by using the default repositories or by specifying an URL
 
 #### Examples
@@ -1129,21 +1129,21 @@ either by using the default repositories or by specifying an URL
 ##### install from official repository
 
 ```puppet
-elasticsearch::plugin {'mobz/elasticsearch-head': module_dir => 'head'}
+opensearch::plugin {'mobz/opensearch-head': module_dir => 'head'}
 ```
 
 ##### installation using a custom URL
 
 ```puppet
-elasticsearch::plugin { 'elasticsearch-jetty':
- module_dir => 'elasticsearch-jetty',
- url        => 'https://oss-es-plugins.s3.amazonaws.com/elasticsearch-jetty/elasticsearch-jetty-0.90.0.zip',
+opensearch::plugin { 'opensearch-jetty':
+ module_dir => 'opensearch-jetty',
+ url        => 'https://oss-es-plugins.s3.amazonaws.com/opensearch-jetty/opensearch-jetty-0.90.0.zip',
 }
 ```
 
 #### Parameters
 
-The following parameters are available in the `elasticsearch::plugin` defined type:
+The following parameters are available in the `opensearch::plugin` defined type:
 
 * [`ensure`](#ensure)
 * [`configdir`](#configdir)
@@ -1170,10 +1170,10 @@ Default value: `'present'`
 
 Data type: `Stdlib::Absolutepath`
 
-Path to the elasticsearch configuration directory (ES_PATH_CONF)
+Path to the opensearch configuration directory (ES_PATH_CONF)
 to which the plugin should be installed.
 
-Default value: `$elasticsearch::configdir`
+Default value: `$opensearch::configdir`
 
 ##### <a name="java_opts"></a>`java_opts`
 
@@ -1251,7 +1251,7 @@ Specify an URL where to download the plugin from.
 
 Default value: ``undef``
 
-### <a name="elasticsearchrole"></a>`elasticsearch::role`
+### <a name="opensearchrole"></a>`opensearch::role`
 
 Manage x-pack roles.
 
@@ -1260,7 +1260,7 @@ Manage x-pack roles.
 ##### create and manage the role 'power_user' mapped to an LDAP group.
 
 ```puppet
-elasticsearch::role { 'power_user':
+opensearch::role { 'power_user':
   privileges => {
     'cluster' => 'monitor',
     'indices' => {
@@ -1275,7 +1275,7 @@ elasticsearch::role { 'power_user':
 
 #### Parameters
 
-The following parameters are available in the `elasticsearch::role` defined type:
+The following parameters are available in the `opensearch::role` defined type:
 
 * [`ensure`](#ensure)
 * [`mappings`](#mappings)
@@ -1307,14 +1307,14 @@ be found in the x-pack documentation.
 
 Default value: `{}`
 
-### <a name="elasticsearchscript"></a>`elasticsearch::script`
+### <a name="opensearchscript"></a>`opensearch::script`
 
 This define allows you to insert, update or delete scripts that are used
- within Elasticsearch.
+ within Opensearch.
 
 #### Parameters
 
-The following parameters are available in the `elasticsearch::script` defined type:
+The following parameters are available in the `opensearch::script` defined type:
 
 * [`ensure`](#ensure)
 * [`recurse`](#recurse)
@@ -1343,14 +1343,14 @@ Data type: `String`
 
 Puppet source of the script
 
-### <a name="elasticsearchsnapshot_repository"></a>`elasticsearch::snapshot_repository`
+### <a name="opensearchsnapshot_repository"></a>`opensearch::snapshot_repository`
 
-This define allows you to insert, update or delete Elasticsearch snapshot
+This define allows you to insert, update or delete Opensearch snapshot
  repositories.
 
 #### Parameters
 
-The following parameters are available in the `elasticsearch::snapshot_repository` defined type:
+The following parameters are available in the `opensearch::snapshot_repository` defined type:
 
 * [`ensure`](#ensure)
 * [`api_basic_auth_password`](#api_basic_auth_password)
@@ -1382,37 +1382,37 @@ Default value: `'present'`
 
 Data type: `Optional[String]`
 
-HTTP basic auth password to use when communicating over the Elasticsearch
+HTTP basic auth password to use when communicating over the Opensearch
 API.
 
-Default value: `$elasticsearch::api_basic_auth_password`
+Default value: `$opensearch::api_basic_auth_password`
 
 ##### <a name="api_basic_auth_username"></a>`api_basic_auth_username`
 
 Data type: `Optional[String]`
 
-HTTP basic auth username to use when communicating over the Elasticsearch
+HTTP basic auth username to use when communicating over the Opensearch
 API.
 
-Default value: `$elasticsearch::api_basic_auth_username`
+Default value: `$opensearch::api_basic_auth_username`
 
 ##### <a name="api_ca_file"></a>`api_ca_file`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
 Path to a CA file which will be used to validate server certs when
-communicating with the Elasticsearch API over HTTPS.
+communicating with the Opensearch API over HTTPS.
 
-Default value: `$elasticsearch::api_ca_file`
+Default value: `$opensearch::api_ca_file`
 
 ##### <a name="api_ca_path"></a>`api_ca_path`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
 Path to a directory with CA files which will be used to validate server
-certs when communicating with the Elasticsearch API over HTTPS.
+certs when communicating with the Opensearch API over HTTPS.
 
-Default value: `$elasticsearch::api_ca_path`
+Default value: `$opensearch::api_ca_path`
 
 ##### <a name="api_host"></a>`api_host`
 
@@ -1420,7 +1420,7 @@ Data type: `String`
 
 Host name or IP address of the ES instance to connect to.
 
-Default value: `$elasticsearch::api_host`
+Default value: `$opensearch::api_host`
 
 ##### <a name="api_port"></a>`api_port`
 
@@ -1428,23 +1428,23 @@ Data type: `Integer[0, 65535]`
 
 Port number of the ES instance to connect to
 
-Default value: `$elasticsearch::api_port`
+Default value: `$opensearch::api_port`
 
 ##### <a name="api_protocol"></a>`api_protocol`
 
 Data type: `Enum['http', 'https']`
 
-Protocol that should be used to connect to the Elasticsearch API.
+Protocol that should be used to connect to the Opensearch API.
 
-Default value: `$elasticsearch::api_protocol`
+Default value: `$opensearch::api_protocol`
 
 ##### <a name="api_timeout"></a>`api_timeout`
 
 Data type: `Integer`
 
-Timeout period (in seconds) for the Elasticsearch API.
+Timeout period (in seconds) for the Opensearch API.
 
-Default value: `$elasticsearch::api_timeout`
+Default value: `$opensearch::api_timeout`
 
 ##### <a name="repository_type"></a>`repository_type`
 
@@ -1497,13 +1497,13 @@ Default value: ``undef``
 Data type: `Boolean`
 
 Determines whether the validity of SSL/TLS certificates received from the
-Elasticsearch API should be verified or ignored.
+Opensearch API should be verified or ignored.
 
-Default value: `$elasticsearch::validate_tls`
+Default value: `$opensearch::validate_tls`
 
-### <a name="elasticsearchtemplate"></a>`elasticsearch::template`
+### <a name="opensearchtemplate"></a>`opensearch::template`
 
-This define allows you to insert, update or delete Elasticsearch index
+This define allows you to insert, update or delete Opensearch index
  templates.
 
  Template content should be defined through either the `content` parameter
@@ -1512,7 +1512,7 @@ This define allows you to insert, update or delete Elasticsearch index
 
 #### Parameters
 
-The following parameters are available in the `elasticsearch::template` defined type:
+The following parameters are available in the `opensearch::template` defined type:
 
 * [`ensure`](#ensure)
 * [`api_basic_auth_password`](#api_basic_auth_password)
@@ -1540,37 +1540,37 @@ Default value: `'present'`
 
 Data type: `Optional[String]`
 
-HTTP basic auth password to use when communicating over the Elasticsearch
+HTTP basic auth password to use when communicating over the Opensearch
 API.
 
-Default value: `$elasticsearch::api_basic_auth_password`
+Default value: `$opensearch::api_basic_auth_password`
 
 ##### <a name="api_basic_auth_username"></a>`api_basic_auth_username`
 
 Data type: `Optional[String]`
 
-HTTP basic auth username to use when communicating over the Elasticsearch
+HTTP basic auth username to use when communicating over the Opensearch
 API.
 
-Default value: `$elasticsearch::api_basic_auth_username`
+Default value: `$opensearch::api_basic_auth_username`
 
 ##### <a name="api_ca_file"></a>`api_ca_file`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
 Path to a CA file which will be used to validate server certs when
-communicating with the Elasticsearch API over HTTPS.
+communicating with the Opensearch API over HTTPS.
 
-Default value: `$elasticsearch::api_ca_file`
+Default value: `$opensearch::api_ca_file`
 
 ##### <a name="api_ca_path"></a>`api_ca_path`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
 Path to a directory with CA files which will be used to validate server
-certs when communicating with the Elasticsearch API over HTTPS.
+certs when communicating with the Opensearch API over HTTPS.
 
-Default value: `$elasticsearch::api_ca_path`
+Default value: `$opensearch::api_ca_path`
 
 ##### <a name="api_host"></a>`api_host`
 
@@ -1578,7 +1578,7 @@ Data type: `String`
 
 Host name or IP address of the ES instance to connect to.
 
-Default value: `$elasticsearch::api_host`
+Default value: `$opensearch::api_host`
 
 ##### <a name="api_port"></a>`api_port`
 
@@ -1586,23 +1586,23 @@ Data type: `Integer[0, 65535]`
 
 Port number of the ES instance to connect to
 
-Default value: `$elasticsearch::api_port`
+Default value: `$opensearch::api_port`
 
 ##### <a name="api_protocol"></a>`api_protocol`
 
 Data type: `Enum['http', 'https']`
 
-Protocol that should be used to connect to the Elasticsearch API.
+Protocol that should be used to connect to the Opensearch API.
 
-Default value: `$elasticsearch::api_protocol`
+Default value: `$opensearch::api_protocol`
 
 ##### <a name="api_timeout"></a>`api_timeout`
 
 Data type: `Integer`
 
-Timeout period (in seconds) for the Elasticsearch API.
+Timeout period (in seconds) for the Opensearch API.
 
-Default value: `$elasticsearch::api_timeout`
+Default value: `$opensearch::api_timeout`
 
 ##### <a name="content"></a>`content`
 
@@ -1627,11 +1627,11 @@ Default value: ``undef``
 Data type: `Boolean`
 
 Determines whether the validity of SSL/TLS certificates received from the
-Elasticsearch API should be verified or ignored.
+Opensearch API should be verified or ignored.
 
-Default value: `$elasticsearch::validate_tls`
+Default value: `$opensearch::validate_tls`
 
-### <a name="elasticsearchuser"></a>`elasticsearch::user`
+### <a name="opensearchuser"></a>`opensearch::user`
 
 Manages x-pack users.
 
@@ -1640,7 +1640,7 @@ Manages x-pack users.
 ##### creates and manage a user with membership in the 'logstash' and 'kibana4' roles.
 
 ```puppet
-elasticsearch::user { 'bob':
+opensearch::user { 'bob':
   password => 'foobar',
   roles    => ['logstash', 'kibana4'],
 }
@@ -1648,7 +1648,7 @@ elasticsearch::user { 'bob':
 
 #### Parameters
 
-The following parameters are available in the `elasticsearch::user` defined type:
+The following parameters are available in the `opensearch::user` defined type:
 
 * [`ensure`](#ensure)
 * [`password`](#password)
@@ -1682,13 +1682,13 @@ Default value: `[]`
 
 ## Resource types
 
-### <a name="elasticsearch_index"></a>`elasticsearch_index`
+### <a name="opensearch_index"></a>`opensearch_index`
 
-Manages Elasticsearch index settings.
+Manages Opensearch index settings.
 
 #### Properties
 
-The following properties are available in the `elasticsearch_index` type.
+The following properties are available in the `opensearch_index` type.
 
 ##### `ensure`
 
@@ -1704,7 +1704,7 @@ Structured settings for the index in hash form.
 
 #### Parameters
 
-The following parameters are available in the `elasticsearch_index` type.
+The following parameters are available in the `opensearch_index` type.
 
 * [`name`](#name)
 * [`provider`](#provider)
@@ -1717,16 +1717,16 @@ Index name.
 
 ##### <a name="provider"></a>`provider`
 
-The specific backend to use for this `elasticsearch_index` resource. You will seldom need to specify this --- Puppet
+The specific backend to use for this `opensearch_index` resource. You will seldom need to specify this --- Puppet
 will usually discover the appropriate provider for your platform.
 
-### <a name="elasticsearch_keystore"></a>`elasticsearch_keystore`
+### <a name="opensearch_keystore"></a>`opensearch_keystore`
 
-Manages an Elasticsearch keystore settings file.
+Manages an Opensearch keystore settings file.
 
 #### Properties
 
-The following properties are available in the `elasticsearch_keystore` type.
+The following properties are available in the `opensearch_keystore` type.
 
 ##### `ensure`
 
@@ -1742,7 +1742,7 @@ A key/value hash of settings names and values.
 
 #### Parameters
 
-The following parameters are available in the `elasticsearch_keystore` type.
+The following parameters are available in the `opensearch_keystore` type.
 
 * [`configdir`](#configdir)
 * [`instance`](#instance)
@@ -1751,17 +1751,17 @@ The following parameters are available in the `elasticsearch_keystore` type.
 
 ##### <a name="configdir"></a>`configdir`
 
-Path to the elasticsearch configuration directory (ES_PATH_CONF).
+Path to the opensearch configuration directory (ES_PATH_CONF).
 
-Default value: `/etc/elasticsearch`
+Default value: `/etc/opensearch`
 
 ##### <a name="instance"></a>`instance`
 
-Elasticsearch instance this keystore belongs to.
+Opensearch instance this keystore belongs to.
 
 ##### <a name="provider"></a>`provider`
 
-The specific backend to use for this `elasticsearch_keystore` resource. You will seldom need to specify this --- Puppet
+The specific backend to use for this `opensearch_keystore` resource. You will seldom need to specify this --- Puppet
 will usually discover the appropriate provider for your platform.
 
 ##### <a name="purge"></a>`purge`
@@ -1773,13 +1773,13 @@ are not present in this resource's settings.
 
 Default value: ``false``
 
-### <a name="elasticsearch_license"></a>`elasticsearch_license`
+### <a name="opensearch_license"></a>`opensearch_license`
 
-Manages Elasticsearch licenses.
+Manages Opensearch licenses.
 
 #### Properties
 
-The following properties are available in the `elasticsearch_license` type.
+The following properties are available in the `opensearch_license` type.
 
 ##### `content`
 
@@ -1795,7 +1795,7 @@ Default value: `present`
 
 #### Parameters
 
-The following parameters are available in the `elasticsearch_license` type.
+The following parameters are available in the `opensearch_license` type.
 
 * [`name`](#name)
 * [`provider`](#provider)
@@ -1808,16 +1808,16 @@ Pipeline name.
 
 ##### <a name="provider"></a>`provider`
 
-The specific backend to use for this `elasticsearch_license` resource. You will seldom need to specify this --- Puppet
+The specific backend to use for this `opensearch_license` resource. You will seldom need to specify this --- Puppet
 will usually discover the appropriate provider for your platform.
 
-### <a name="elasticsearch_pipeline"></a>`elasticsearch_pipeline`
+### <a name="opensearch_pipeline"></a>`opensearch_pipeline`
 
-Manages Elasticsearch ingest pipelines.
+Manages Opensearch ingest pipelines.
 
 #### Properties
 
-The following properties are available in the `elasticsearch_pipeline` type.
+The following properties are available in the `opensearch_pipeline` type.
 
 ##### `content`
 
@@ -1833,7 +1833,7 @@ Default value: `present`
 
 #### Parameters
 
-The following parameters are available in the `elasticsearch_pipeline` type.
+The following parameters are available in the `opensearch_pipeline` type.
 
 * [`name`](#name)
 * [`provider`](#provider)
@@ -1846,16 +1846,16 @@ Pipeline name.
 
 ##### <a name="provider"></a>`provider`
 
-The specific backend to use for this `elasticsearch_pipeline` resource. You will seldom need to specify this --- Puppet
+The specific backend to use for this `opensearch_pipeline` resource. You will seldom need to specify this --- Puppet
 will usually discover the appropriate provider for your platform.
 
-### <a name="elasticsearch_plugin"></a>`elasticsearch_plugin`
+### <a name="opensearch_plugin"></a>`opensearch_plugin`
 
 Plugin installation type
 
 #### Properties
 
-The following properties are available in the `elasticsearch_plugin` type.
+The following properties are available in the `opensearch_plugin` type.
 
 ##### `ensure`
 
@@ -1867,10 +1867,10 @@ Default value: `present`
 
 #### Parameters
 
-The following parameters are available in the `elasticsearch_plugin` type.
+The following parameters are available in the `opensearch_plugin` type.
 
 * [`configdir`](#configdir)
-* [`elasticsearch_package_name`](#elasticsearch_package_name)
+* [`opensearch_package_name`](#opensearch_package_name)
 * [`java_home`](#java_home)
 * [`java_opts`](#java_opts)
 * [`name`](#name)
@@ -1883,13 +1883,13 @@ The following parameters are available in the `elasticsearch_plugin` type.
 
 ##### <a name="configdir"></a>`configdir`
 
-Path to the elasticsearch configuration directory (ES_PATH_CONF).
+Path to the opensearch configuration directory (ES_PATH_CONF).
 
-Default value: `/etc/elasticsearch`
+Default value: `/etc/opensearch`
 
-##### <a name="elasticsearch_package_name"></a>`elasticsearch_package_name`
+##### <a name="opensearch_package_name"></a>`opensearch_package_name`
 
-Name of the system Elasticsearch package.
+Name of the system Opensearch package.
 
 ##### <a name="java_home"></a>`java_home`
 
@@ -1911,7 +1911,7 @@ An arbitrary name used as the identity of the resource.
 
 Path to the Plugins directory
 
-Default value: `/usr/share/elasticsearch/plugins`
+Default value: `/usr/share/opensearch/plugins`
 
 ##### <a name="plugin_path"></a>`plugin_path`
 
@@ -1919,7 +1919,7 @@ Override name of the directory created for the plugin
 
 ##### <a name="provider"></a>`provider`
 
-The specific backend to use for this `elasticsearch_plugin` resource. You will seldom need to specify this --- Puppet
+The specific backend to use for this `opensearch_plugin` resource. You will seldom need to specify this --- Puppet
 will usually discover the appropriate provider for your platform.
 
 ##### <a name="proxy"></a>`proxy`
@@ -1934,13 +1934,13 @@ Source of the package. puppet:// or file:// resource
 
 Url of the package
 
-### <a name="elasticsearch_role"></a>`elasticsearch_role`
+### <a name="opensearch_role"></a>`opensearch_role`
 
-Type to model Elasticsearch roles.
+Type to model Opensearch roles.
 
 #### Properties
 
-The following properties are available in the `elasticsearch_role` type.
+The following properties are available in the `opensearch_role` type.
 
 ##### `ensure`
 
@@ -1956,7 +1956,7 @@ Security privileges of the given role.
 
 #### Parameters
 
-The following parameters are available in the `elasticsearch_role` type.
+The following parameters are available in the `opensearch_role` type.
 
 * [`name`](#name)
 * [`provider`](#provider)
@@ -1971,16 +1971,16 @@ Role name.
 
 ##### <a name="provider"></a>`provider`
 
-The specific backend to use for this `elasticsearch_role` resource. You will seldom need to specify this --- Puppet will
+The specific backend to use for this `opensearch_role` resource. You will seldom need to specify this --- Puppet will
 usually discover the appropriate provider for your platform.
 
-### <a name="elasticsearch_role_mapping"></a>`elasticsearch_role_mapping`
+### <a name="opensearch_role_mapping"></a>`opensearch_role_mapping`
 
-Type to model Elasticsearch role mappings.
+Type to model Opensearch role mappings.
 
 #### Properties
 
-The following properties are available in the `elasticsearch_role_mapping` type.
+The following properties are available in the `opensearch_role_mapping` type.
 
 ##### `ensure`
 
@@ -1996,7 +1996,7 @@ List of role mappings.
 
 #### Parameters
 
-The following parameters are available in the `elasticsearch_role_mapping` type.
+The following parameters are available in the `opensearch_role_mapping` type.
 
 * [`name`](#name)
 * [`provider`](#provider)
@@ -2011,16 +2011,16 @@ Role name.
 
 ##### <a name="provider"></a>`provider`
 
-The specific backend to use for this `elasticsearch_role_mapping` resource. You will seldom need to specify this ---
+The specific backend to use for this `opensearch_role_mapping` resource. You will seldom need to specify this ---
 Puppet will usually discover the appropriate provider for your platform.
 
-### <a name="elasticsearch_snapshot_repository"></a>`elasticsearch_snapshot_repository`
+### <a name="opensearch_snapshot_repository"></a>`opensearch_snapshot_repository`
 
-Manages Elasticsearch snapshot repositories.
+Manages Opensearch snapshot repositories.
 
 #### Properties
 
-The following properties are available in the `elasticsearch_snapshot_repository` type.
+The following properties are available in the `opensearch_snapshot_repository` type.
 
 ##### `chunk_size`
 
@@ -2054,7 +2054,7 @@ Maximum Snapshot rate
 
 #### Parameters
 
-The following parameters are available in the `elasticsearch_snapshot_repository` type.
+The following parameters are available in the `opensearch_snapshot_repository` type.
 
 * [`name`](#name)
 * [`provider`](#provider)
@@ -2068,7 +2068,7 @@ Repository name.
 
 ##### <a name="provider"></a>`provider`
 
-The specific backend to use for this `elasticsearch_snapshot_repository` resource. You will seldom need to specify this
+The specific backend to use for this `opensearch_snapshot_repository` resource. You will seldom need to specify this
 --- Puppet will usually discover the appropriate provider for your platform.
 
 ##### <a name="type"></a>`type`
@@ -2077,13 +2077,13 @@ Repository type
 
 Default value: `fs`
 
-### <a name="elasticsearch_template"></a>`elasticsearch_template`
+### <a name="opensearch_template"></a>`opensearch_template`
 
-Manages Elasticsearch index templates.
+Manages Opensearch index templates.
 
 #### Properties
 
-The following properties are available in the `elasticsearch_template` type.
+The following properties are available in the `opensearch_template` type.
 
 ##### `content`
 
@@ -2099,7 +2099,7 @@ Default value: `present`
 
 #### Parameters
 
-The following parameters are available in the `elasticsearch_template` type.
+The following parameters are available in the `opensearch_template` type.
 
 * [`name`](#name)
 * [`provider`](#provider)
@@ -2113,20 +2113,20 @@ Template name.
 
 ##### <a name="provider"></a>`provider`
 
-The specific backend to use for this `elasticsearch_template` resource. You will seldom need to specify this --- Puppet
+The specific backend to use for this `opensearch_template` resource. You will seldom need to specify this --- Puppet
 will usually discover the appropriate provider for your platform.
 
 ##### <a name="source"></a>`source`
 
 Puppet source to file containing template contents.
 
-### <a name="elasticsearch_user"></a>`elasticsearch_user`
+### <a name="opensearch_user"></a>`opensearch_user`
 
-Type to model Elasticsearch users.
+Type to model Opensearch users.
 
 #### Properties
 
-The following properties are available in the `elasticsearch_user` type.
+The following properties are available in the `opensearch_user` type.
 
 ##### `ensure`
 
@@ -2138,7 +2138,7 @@ Default value: `present`
 
 #### Parameters
 
-The following parameters are available in the `elasticsearch_user` type.
+The following parameters are available in the `opensearch_user` type.
 
 * [`configdir`](#configdir)
 * [`name`](#name)
@@ -2147,7 +2147,7 @@ The following parameters are available in the `elasticsearch_user` type.
 
 ##### <a name="configdir"></a>`configdir`
 
-Path to the elasticsearch configuration directory (ES_PATH_CONF).
+Path to the opensearch configuration directory (ES_PATH_CONF).
 
 ##### <a name="name"></a>`name`
 
@@ -2163,16 +2163,16 @@ Required features: manages_plaintext_passwords.
 
 ##### <a name="provider"></a>`provider`
 
-The specific backend to use for this `elasticsearch_user` resource. You will seldom need to specify this --- Puppet will
+The specific backend to use for this `opensearch_user` resource. You will seldom need to specify this --- Puppet will
 usually discover the appropriate provider for your platform.
 
-### <a name="elasticsearch_user_file"></a>`elasticsearch_user_file`
+### <a name="opensearch_user_file"></a>`opensearch_user_file`
 
-Type to model Elasticsearch users.
+Type to model Opensearch users.
 
 #### Properties
 
-The following properties are available in the `elasticsearch_user_file` type.
+The following properties are available in the `opensearch_user_file` type.
 
 ##### `ensure`
 
@@ -2190,7 +2190,7 @@ Hashed password for user.
 
 #### Parameters
 
-The following parameters are available in the `elasticsearch_user_file` type.
+The following parameters are available in the `opensearch_user_file` type.
 
 * [`configdir`](#configdir)
 * [`name`](#name)
@@ -2198,7 +2198,7 @@ The following parameters are available in the `elasticsearch_user_file` type.
 
 ##### <a name="configdir"></a>`configdir`
 
-Path to the elasticsearch configuration directory (ES_PATH_CONF).
+Path to the opensearch configuration directory (ES_PATH_CONF).
 
 ##### <a name="name"></a>`name`
 
@@ -2208,16 +2208,16 @@ User name.
 
 ##### <a name="provider"></a>`provider`
 
-The specific backend to use for this `elasticsearch_user_file` resource. You will seldom need to specify this --- Puppet
+The specific backend to use for this `opensearch_user_file` resource. You will seldom need to specify this --- Puppet
 will usually discover the appropriate provider for your platform.
 
-### <a name="elasticsearch_user_roles"></a>`elasticsearch_user_roles`
+### <a name="opensearch_user_roles"></a>`opensearch_user_roles`
 
-Type to model Elasticsearch user roles.
+Type to model Opensearch user roles.
 
 #### Properties
 
-The following properties are available in the `elasticsearch_user_roles` type.
+The following properties are available in the `opensearch_user_roles` type.
 
 ##### `ensure`
 
@@ -2233,7 +2233,7 @@ Array of roles that the user should belong to.
 
 #### Parameters
 
-The following parameters are available in the `elasticsearch_user_roles` type.
+The following parameters are available in the `opensearch_user_roles` type.
 
 * [`name`](#name)
 * [`provider`](#provider)
@@ -2246,13 +2246,13 @@ User name.
 
 ##### <a name="provider"></a>`provider`
 
-The specific backend to use for this `elasticsearch_user_roles` resource. You will seldom need to specify this ---
+The specific backend to use for this `opensearch_user_roles` resource. You will seldom need to specify this ---
 Puppet will usually discover the appropriate provider for your platform.
 
 ### <a name="es_instance_conn_validator"></a>`es_instance_conn_validator`
 
 Verify that a connection can be successfully established between a
-node and Elasticsearch. It could potentially be used for other purposes
+node and Opensearch. It could potentially be used for other purposes
 such as monitoring.
 
 #### Properties
@@ -2286,7 +2286,7 @@ An arbitrary name used as the identity of the resource.
 
 ##### <a name="port"></a>`port`
 
-The port that the Elasticsearch instance should be listening on.
+The port that the Opensearch instance should be listening on.
 
 Default value: `9200`
 
@@ -2297,20 +2297,20 @@ Puppet will usually discover the appropriate provider for your platform.
 
 ##### <a name="server"></a>`server`
 
-DNS name or IP address of the server where Elasticsearch should be running.
+DNS name or IP address of the server where Opensearch should be running.
 
 Default value: `localhost`
 
 ##### <a name="sleep_interval"></a>`sleep_interval`
 
-The number of seconds that the validator should wait before retrying the connection to Elasticsearch; defaults to 10
+The number of seconds that the validator should wait before retrying the connection to Opensearch; defaults to 10
 seconds.
 
 Default value: `10`
 
 ##### <a name="timeout"></a>`timeout`
 
-The max number of seconds that the validator should wait before giving up and deciding that Elasticsearch is not
+The max number of seconds that the validator should wait before giving up and deciding that Opensearch is not
 running; defaults to 60 seconds.
 
 Default value: `60`
@@ -2434,7 +2434,7 @@ For example, all the following return values are "plug":
     es_plugin_name('plug')
     es_plugin_name('foo/plug')
     es_plugin_name('foo/plug/1.0.0')
-    es_plugin_name('foo/elasticsearch-plug')
+    es_plugin_name('foo/opensearch-plug')
     es_plugin_name('foo/es-plug/1.3.2')
 
 #### `es_plugin_name()`
@@ -2448,7 +2448,7 @@ For example, all the following return values are "plug":
     es_plugin_name('plug')
     es_plugin_name('foo/plug')
     es_plugin_name('foo/plug/1.0.0')
-    es_plugin_name('foo/elasticsearch-plug')
+    es_plugin_name('foo/opensearch-plug')
     es_plugin_name('foo/es-plug/1.3.2')
 
 Returns: `Any` String
@@ -2467,9 +2467,9 @@ Returns: `Any` String
 
 ## Data types
 
-### <a name="elasticsearchmultipath"></a>`Elasticsearch::Multipath`
+### <a name="opensearchmultipath"></a>`Opensearch::Multipath`
 
-The Elasticsearch::Multipath data type.
+The Opensearch::Multipath data type.
 
 Alias of
 
@@ -2477,9 +2477,9 @@ Alias of
 Variant[Array[Stdlib::Absolutepath], Stdlib::Absolutepath]
 ```
 
-### <a name="elasticsearchstatus"></a>`Elasticsearch::Status`
+### <a name="opensearchstatus"></a>`Opensearch::Status`
 
-The Elasticsearch::Status data type.
+The Opensearch::Status data type.
 
 Alias of
 

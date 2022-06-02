@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
-# Parent provider for Elasticsearch Shield/X-Pack file-based user management
+# Parent provider for Opensearch Shield/X-Pack file-based user management
 # tools.
 class Puppet::Provider::ElasticUserCommand < Puppet::Provider
   attr_accessor :homedir
 
-  # Elasticsearch's home directory.
+  # Opensearch's home directory.
   #
   # @return String
   def self.homedir
     @homedir ||= case Facter.value('osfamily')
                  when 'OpenBSD'
-                   '/usr/local/elasticsearch'
+                   '/usr/local/opensearch'
                  else
-                   '/usr/share/elasticsearch'
+                   '/usr/share/opensearch'
                  end
   end
 
@@ -22,7 +22,7 @@ class Puppet::Provider::ElasticUserCommand < Puppet::Provider
     options = {
       combine: true,
       custom_environment: {
-        'ES_PATH_CONF' => configdir || '/etc/elasticsearch'
+        'ES_PATH_CONF' => configdir || '/etc/opensearch'
       },
       failonfail: true
     }
